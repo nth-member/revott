@@ -1,4 +1,4 @@
 __pycache__/
 *.pyc
 gdelt/sweep.npz
-app/__pycache__/
+docs/__pycache__/

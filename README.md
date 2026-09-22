@@ -98,14 +98,14 @@ distribution; an anchoring is a rank against the sweep.
 
 ## The app
 
-`app/` is a static page — no build, no server, no dependencies. It states one ratio per node:
+`docs/` is a static page — no build, no server, no dependencies. It states one ratio per node:
 
     numerator    what GDELT recorded that day
     denominator  what that day would normally carry (local level × weekday × season)
 
 Drag Y at day resolution and all 400 nodes move together. Run it with any static server:
 
-    cd app && python3 -m http.server 8000
+    cd docs && python3 -m http.server 8000
 
 ## Layout
 
@@ -118,6 +118,6 @@ Drag Y at day resolution and all 400 nodes move together. Run it with any static
     data/readings.json   the readings, 11 × 265 positions
     web/                 rendered instances
     gdelt/               the field, and the instruments that read it
-    app/                 the browser app
+    docs/                the browser app — also what GitHub Pages serves
     position_paper.md    the objective, stated
     HANDOVER_GDELT.md    the working record

@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>REVOTT atop GDELT</title>
+<style>
+:root{
+  color-scheme: light;
+  --plane:#f9f9f7; --surface:#fcfcfb;
+  --ink:#0b0b0b; --ink-2:#52514e; --muted:#898781;
+  --grid:#e1e0d9; --axis:#c3c2b7; --line:#e1e0d9;
+  --series:#2a78d6;      /* GDELT daily series */
+  --node:#eb6834;        /* REVOTT node marks */
+  --pos:#d03b3b;         /* ratio above 1 */
+  --neg:#2a78d6;         /* ratio below 1 */
+  --mid:#f0efec;         /* diverging midpoint */
+  --null:#d03b3b;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19;
+    --ink:#ffffff; --ink-2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --axis:#383835; --line:#2c2c2a;
+    --series:#3987e5; --node:#d95926;
+    --pos:#e66767; --neg:#3987e5; --mid:#383835; --null:#e66767;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --plane:#0d0d0d; --surface:#1a1a19;
+  --ink:#ffffff; --ink-2:#c3c2b7; --muted:#898781;
+  --grid:#2c2c2a; --axis:#383835; --line:#2c2c2a;
+  --series:#3987e5; --node:#d95926;
+  --pos:#e66767; --neg:#3987e5; --mid:#383835; --null:#e66767;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--plane);color:var(--ink);
+  font:14px/1.5 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px;padding-block:28px}
+h1{font-size:20px;margin:0 0 4px;letter-spacing:-.01em}
+.sub{color:var(--ink-2);margin:0 0 20px;max-width:70ch}
+code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-variant-numeric:tabular-nums}
+.eq{background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  padding:12px 14px;margin:0 0 20px;font-size:13px;color:var(--ink-2);overflow-x:auto}
+.eq b{color:var(--ink);font-weight:600}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;
+  padding:16px;margin-bottom:16px}
+.ctl{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end}
+.ctl label{display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:6px}
+input[type=number]{width:110px;font:inherit;font-family:ui-monospace,monospace;
+  padding:7px 9px;border:1px solid var(--axis);border-radius:8px;
+  background:var(--plane);color:var(--ink)}
+input[type=range]{width:100%;accent-color:var(--node)}
+.grow{flex:1 1 320px;min-width:240px}
+button{font:inherit;padding:7px 11px;border:1px solid var(--axis);border-radius:8px;
+  background:var(--plane);color:var(--ink);cursor:pointer}
+button:hover{border-color:var(--muted)}
+button.on{background:var(--node);border-color:var(--node);color:#fff}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;
+  margin-bottom:16px}
+.tile{background:var(--surface);padding:13px 15px}
+.tile .k{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.tile .v{font-size:19px;font-family:ui-monospace,monospace;font-variant-numeric:tabular-nums;
+  margin-top:3px;letter-spacing:-.02em}
+.tile .n{font-size:11.5px;color:var(--ink-2);margin-top:1px}
+.chart-t{font-size:13px;font-weight:600;margin:0 0 2px}
+.chart-s{font-size:12px;color:var(--ink-2);margin:0 0 12px}
+.cv{position:relative}
+canvas{display:block;width:100%;touch-action:none}
+.tip{position:absolute;pointer-events:none;opacity:0;transition:opacity .08s;
+  background:var(--surface);border:1px solid var(--axis);border-radius:8px;
+  padding:8px 10px;font-size:12px;box-shadow:0 4px 14px rgba(0,0,0,.14);
+  max-width:300px;z-index:5}
+.tip .r1{font-family:ui-monospace,monospace;font-weight:600;margin-bottom:3px}
+.tip .r2{color:var(--ink-2);font-family:ui-monospace,monospace;font-size:11.5px}
+.tip .r3{color:var(--ink-2);margin-top:5px;font-size:11.5px;line-height:1.35;
+  border-top:1px solid var(--line);padding-top:5px}
+.key{display:flex;flex-wrap:wrap;gap:16px;font-size:12px;color:var(--ink-2);margin-top:10px}
+.key i{display:inline-block;width:11px;height:11px;border-radius:3px;
+  margin-right:6px;vertical-align:-1px}
+.tbl-top{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;
+  margin-bottom:10px}
+.scroll{overflow-x:auto;max-height:460px;overflow-y:auto;border:1px solid var(--line);
+  border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:12.5px}
+th,td{padding:7px 10px;text-align:left;white-space:nowrap;border-bottom:1px solid var(--line)}
+th{position:sticky;top:0;background:var(--surface);z-index:1;font-size:10.5px;
+  letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:600;
+  cursor:pointer;user-select:none}
+th:hover{color:var(--ink)}
+td.num{font-family:ui-monospace,monospace;font-variant-numeric:tabular-nums;text-align:right}
+td.txt{white-space:normal;min-width:240px;max-width:420px;color:var(--ink-2);font-size:12px}
+tr.out td{color:var(--muted)}
+.chip{display:inline-block;padding:1px 6px;border-radius:5px;font-size:11px;
+  font-family:ui-monospace,monospace}
+.foot{color:var(--muted);font-size:12px;margin-top:22px;line-height:1.6}
+@media (max-width:640px){ .tile .v{font-size:17px} .wrap{padding-block:18px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>REVOTT atop GDELT</h1>
+<p class="sub">Two maps composed. REVOTT sends a position to a date; GDELT says what that day
+carried. Hold Y, run X over the 400 SFO-BB node values, read the field at each.</p>
+
+<div class="eq mono">
+  TNLDY = 14160 + 100·(Y + X) &nbsp;&nbsp;·&nbsp;&nbsp; date = 1969-11-07T11:28:41.739Z + TNLDY days<br>
+  <b>numerator</b> = events GDELT recorded that day &nbsp;·&nbsp;
+  <b>denominator</b> = what that day would normally carry (local level × weekday × season)
+</div>
+
+<div class="card">
+  <div class="ctl">
+    <div class="grow">
+      <label for="ys">Y — the instance shift &nbsp;·&nbsp; 0.01 = one day</label>
+      <input type="range" id="ys" min="-147.60" max="212.40" step="0.01" value="24.50">
+    </div>
+    <div>
+      <label for="yn">Y</label>
+      <input type="number" id="yn" min="-147.60" max="212.40" step="0.01" value="24.50">
+    </div>
+    <div>
+      <label>&nbsp;</label>
+      <button id="dm">−1 day</button>
+      <button id="dp">+1 day</button>
+    </div>
+    <div>
+      <label>&nbsp;</label>
+      <button id="edges">long-range edges</button>
+    </div>
+  </div>
+</div>
+
+<div class="tiles">
+  <div class="tile"><div class="k">Ztp</div><div class="v" id="tZ">—</div>
+    <div class="n" id="tZd">TNLDY at X = 0</div></div>
+  <div class="tile"><div class="k">nodes read</div><div class="v" id="tN">—</div>
+    <div class="n">of 400 inside the field</div></div>
+  <div class="tile"><div class="k">median ratio</div><div class="v" id="tR">—</div>
+    <div class="n">1.00 = an ordinary day</div></div>
+  <div class="tile"><div class="k">above / below</div><div class="v" id="tAB">—</div>
+    <div class="n">nodes over vs under 1.00</div></div>
+  <div class="tile"><div class="k">path spans</div><div class="v" id="tS">—</div>
+    <div class="n" id="tSd">first to last node</div></div>
+</div>
+
+<div class="card">
+  <p class="chart-t">GDELT daily event volume, with the 400 node positions marked</p>
+  <p class="chart-s">Log scale. Orange ticks are where REVOTT places its nodes at this Y.
+    Red bands are days GDELT never published — never read as zero.</p>
+  <div class="cv"><canvas id="c1" height="300"></canvas><div class="tip" id="t1"></div></div>
+  <div class="key">
+    <span><i style="background:var(--series)"></i>events per day</span>
+    <span><i style="background:var(--node)"></i>node position</span>
+    <span><i style="background:var(--null);opacity:.35"></i>no file published</span>
+  </div>
+</div>
+
+<div class="card">
+  <p class="chart-t">Each node's reading — numerator ÷ denominator</p>
+  <p class="chart-s">Ordered along X. Above the midline the day carried more than it normally
+    would; below, less. Log scale, so equal distances are equal factors.</p>
+  <div class="cv"><canvas id="c2" height="260"></canvas><div class="tip" id="t2"></div></div>
+  <div class="key">
+    <span><i style="background:var(--pos)"></i>above 1.00</span>
+    <span><i style="background:var(--neg)"></i>below 1.00</span>
+    <span><i style="background:var(--muted);opacity:.45"></i>outside the field / no file</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="tbl-top">
+    <div>
+      <p class="chart-t" style="margin:0">All 400 nodes</p>
+      <p class="chart-s" style="margin:0">Click a column to sort. The same numbers the charts draw.</p>
+    </div>
+    <div>
+      <button id="onlyIn" class="on">only nodes in the field</button>
+      <button id="csv">download CSV</button>
+    </div>
+  </div>
+  <div class="scroll">
+    <table id="tb">
+      <thead><tr>
+        <th data-k="x">X</th><th data-k="tnldy">TNLDY</th><th data-k="date">date</th>
+        <th data-k="wd">day</th><th data-k="num">numerator</th><th data-k="den">denominator</th>
+        <th data-k="ratio">ratio</th><th data-k="z">z</th><th data-k="deg">succ</th>
+        <th data-k="text">framework standing here</th>
+      </tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+
+<p class="foot">
+  The field runs 1979-01-01 to 2026-09-20 — 17,430 days, 24 of them NULL. The path spans 36,000
+  days, so no Y places all 400 nodes inside it. A ratio is a reading, not a result: ranks come
+  from the sweep, and there are no p-values in this work.
+</p>
+
+</div>
+<script>
+const ORIGIN_D = Date.UTC(1969,10,7,11,28,41,739)/86400000;
+const WD = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+let F=null, N=null, START=0, Y=24.50, showEdges=false, onlyIn=true,
+    sortK="x", sortAsc=true, rows=[];
+
+const $=s=>document.querySelector(s);
+const fmt=(n,d=0)=>n==null?"—":n.toLocaleString(undefined,{minimumFractionDigits:d,maximumFractionDigits:d});
+
+Promise.all([fetch("data/field.json").then(r=>r.json()),
+             fetch("data/nodes.json").then(r=>r.json())]).then(([f,n])=>{
+  F=f; N=n; START=Math.floor(Date.UTC(+f.start.slice(0,4),+f.start.slice(5,7)-1,+f.start.slice(8,10))/86400000);
+  bind(); update();
+});
+
+function bind(){
+  const ys=$("#ys"), yn=$("#yn");
+  ys.oninput=()=>{Y=+ys.value; yn.value=Y.toFixed(2); update();};
+  yn.oninput=()=>{const v=+yn.value; if(!isNaN(v)){Y=Math.min(212.40,Math.max(-147.60,v)); ys.value=Y; update();}};
+  $("#dm").onclick=()=>step(-0.01); $("#dp").onclick=()=>step(0.01);
+  $("#edges").onclick=e=>{showEdges=!showEdges; e.target.classList.toggle("on",showEdges); draw();};
+  $("#onlyIn").onclick=e=>{onlyIn=!onlyIn; e.target.classList.toggle("on",onlyIn); table();};
+  $("#csv").onclick=downloadCSV;
+  document.querySelectorAll("#tb th").forEach(th=>th.onclick=()=>{
+    const k=th.dataset.k; if(sortK===k) sortAsc=!sortAsc; else {sortK=k; sortAsc=true;} table();});
+  addEventListener("resize",draw);
+  hover($("#c1"),$("#t1"),pickSeries);
+  hover($("#c2"),$("#t2"),pickNode);
+}
+function step(d){Y=Math.round((Y+d)*100)/100; $("#ys").value=Y; $("#yn").value=Y.toFixed(2); update();}
+
+function dayIndex(x){ return Math.floor(ORIGIN_D + 14160 + 100*(Y+x)) - START; }
+function isoOf(i){ return new Date((START+i)*86400000).toISOString().slice(0,10); }
+
+function update(){
+  rows = N.map(nd=>{
+    const t = 14160 + 100*(Y+nd.x);
+    const i = dayIndex(nd.x);
+    const inF = i>=0 && i<F.n;
+    const num = inF ? F.events[i] : -1;
+    const den = inF ? F.denom[i] : -1;
+    const ok  = inF && num>=0 && den>0;
+    const dt  = new Date((ORIGIN_D+t)*86400000);
+    return { x:nd.x, tnldy:t, i, inF, date:dt.toISOString().slice(0,10),
+             wd:WD[dt.getUTCDay()], num: ok?num:null, den: ok?den:null,
+             ratio: ok?num/den:null, z: ok?F.z[i]:null,
+             deg:nd.s.length, succ:nd.s, text:nd.t, nullday: inF && num<0 };
+  });
+  tiles(); draw(); table();
+}
+
+function tiles(){
+  const ok=rows.filter(r=>r.ratio!=null), rs=ok.map(r=>r.ratio).sort((a,b)=>a-b);
+  const ztp=14160+100*Y;
+  $("#tZ").textContent=fmt(ztp,0);
+  $("#tZd").textContent="X = 0 → "+new Date((ORIGIN_D+ztp)*86400000).toISOString().slice(0,10);
+  $("#tN").textContent=ok.length;
+  $("#tR").textContent= rs.length? rs[rs.length>>1].toFixed(3) : "—";
+  const a=ok.filter(r=>r.ratio>1).length;
+  $("#tAB").textContent= ok.length? a+" / "+(ok.length-a) : "—";
+  $("#tS").textContent= rows[0].date.slice(0,4)+"–"+rows[rows.length-1].date.slice(0,4);
+  $("#tSd").textContent= rows[0].date+" → "+rows[rows.length-1].date;
+}
+
+function css(v){return getComputedStyle(document.body).getPropertyValue(v).trim();}
+function setup(c,h){
+  const dpr=devicePixelRatio||1, w=c.parentElement.clientWidth;
+  c.width=w*dpr; c.height=h*dpr; c.style.height=h+"px";
+  const g=c.getContext("2d"); g.setTransform(dpr,0,0,dpr,0,0);
+  g.clearRect(0,0,w,h); return [g,w,h];
+}
+function draw(){ if(F){ drawSeries(); drawRatios(); } }
+
+/* ---- chart 1: the field, with node positions ---- */
+let S1=null;
+function drawSeries(){
+  const c=$("#c1"), [g,w,h]=setup(c,300);
+  const L=52,R=12,T=12,B=26, iw=w-L-R, ih=h-T-B;
+  const lo=Math.log10(300), hi=Math.log10(300000);
+  const X=i=>L+iw*i/(F.n-1), Yv=v=>T+ih*(1-(Math.log10(v)-lo)/(hi-lo));
+  S1={L,R,T,B,iw,ih,X};
+
+  g.strokeStyle=css("--grid"); g.lineWidth=1; g.fillStyle=css("--muted");
+  g.font="11px ui-monospace,monospace"; g.textAlign="right"; g.textBaseline="middle";
+  [1e3,1e4,1e5].forEach(v=>{const y=Math.round(Yv(v))+.5;
+    g.beginPath();g.moveTo(L,y);g.lineTo(w-R,y);g.stroke();
+    g.fillText(v>=1e5?"100k":v>=1e4?"10k":"1k",L-8,y);});
+
+  // NULL days
+  g.fillStyle=css("--null");g.globalAlpha=.30;
+  for(let i=0;i<F.n;i++) if(F.events[i]<0) g.fillRect(X(i),T,Math.max(1,iw/F.n),ih);
+  g.globalAlpha=1;
+
+  // the series
+  g.strokeStyle=css("--series"); g.lineWidth=1; g.globalAlpha=.85; g.beginPath();
+  let started=false;
+  for(let i=0;i<F.n;i++){ const v=F.events[i]; if(v<0){started=false;continue;}
+    const px=X(i),py=Yv(Math.max(300,v));
+    if(!started){g.moveTo(px,py);started=true;} else g.lineTo(px,py);}
+  g.stroke(); g.globalAlpha=1;
+
+  // long-range edges, drawn under the ticks
+  if(showEdges){
+    g.strokeStyle=css("--node"); g.globalAlpha=.16; g.lineWidth=1;
+    const by=new Map(rows.map(r=>[r.x,r]));
+    rows.forEach(r=>{ if(!r.inF) return;
+      r.succ.forEach(([tx])=>{ const q=by.get(tx); if(!q||!q.inF) return;
+        if(Math.abs(tx-r.x)<0.12) return;
+        const a=X(r.i), b=X(q.i), m=(a+b)/2, k=Math.min(26,Math.abs(b-a)/3);
+        g.beginPath(); g.moveTo(a,T+ih-4); g.quadraticCurveTo(m,T+ih-4-k,b,T+ih-4); g.stroke();});});
+    g.globalAlpha=1;
+  }
+
+  // node ticks
+  g.strokeStyle=css("--node"); g.lineWidth=1.5; g.globalAlpha=.8;
+  rows.forEach(r=>{ if(!r.inF) return; const px=Math.round(X(r.i))+.5;
+    g.beginPath(); g.moveTo(px,T+ih); g.lineTo(px,T+ih-9); g.stroke();});
+  g.globalAlpha=1;
+
+  g.strokeStyle=css("--axis"); g.beginPath();
+  g.moveTo(L,T+ih+.5); g.lineTo(w-R,T+ih+.5); g.stroke();
+  g.fillStyle=css("--muted"); g.textAlign="center"; g.textBaseline="top";
+  for(let y=1980;y<=2025;y+=5){
+    const i=Math.floor(Date.UTC(y,0,1)/86400000)-START;
+    if(i>=0&&i<F.n) g.fillText(y,X(i),T+ih+7);}
+}
+
+/* ---- chart 2: the ratio per node ---- */
+let S2=null;
+function drawRatios(){
+  const c=$("#c2"), [g,w,h]=setup(c,260);
+  const L=52,R=12,T=14,B=26, iw=w-L-R, ih=h-T-B;
+  const xs=rows.map(r=>r.x), x0=xs[0], x1=xs[xs.length-1];
+  const lim=Math.log10(6);
+  const X=x=>L+iw*(x-x0)/(x1-x0);
+  const Yv=v=>T+ih*(1-(Math.max(-lim,Math.min(lim,Math.log10(v)))+lim)/(2*lim));
+  S2={L,R,T,B,iw,ih,X,x0,x1};
+
+  g.strokeStyle=css("--grid"); g.fillStyle=css("--muted"); g.lineWidth=1;
+  g.font="11px ui-monospace,monospace"; g.textAlign="right"; g.textBaseline="middle";
+  [5,2,1,.5,.2].forEach(v=>{const y=Math.round(Yv(v))+.5;
+    g.beginPath();g.moveTo(L,y);g.lineTo(w-R,y);g.stroke();
+    g.fillText(v===1?"1.00":"×"+v,L-8,y);});
+  g.strokeStyle=css("--axis"); g.lineWidth=1.5;
+  g.beginPath();g.moveTo(L,Math.round(Yv(1))+.5);g.lineTo(w-R,Math.round(Yv(1))+.5);g.stroke();
+
+  const mid=Yv(1);
+  rows.forEach(r=>{
+    const px=Math.round(X(r.x))+.5;
+    if(r.ratio==null){ g.strokeStyle=css("--muted"); g.globalAlpha=.30; g.lineWidth=1;
+      g.beginPath(); g.moveTo(px,mid-3); g.lineTo(px,mid+3); g.stroke(); g.globalAlpha=1; return; }
+    const py=Yv(r.ratio);
+    g.strokeStyle= r.ratio>=1?css("--pos"):css("--neg");
+    g.globalAlpha=.55; g.lineWidth=1;
+    g.beginPath(); g.moveTo(px,mid); g.lineTo(px,py); g.stroke(); g.globalAlpha=1;
+    g.fillStyle= r.ratio>=1?css("--pos"):css("--neg");
+    g.beginPath(); g.arc(px,py,2.6,0,7); g.fill();
+    g.strokeStyle=css("--surface"); g.lineWidth=1.4; g.stroke();
+  });
+
+  g.fillStyle=css("--muted"); g.textAlign="center"; g.textBaseline="top";
+  g.font="11px ui-monospace,monospace";
+  [-100,-50,0,50,100,150,200].forEach(v=>{ if(v<x0||v>x1) return;
+    g.fillText("X "+v,X(v),T+ih+7);});
+}
+
+/* ---- hover ---- */
+function hover(c,tip,pick){
+  const move=e=>{
+    const b=c.getBoundingClientRect(), mx=e.clientX-b.left, my=e.clientY-b.top;
+    const r=pick(mx,my);
+    if(!r){tip.style.opacity=0;return;}
+    tip.innerHTML=r.html; tip.style.opacity=1;
+    const tw=tip.offsetWidth, th=tip.offsetHeight;
+    tip.style.left=Math.max(4,Math.min(b.width-tw-4,mx-tw/2))+"px";
+    tip.style.top=Math.max(4,my-th-12)+"px";
+  };
+  c.addEventListener("pointermove",move);
+  c.addEventListener("pointerleave",()=>tip.style.opacity=0);
+}
+function ratioChip(v){
+  const col=v>=1?"var(--pos)":"var(--neg)";
+  return '<span class="chip" style="background:'+col+';color:#fff">×'+v.toFixed(3)+'</span>';
+}
+function pickSeries(mx){
+  if(!S1) return null;
+  const i=Math.round((mx-S1.L)/S1.iw*(F.n-1));
+  if(i<0||i>=F.n) return null;
+  const near=rows.filter(r=>r.inF&&Math.abs(r.i-i)<=Math.max(2,F.n/S1.iw));
+  const ev=F.events[i];
+  let html='<div class="r1">'+isoOf(i)+'</div><div class="r2">'
+    +(ev<0?'no file published — NULL':fmt(ev)+' events · normally '+fmt(F.denom[i])
+      +'<br>ratio '+(F.denom[i]>0?(ev/F.denom[i]).toFixed(3):'—'))+'</div>';
+  if(near.length) html+='<div class="r3"><b>node X '+near[0].x+'</b>'
+    +(near[0].text?'<br>'+esc(near[0].text.slice(0,120)):'')+'</div>';
+  return {html};
+}
+function pickNode(mx){
+  if(!S2) return null;
+  let best=null,bd=1e9;
+  rows.forEach(r=>{const d=Math.abs(S2.X(r.x)-mx); if(d<bd){bd=d;best=r;}});
+  if(!best||bd>14) return null;
+  let html='<div class="r1">X '+best.x+' · '+best.date+' '+best.wd+'</div>';
+  html+='<div class="r2">TNLDY '+fmt(best.tnldy,2)+'</div>';
+  if(best.ratio!=null) html+='<div class="r2" style="margin-top:4px">'+fmt(best.num)
+    +' &divide; '+fmt(best.den)+' = '+ratioChip(best.ratio)+' · z '+best.z.toFixed(2)+'</div>';
+  else html+='<div class="r2" style="margin-top:4px">'
+    +(best.nullday?'no file published — NULL':'outside the field')+'</div>';
+  if(best.text) html+='<div class="r3">'+esc(best.text.slice(0,160))+'</div>';
+  return {html};
+}
+function esc(s){return s.replace(/[&<>]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[m]));}
+
+/* ---- table ---- */
+function table(){
+  const body=$("#tb tbody");
+  let rs=onlyIn?rows.filter(r=>r.ratio!=null):rows.slice();
+  rs.sort((a,b)=>{
+    let p=a[sortK],q=b[sortK];
+    if(p==null)return 1; if(q==null)return -1;
+    if(typeof p==="string")return sortAsc?p.localeCompare(q):q.localeCompare(p);
+    return sortAsc?p-q:q-p;});
+  body.innerHTML=rs.map(r=>{
+    const c=r.ratio==null?"":(r.ratio>=1?"var(--pos)":"var(--neg)");
+    return '<tr class="'+(r.ratio==null?"out":"")+'">'
+      +'<td class="num">'+r.x+'</td>'
+      +'<td class="num">'+fmt(r.tnldy,2)+'</td>'
+      +'<td class="num">'+r.date+'</td>'
+      +'<td>'+r.wd+'</td>'
+      +'<td class="num">'+(r.num==null?(r.nullday?"NULL":"—"):fmt(r.num))+'</td>'
+      +'<td class="num">'+(r.den==null?"—":fmt(r.den))+'</td>'
+      +'<td class="num">'+(r.ratio==null?"—":'<span style="color:'+c+';font-weight:600">'
+          +r.ratio.toFixed(3)+'</span>')+'</td>'
+      +'<td class="num">'+(r.z==null?"—":r.z.toFixed(2))+'</td>'
+      +'<td class="num">'+r.deg+'</td>'
+      +'<td class="txt">'+esc(r.text||"")+'</td></tr>';}).join("");
+}
+function downloadCSV(){
+  const head="x,tnldy,date,weekday,numerator,denominator,ratio,z,successors,text";
+  const body=rows.map(r=>[r.x,r.tnldy.toFixed(4),r.date,r.wd,
+    r.num??"",r.den??"",r.ratio==null?"":r.ratio.toFixed(6),r.z??"",r.deg,
+    '"'+(r.text||"").replace(/"/g,'""')+'"'].join(",")).join("\n");
+  const blob=new Blob([head+"\n"+body],{type:"text/csv"});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob); a.download="revott_gdelt_Y"+Y.toFixed(2)+".csv"; a.click();
+  URL.revokeObjectURL(a.href);
+}
+</script>
+</body>
+</html>
