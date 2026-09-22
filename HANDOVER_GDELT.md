@@ -63,7 +63,73 @@ with a domain line reading `…8568/8532…8480/8360/8280 ≥ Y ≥ 0` — the s
 i.e. 85.68, 85.32, 84.80, 83.60, 82.80 × 100. **That workbook has not been read properly yet**, and
 it is the most direct source for the family of instances and the YGADi reading.
 
-## 2. Why GDELT
+## 2. The nuances that govern this work
+
+These are the corpus author's own statements about their system, recorded because each of them
+overturned something already built. None is derivable from the files. A reader who has only the
+arithmetic will re-make these mistakes, as this session did, repeatedly.
+
+**REVOTT is the Revelation Of The Trial.** The name is not decorative and the system is not the
+whizz-kids story; that story is one reading of one instance.
+
+**Y is the instance shift; X ranges freely.** "The REVOTT Ztp is 14160.0 TNLDY … the fixed Y (e.g.
+24.50) contributes to the per-instance Ztp shift (thus 14160 + 2450) … while the X is free to range
+up and down the SFO." So an instance is a *shift*, not a separate object with its own epoch.
+Modelling each anchoring as an independent instance file with its own epoch — which this repo did
+at first — is wrong, and makes four values of one parameter look like four systems.
+
+**The two operating modes.** "I typically hold a given Y fixed (like 24.50) and run all Xs against
+it, OR investigate a given X (or a few given Xs) against it." The first is the sweep. The second is
+the pre-registered test — naming positions before looking. Any scan design that does not reduce to
+one of these is not how REVOTT is worked.
+
+**Instances are siblings, never descendants.** "again_born is not a child of whizz_kids … it is an
+independent slice of REVOTT." Each is anchored by its own Ztp. Relations between them — the exact
+5830, 6082, 252-day separations — are *relations*, recorded as such, and never derivations. In
+particular whizz-kids is not the reference frame; it is simply the slice that had reachable
+real-world targets.
+
+**There is no such thing as 265.** "265 is a number that came about because the 'Wired etc'
+matches … this specific implementation was constrained to 265 because of a mandate to hit
+real-world server targets — but it still has 400." The 265 is a **result set**, not a structure.
+Positions were retained *because* a match was found, and then evidenced by the same criterion that
+retained them. A hit rate over that set is near 1 because of how it was built, not because the
+dates are special. Nothing may be conditioned on it.
+
+**Latent context travels; server hits do not.** "The latent context should remain … etc Carnegie
+stages … just not any server hits." The framework the SFO carries — somite counts and
+Carnegie-stage markers, follicular phases, hidden-counts and year notations — belongs to the
+domain and appears under any anchoring. Evidence, sources, correspondences and design-story
+chapters belong to the instance that was sampled against the record, and do not travel. Rendering a
+re-anchored instance stripped of its framework, as this repo did at first, is also wrong.
+
+**No more Wired.** Withdraw any policy that prefers the sources the ledger already cites. The
+reason is in §3, and it generalises: a criterion that selected the data must not also be the
+criterion that evidences it.
+
+**"It's about connecting the dots … because the more you look the less you see."** This is the
+governing methodological constraint and the reason the control exists. Exhaustive coverage is not
+merely expensive, it is self-defeating: research every position and the hit rate converges on the
+base rate, and each individual finding means less. The instrument must be able to come back
+negative, and the work must be sized to produce a comparison rather than a list. A cost table that
+optimises for coverage — as this session first produced — has the epistemics backwards.
+
+**The fluid-mechanics frame.** "Think velocity potential and stream function of fluid mechanics."
+An instance is one slice of a larger analytic object, the way a streamline is one level set of a
+complex potential. φ and ψ are each defined only up to a constant; fixing the constant selects the
+particular flow. The REVOTT expression is that gauge-fixing, and the eleven named readings —
+KINGS.3500D, NAPOLEON.3500D, 10DT_ARM.2800D/23, EXE_TPDP.100D, WITNESS_CFH_ENTER/LEAVE.100D,
+TWG_TWF.100D, THE_DESTROYER.100D, ZTS_EON.yG, END_IE_PURPOSE_BIRTH/CIRCUMSPECTION.100D — are
+conjugate views over the same domain at four scales. This implementation traverses one of them, the
+100D scale on the raw position. It is a slice, and should never be written as though it were the
+structure.
+
+**What follows for GDELT.** The field is measured against a *path*, not a set of hits; the path is
+ordered by the backbone; instances are siblings so every other Y is a legitimate control; the 265
+never enters; and the statistic is fixed before the sweep because looking harder is how the signal
+is destroyed.
+
+## 3. Why GDELT
 
 Not to find more events. To supply a **denominator**.
 
@@ -86,7 +152,7 @@ gradients rather than pairs of hits.
 
 ---
 
-## 3. What is on disk
+## 4. What is on disk
 
     ~/gdelt_raw_1979_2026/
     ├── files/            5,012 zips · 53.7 GB · 1979-01-01 .. 2026-09-20
@@ -104,7 +170,7 @@ continued, nothing is deleted. `verify.py` is read-only.
 
 ---
 
-## 4. Three facts about this corpus that are correctness issues, not trivia
+## 5. Three facts about this corpus that are correctness issues, not trivia
 
 **(a) Two days are missing, and they must read as NULL, never zero.**
 
@@ -136,7 +202,7 @@ better, being less exposed to level drift.
 
 ---
 
-## 5. How this meets REVOTT
+## 6. How this meets REVOTT
 
 REVOTT is one coordinate and two additive shifts on it — section 1 above. Because a date is `origin + TNLDY days`, **scanning Y is sliding an integer offset over a daily
 series.** No calendar arithmetic per anchoring. One unit of Y is exactly 100 days.
@@ -153,7 +219,7 @@ conditioned on whether evidence was once found near a position.
 
 ---
 
-## 6. The statistical trap, stated before any measurement
+## 7. The statistical trap, stated before any measurement
 
 Y at day resolution over [−147.60, 212.40] gives **36,000 distinct anchorings**. Sweep them, take
 the best, and you will find something extraordinary from noise alone, with certainty.
@@ -179,7 +245,7 @@ The honest headline is never "Y = 24.50 scores 3.7σ". It is "Y = 24.50 ranks 41
 
 ---
 
-## 7. Next step: the aggregate
+## 8. Next step: the aggregate
 
 Collapse 53.7 GB to **one row per day** since 1979 — a few hundred KB — after which every scan runs
 in memory in seconds and the corpus is never touched again.
@@ -201,7 +267,7 @@ exists in `~/pdp-causal-agent/`: `build_repo_hour_index.py`,
 
 ---
 
-## 8. The GitHub strategy
+## 9. The GitHub strategy
 
 **Two repositories, both private, both under the `nth-member` org, neither containing the corpora.**
 
@@ -233,7 +299,7 @@ aggregate.
 
 ---
 
-## 9. Open
+## 10. Open
 
 - The aggregate is not built. Nothing has been measured.
 - `revott` is not pushed; `whizzkids-witness` has 7 commits unpushed.
