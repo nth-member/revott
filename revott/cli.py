@@ -90,7 +90,15 @@ def main(argv: list[str] | None = None) -> int:
         print(f"  instance   : Ztp TNLDY {float(ztp_of(y)):,.0f} = {date_of(y, 0).date()}")
         key = sfo.keys.get(float(x))
         if key:
-            print(f"  key        : exact — {key.text or '(no text on this key)'}")
+            if key.strands:
+                print(f"  key        : exact — {key.text}")
+            elif key.carried:
+                print(f"  key        : exact — no text of its own")
+                print(f"  standing   : {key.standing_text}")
+                print(f"               carried from {key.carried_from}"
+                      f" ({key.gap_to_carrier:+g} in position)")
+            else:
+                print(f"  key        : exact — no framework at or before this key")
             for edge in sfo.successors(key.x):
                 mark = "" if edge.stated else "  [backbone, not written down]"
                 print(f"     -> {edge.target}  gap {edge.gap}{mark}")

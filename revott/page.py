@@ -35,7 +35,12 @@ def build(y="0", title: str | None = None, out: str | Path | None = None) -> Pat
             f'<span class="t">TNLDY {float(t):,.0f}</span></div>'
             '<div class="body">'
             + ("".join(f'<span class="s">{esc(p)}</span>' for p in key.strands)
-               or '<span class="none">no text on this key</span>')
+               if key.strands else
+               ("".join(f'<span class="s c">{esc(p)}</span>' for p in key.carried)
+                + f'<span class="cf">carried from {key.carried_from}'
+                  f' · {key.gap_to_carrier:+g} in position</span>'
+                if key.carried else
+                '<span class="none">no framework at or before this key</span>'))
             + (f'<span class="n">→ {nxt.target}'
                + ('' if nxt.stated else ' · not written down') + '</span>'
                if nxt else '<span class="n">sink</span>')
@@ -81,6 +86,9 @@ input{{width:100%;margin-top:20px;font-family:var(--m);font-size:14px;color:var(
 .s{{display:block;font-size:13.5px;line-height:1.5}}
 .s+.s{{color:var(--i2);margin-top:2px}}
 .none{{display:block;font-size:13px;color:var(--i3);font-style:italic}}
+.s.c{{color:var(--i3)}}
+.cf{{display:block;font-family:var(--m);font-size:10px;color:var(--i3);margin-top:3px;
+ letter-spacing:.03em}}
 .n{{display:block;font-family:var(--m);font-size:10.5px;color:var(--a);margin-top:5px}}
 .row.zero{{background:var(--s)}}
 .row.zero .rail .x{{color:var(--a)}}
@@ -107,8 +115,10 @@ footer{{margin-top:24px;color:var(--i3);font-size:12px;line-height:1.65;max-widt
 {chr(10).join(rows)}
 </div>
 <footer>
-The text on each key is the framework the SFO carries, written in several strands at once. X is
-free and continuous; these 400 keys are the structure standing on it, not a list X is confined to.
+The text on each key is the framework the SFO carries, written in several strands at once. Where a
+key carries none of its own, the framework of the last preceding key that does is shown greyed and
+marked <em>carried from</em>: that is what stands at the position, and it is never presented as
+owned. X is free and continuous; these 400 keys are the structure standing on it, not a list X is confined to.
 Y shifts the whole instance by 100 TNLDY per unit off REVOTT's own zero at 14160.<br><br>
 No evidence, correspondence or selection is applied here. Every key appears, whether or not
 anything was ever found near it in any instance, and nothing on this page claims that anything

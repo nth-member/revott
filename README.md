@@ -52,7 +52,10 @@ framework text and naming successors — not a list X is confined to.
   `0.0 → 0.18`, `0.18 → 0.33`. Marked wherever they appear.
 - **4 disputed gaps**, where the stated gap and the difference between the keys disagree. Both
   numbers are kept; neither is resolved.
-- **15 keys carry no framework text.**
+- **Framework stands at all 400 keys**: 385 carry text of their own, 508 strands in all, up to four
+  on a single key. The other 15 have no text in the source, and stand under the framework of the
+  last preceding key that does — shown as *carried from*, with the distance in position, and never
+  presented as owned.
 - **One erratum applied**: one source row carried two keys, `−0.18` and `0.18`. Separated, every
   gap reconciles, and the only backward edge and only ordering violation both resolve.
 

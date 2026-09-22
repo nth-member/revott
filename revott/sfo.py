@@ -20,15 +20,35 @@ class Key:
     x: float
     strands: list[str] = field(default_factory=list)
     successors: list[tuple[float, float]] = field(default_factory=list)
+    # Where this key carries no text of its own, the last preceding key that
+    # does. Its framework is what stands at this position.
+    carried_from: float | None = None
+    carried: list[str] = field(default_factory=list)
 
     @property
     def text(self) -> str:
+        """The key's own text, empty where it has none."""
         return " || ".join(self.strands) if self.strands else ""
 
     @property
     def bare(self) -> bool:
         """True where the key carries no framework text of its own."""
         return not self.strands
+
+    @property
+    def standing(self) -> list[str]:
+        """The framework standing at this position, owned or carried."""
+        return self.strands or self.carried
+
+    @property
+    def standing_text(self) -> str:
+        return " || ".join(self.standing) if self.standing else ""
+
+    @property
+    def gap_to_carrier(self) -> float | None:
+        if self.carried_from is None:
+            return None
+        return round(self.x - self.carried_from, 6)
 
 
 @dataclass
@@ -71,6 +91,18 @@ class SFO:
             )
         self.order = sorted(self.keys)
         self.next_x = dict(zip(self.order, self.order[1:]))
+
+        # Carry-over: a key with no text of its own stands under the framework of
+        # the last preceding key that has one. The distinction is kept -- carried
+        # is never presented as owned.
+        last_x, last_strands = None, []
+        for x in self.order:
+            key = self.keys[x]
+            if key.strands:
+                last_x, last_strands = x, key.strands
+            elif last_x is not None:
+                key.carried_from = last_x
+                key.carried = list(last_strands)
 
         self.edges: list[Edge] = []
         for key in self.keys.values():
