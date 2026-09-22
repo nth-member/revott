@@ -2,11 +2,16 @@
 
 **Revelation Of The Trial.** One coordinate, and two additive shifts on it.
 
-    TNLDY = 14160 + 100·Y + 100·X
+    TNLDY = 14160 + 100·(Y + X)
 
     14160    REVOTT's own Ztp
-    100·Y    the per-instance shift; Y names the instance
-    100·X    the position, free to range up and down the SFO
+    Y        the per-instance shift; Y names the instance
+    X        the position, over the SFO
+
+**Y and X enter identically — the expression contains only their sum.** So they carry the same
+span, `−147.60 .. 212.40`, 36,000 days each; `Y + X` runs `−295.20 .. 424.80`, dates 1927-10-19 to
+2124-12-04; and position X in the instance shifted by Y falls on the same date as X′ in Y′ whenever
+`Y + X = Y′ + X′`. Sliding the anchor is a shift test.
 
     year  = TNLDY × 23/8400 + 1969 + 391/420
     date  = 1969-11-07T11:28:41.739Z + TNLDY days
@@ -71,6 +76,37 @@ No evidence, no correspondence, no selection. In particular there is no set of 2
 number is an artifact of an earlier matching process, not a property of the SFO, and nothing in
 this package is conditioned on whether anything was once found near a position.
 
+## REVOTT atop GDELT
+
+GDELT is here as a **denominator**. *Did something happen on this date?* is yes for any date and so
+carries no information; *what is the state of the field at this position?* can come back negative.
+`position_paper.md` states the objective and what may and may not be concluded from it.
+
+    gdelt/build.sh                  50 GB of archives -> one row per day, ~4 min
+    gdelt/gdelt_daily_1979_2026.csv 17,430 days, 1979-01-01 .. 2026-09-20
+    gdelt/overlay.py [Y]            REVOTT over the field, one row per node
+    gdelt/sweep.py                  all 36,001 anchorings, for ranking
+    gdelt/weekday_alias.py          the calendar artefacts, computed exactly
+
+The corpus itself is never committed and never extracted — archives stream through `unzip -p`.
+Four properties of it are correctness issues rather than caveats: two eras measuring different
+quantities either side of 2013-04, 24 NULL days that are never zero, a weekly cycle worth 70% of
+the residual and an annual cycle worth 47%. Nothing is read raw.
+
+There are **no p-values in this work**. A reading is a percentile against the field's own
+distribution; an anchoring is a rank against the sweep.
+
+## The app
+
+`app/` is a static page — no build, no server, no dependencies. It states one ratio per node:
+
+    numerator    what GDELT recorded that day
+    denominator  what that day would normally carry (local level × weekday × season)
+
+Drag Y at day resolution and all 400 nodes move together. Run it with any static server:
+
+    cd app && python3 -m http.server 8000
+
 ## Layout
 
     revott/core.py       the coordinate system; exact arithmetic throughout
@@ -81,3 +117,7 @@ this package is conditioned on whether anything was once found near a position.
     data/keys.json       the key structure, extracted once
     data/readings.json   the readings, 11 × 265 positions
     web/                 rendered instances
+    gdelt/               the field, and the instruments that read it
+    app/                 the browser app
+    position_paper.md    the objective, stated
+    HANDOVER_GDELT.md    the working record

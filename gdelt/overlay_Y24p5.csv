@@ -1,0 +1,401 @@
+x,tnldy,date,weekday,in_field,present,n_events,z,pct,extremum,out_degree,carried,text
+-147.6,1850.0,1974-12-01,Sun,0,,,,,,2,0,-25.99dysi...Primordial Follicles
+-132.97,3313.0,1978-12-03,Sun,0,,,,,,1,0,-21.60dysi
+-126.3,3980.0,1980-09-30,Tue,1,1,1952,0.7839,84.8,,1,0,-19.60dysi
+-123.01,4309.0,1981-08-25,Tue,1,1,2302,1.8858,97.24,,1,0,-18.612dysi
+-120.97,4513.0,1982-03-17,Wed,1,1,1882,-0.4859,23.51,,1,0,-18.00dysi
+-110.97,5513.0,1984-12-11,Tue,1,1,2663,1.0121,89.18,,1,0,-15.00dysi
+-104.4,6170.0,1986-09-29,Mon,1,1,3126,-0.4622,24.28,,2,0,Primary-Stage Follicles
+-100.97,6513.0,1987-09-07,Mon,1,1,3485,1.6204,95.81,,2,0,-12.00dysi
+-98.3,6780.0,1988-05-31,Tue,1,1,3688,0.0,52.61,,2,0,-11.20dysi
+-95.6,7050.0,1989-02-25,Sat,1,1,3272,2.1675,98.35,max,2,0,-10.39dysi...Jericho 0 (Joshua 2:1-3 & Joshua 6:17-23) | Rahab...to them that know me (Psalms 87:4)
+-91.56,7454.0,1990-04-05,Thu,1,1,3303,0.0,52.61,,2,0,-9.18dysi...Jericho 1 (Joshua 2:1-3 & Joshua 6:17-23) | Rahab...to them that know me (Psalms 87:4)
+-90.6,7550.0,1990-07-10,Tue,1,1,3011,-0.6993,17.63,,1,0,-8.89dysi...Jericho 2 (Joshua 2:1-3 & Joshua 6:17-23) | Rahab...to them that know me (Psalms 87:4)
+-83.19,8291.0,1992-07-20,Mon,1,1,2743,-0.1281,39.15,,1,0,-6.668dysi
+-72.03,9407.0,1995-08-10,Thu,1,1,6693,0.2459,67.37,,1,0,-3.32dysi
+-61.2,10490.0,1998-07-28,Tue,1,1,10751,-0.4484,24.7,max,2,0,-0.07dysi...=> ZERO DAYS OF SEVEN DYSI COUNT...Primary-Stage (Mitotic Cells almost 0.1mm in diameter)
+-60.97,10513.0,1998-08-20,Thu,1,1,11644,0.3654,72.45,,1,0,0.00dysi...=> SEVEN DAYS OF SEVEN DYSI COUNT
+-43.2,12290.0,2003-07-02,Wed,1,1,17546,0.0,52.61,,1,0,5.33dysi...Secondary-Stage Follicles (Theca Cells...Granulosa Cells 0.2mm)
+-39.5984,12650.16,2004-06-26,Sat,1,1,10183,3.0376,99.56,,5,0,6.41048dysi...Pre-Adamites Tertiary-Stage Follices (Antral Phase 1)
+-38.8,12730.0,2004-09-14,Tue,1,1,13242,0.1868,64.43,,2,0,6.65dysi...Adam is formed
+-37.5186,12858.14,2005-01-20,Thu,1,1,10355,-1.5988,5.03,,2,0,Birth of Seth
+-36.4836,12961.64,2005-05-04,Wed,1,1,9879,-1.5587,5.3,,2,0,Birth of Enos...men begin to call upon THE NAME OF THE LORD
+-35.5964,13050.36,2005-07-31,Sun,1,1,6890,0.6744,82.17,,2,0,Birth of Cainan
+-34.9064,13119.36,2005-10-08,Sat,1,1,5422,-0.7641,16.25,min,2,0,Birth of Mahalaleel
+-34.2657,13183.43,2005-12-11,Sun,1,1,6602,-0.2317,33.63,min,2,0,Birth of Jared
+-32.6689,13343.11,2006-05-20,Sat,1,1,11621,0.7075,83.01,,2,0,Birth of Enoch
+-32.14,13396.0,2006-07-12,Wed,1,1,22238,-0.4052,26.26,,2,0,the Angels that sinned (0)
+-32.0281,13407.19,2006-07-23,Sun,1,1,16649,0.5697,79.36,,2,0,Birth of Methuselah...Tertiary-Stage Follicles (Antral Phase 2)
+-30.1849,13591.51,2007-01-23,Tue,1,1,23464,-0.8846,13.64,min,2,0,Birth of Lamech
+-29.6329,13646.71,2007-03-20,Tue,1,1,40779,0.8677,86.4,,1,0,Death of Adam
+-29.071,13702.9,2007-05-15,Tue,1,1,40809,-0.2235,34.04,min,1,0,Enoch was not
+-28.6471,13745.29,2007-06-26,Tue,1,1,39098,-0.1077,40.28,min,2,0,1st 490yJ begins
+-28.5289,13757.11,2007-07-08,Sun,1,1,20444,-0.3345,28.79,min,1,0,Death of Seth
+-28.3909,13770.91,2007-07-22,Sun,1,1,21522,-0.0139,46.39,,2,0,Birth of Noah
+-27.6,13850.0,2007-10-09,Tue,1,1,41111,-0.1847,36.03,,2,0,the Angels that sinned (1)
+-27.5629,13853.71,2007-10-13,Sat,1,1,23330,-0.204,35.03,,1,0,Death of Enos
+-26.6264,13947.36,2008-01-14,Mon,1,1,49838,0.2142,65.79,,1,0,Death of Cainan
+-26.0843,14001.57,2008-03-09,Sun,1,1,17061,-1.4469,6.16,min,1,0,Death of Mahalaleel
+-25.9,14020.0,2008-03-27,Thu,1,1,32721,-0.9748,11.98,min,1,0,the Angels that sinned (2)
+-24.7831,14131.69,2008-07-17,Thu,1,1,49350,0.1218,60.7,,1,0,Death of Jared
+-23.8171,14228.29,2008-10-21,Tue,1,1,28238,-1.3203,7.27,,2,0,2nd 490yJ begins
+-23.6594,14244.06,2008-11-06,Thu,1,1,44163,-0.146,38.11,,2,0,Yet his days shall be 120 years... (Atresia 1)
+-23.4623,14263.77,2008-11-26,Wed,1,1,50125,-0.1175,39.79,,2,0,Birth of Shem
+-22.5259,14357.41,2009-02-27,Fri,1,1,61696,-0.224,34.02,,1,0,Death of Lamech
+-22.4766,14362.34,2009-03-04,Wed,1,1,72801,-0.0529,43.78,,2,0,Death of Methuselah...Noah is 600yJ of age...(Atresia 2)
+-22.4569,14364.31,2009-03-06,Fri,1,1,38307,-1.6956,4.42,,1,0,Birth of Arphaxad
+-22.1119,14398.81,2009-04-10,Fri,1,1,61853,-0.3908,26.79,,2,0,Birth of Salah
+-21.9936,14410.64,2009-04-22,Wed,1,1,76666,-0.0397,44.6,,2,0,Nimrod a mighty hunter before THE LORD
+-21.8161,14428.39,2009-05-09,Sat,1,1,48103,0.4309,74.97,max,2,0,Birth of Eber
+-21.6,14450.0,2009-05-31,Sun,1,1,45814,0.5845,79.77,,2,0,(A Cohort of 5 to 7 Class 5 Follicles Is Recruited Into the Menstrual Cycle 0)
+-21.481,14461.9,2009-06-12,Fri,1,1,66524,1.0214,89.33,,2,0,Birth of Peleg...in his days the earth was divided
+-21.1853,14491.47,2009-07-11,Sat,1,1,27407,-1.0682,10.38,min,3,0,Birth of Reu
+-20.8699,14523.01,2009-08-12,Wed,1,1,81715,1.0666,90.15,,2,0,Birth of Serug
+-20.5741,14552.59,2009-09-11,Fri,1,1,83835,-0.2283,33.74,,2,0,Birth of Nahor
+-20.2883,14581.17,2009-10-09,Fri,1,1,82522,0.0,52.61,,1,0,Birth of Terah (A Cohort of 5 to 7 Class 5 Follicles Is Recruited Into the Menstrual Cycle 1)
+-19.5983,14650.17,2009-12-17,Thu,1,1,87202,0.0762,57.99,,4,0,Birth of Abram (A Cohort of 5 to 7 Class 5 Follicles Is Recruited Into the Menstrual Cycle 2)
+-19.1251,14697.49,2010-02-02,Tue,1,1,91684,0.6577,81.71,,1,0,Death of Peleg
+-19.1153,14698.47,2010-02-03,Wed,1,1,95854,0.7789,84.67,max,1,0,Death of Nahor
+-19.0857,14701.43,2010-02-06,Sat,1,1,51049,0.7096,83.09,,2,0,Now THE LORD had said unto Abram...Get thee out of thy country
+-19.0266,14707.34,2010-02-12,Fri,1,1,81388,0.8543,86.09,,1,0,Death of Noah
+-18.9871,14711.29,2010-02-16,Tue,1,1,89624,0.9521,88.1,,2,0,3rd 490yJ begins
+-18.859,14724.1,2010-03-01,Mon,1,1,7826,-3.4716,0.65,min,1,0,and Abram was 75yJ when he departed (A Cohort of 5 to 7 Class 5 Follicles Is Recruited Into the Menstrual Cycle 3)
+-18.8294,14727.06,2010-03-04,Thu,1,1,19079,-1.3673,6.77,,1,0,Death of Reu
+-18.79,14731.0,2010-03-08,Mon,1,1,13471,-1.8317,3.77,min,2,0,Birth of Ishmael
+-18.6126,14748.74,2010-03-26,Fri,1,1,42794,0.8121,85.32,max,4,0,Birth of Isaac (A Cohort of 5 to 7 Class 5 Follicles Is Recruited Into the Menstrual Cycle 4)
+-18.6027,14749.73,2010-03-27,Sat,1,1,11389,-0.9625,12.16,,1,0,Death of Serug
+-18.2676,14783.24,2010-04-29,Thu,1,1,85464,1.8973,97.29,,1,0,Death of Terah
+-18.1394,14796.06,2010-05-12,Wed,1,1,29835,-0.3612,27.8,,1,0,Death of Arphaxad
+-18.0211,14807.89,2010-05-24,Mon,1,1,15167,-1.6781,4.54,min,5,0,Birth of Jacob (A Cohort of 5 to 7 Class 5 Follicles Is Recruited Into the Menstrual Cycle 5) Start of Menses
+-18.0,14810.0,2010-05-26,Wed,1,1,47186,0.4723,76.48,,3,1,Birth of Jacob (A Cohort of 5 to 7 Class 5 Follicles Is Recruited Into the Menstrual Cycle 5) Start of Menses
+-17.8733,14822.67,2010-06-08,Tue,1,1,61468,0.9542,88.11,,1,0,Death of Abraham
+-17.8437,14825.63,2010-06-11,Fri,1,1,31166,-0.1627,37.11,,1,0,Death of Salah
+-17.5283,14857.17,2010-07-12,Mon,1,1,30549,-0.6084,20.09,,1,0,Death of Shem
+-17.4396,14866.04,2010-07-21,Wed,1,1,58187,0.1065,59.81,,1,0,Death of Ishmael
+-17.272,14882.8,2010-08-07,Sat,1,1,63490,0.7061,82.99,,1,0,And Isaac sent away Jacob...and he went to Padan-aram unto Laban
+-17.2424,14885.76,2010-08-10,Tue,1,1,107054,0.6817,82.38,,1,0,Death of Eber
+-17.134,14896.6,2010-08-21,Sat,1,1,75216,0.4707,76.43,max,5,0,Birth of Joseph
+-16.9664,14913.36,2010-09-06,Mon,1,1,87045,-0.2947,30.59,min,1,0,Joseph...being 17yJ old...was feeding the flock with his brethren
+-16.8383,14926.17,2010-09-19,Sun,1,1,68753,0.0532,56.5,,1,0,Death of Isaac...Joseph was 30yJ old when he stood before Pharaoh king of Egypt
+-16.7397,14936.03,2010-09-29,Wed,1,1,111648,0.0915,58.86,,1,0,And Jacob said unto Pharaoh...The days of the years of my pilgrimage are 130yJ
+-16.5721,14952.79,2010-10-16,Sat,1,1,61835,0.1368,61.51,,1,0,Death of Jacob (Israel)
+-16.56,14954.0,2010-10-17,Sun,1,1,66853,0.1747,63.82,max,2,0,Estrogen Surge Ends Menses 0
+-16.4,14970.0,2010-11-02,Tue,1,1,115562,0.2613,68.05,,1,0,Estrogen Surge Ends Menses 1
+-16.0497,15005.03,2010-12-07,Tue,1,1,117345,0.3011,69.72,,1,0,Death of Joseph
+-16.0,15010.0,2010-12-12,Sun,1,1,63340,0.048,56.13,,2,0,Estrogen Surge Ends Menses 2
+-15.6357,15046.43,2011-01-17,Mon,1,1,96508,-0.2056,34.98,,3,0,Birth of Moses
+-15.2414,15085.86,2011-02-26,Sat,1,1,78078,0.2045,65.29,max,1,0,Moses at 40yJ Emergence of the Dominant Follicle
+-15.0,15110.0,2011-03-22,Tue,1,1,121450,0.0066,53.18,,3,0,of a flood (onset)
+-14.8471,15125.29,2011-04-06,Wed,1,1,117316,0.0,52.61,,1,0,Moses at 80yJ...the children of Israel...WITH AN OUTSTRETCHED ARM...are delivered from Pharaoh and Egypt
+-14.4529,15164.71,2011-05-16,Mon,1,1,31334,-2.9516,1.11,min,1,0,Death of Moses
+-14.4,15170.0,2011-05-21,Sat,1,1,71928,0.317,70.45,,5,0,Early Insemination
+-14.1571,15194.29,2011-06-14,Tue,1,1,113103,0.2105,65.52,,2,0,Israel in the Promised Land...begin to serve Chushan-rishathaim 8yJ...era of Judges begins...4th OR FIRST 490yJ begins...Luteinizing Hormone surges
+-14.0783,15202.17,2011-06-22,Wed,1,1,109888,0.128,61.04,,1,0,Othniel the son of Kenaz begins to judge Israel 40yJ
+-13.684,15241.6,2011-08-01,Mon,1,1,93973,-0.1254,39.33,max,1,0,children of Israel begin to serve Eglon king of Moab 18yJ
+-13.5066,15259.34,2011-08-18,Thu,1,1,107862,0.0477,56.1,,2,0,Ehud the son of Gera (and Shamgar the son of Anath after him) begin to judge Israel 80yJ
+-13.5,15260.0,2011-08-19,Fri,1,1,105691,0.1984,65.04,,1,0,Ovulation Begins For ca. 36 hours
+-13.32,15278.0,2011-09-06,Tue,1,1,110458,0.1121,60.16,,1,0,"Ed & Sr 80yJ (Fertilized Oocyte, Zygote, Pro-Nuclei 1)"
+-13.14,15296.0,2011-09-24,Sat,1,1,70043,0.3689,72.56,,1,0,"(Fertilized Oocyte, Zygote, Pro-Nuclei 2)"
+-12.96,15314.0,2011-10-12,Wed,1,1,91851,-0.0209,45.89,,2,0,"(Fertilized Oocyte, Zygote, Pro-Nuclei 3)"
+-12.718,15338.2,2011-11-05,Sat,1,1,57734,0.2618,68.07,,1,0,Jabin king of Canaan begins to mightily oppress Israel for 20yJ || Morula Cell Division with...Blastocyst Formation of Inner and Outer Cell Mass
+-12.5209,15357.91,2011-11-25,Fri,1,1,80428,0.1439,61.91,,2,0,Deborah...a prophetess...the wife of Lapidoth...begins to judge Israel for 40yJ || Morula Cell Division with...Blastocyst Formation of Inner and Outer Cell Mass
+-12.42,15368.0,2011-12-05,Mon,1,1,56416,-1.0933,10.03,min,2,0,Morula Cell Division with...Blastocyst Formation of Inner and Outer Cell Mass
+-12.1266,15397.34,2012-01-03,Tue,1,1,71140,0.0678,57.43,min,1,0,children of Israel begin to serve Midian for 7yJ
+-12.0576,15404.24,2012-01-10,Tue,1,1,88144,0.0108,53.48,,2,0,"Gideon begins to judge Israel for 40yJ || Loss of Zona Pellucida, Free Blastocyst"
+-12.0,15410.0,2012-01-16,Mon,1,1,78756,-0.1366,38.63,,3,0,"of a flood (midst) || Loss of Zona Pellucida, Free Blastocyst"
+-11.7,15440.0,2012-02-15,Wed,1,1,134073,0.4066,74.0,,2,0,"Loss of Zona Pellucida, Free Blastocyst || Attaching Blastocyst"
+-11.6633,15443.67,2012-02-19,Sun,1,1,79645,-0.1169,39.81,,1,0,Abimelech begins to judge Israel for 3yJ || Attaching Blastocyst
+-11.6337,15446.63,2012-02-22,Wed,1,1,142202,0.1627,63.05,max,1,0,Tola the son of Puah begins to judge Israel for 23yJ || Attaching Blastocyst
+-11.407,15469.3,2012-03-15,Thu,1,1,130869,-0.0253,45.62,,2,0,Jair...a Gileadite...begins to judge Israel for 22yJ || Attaching Blastocyst
+-11.34,15476.0,2012-03-22,Thu,1,1,128794,0.0226,54.29,,2,0,Attaching Blastocyst
+-11.1901,15490.99,2012-04-06,Fri,1,1,66113,-2.119,2.72,min,1,0,the Philistines and the children of Ammon begin to oppress the children of Israel 18yJ
+-11.0127,15508.73,2012-04-24,Tue,1,1,121526,-0.082,41.78,,1,0,Jephthah the Gileadite begins to judge Israel for 6yJ
+-10.9536,15514.64,2012-04-30,Mon,1,1,106880,-0.0318,45.17,min,1,0,Ibzan of Bethlehem begins to judge Israel for 7yJ || Implantation
+-10.8846,15521.54,2012-05-07,Mon,1,1,114627,0.2255,66.36,,1,0,Elon...a Zebulonite...begins to judge Israel for 10yJ || Implantation
+-10.8254,15527.46,2012-05-12,Sat,1,1,69027,0.0416,55.53,,5,0,Birth of the Nazarites...Samuel (1 Samuel 1) and Samson (Judges 13:2-24) || Implantation
+-10.786,15531.4,2012-05-16,Wed,1,1,120183,0.0569,56.73,,1,0,Abdon the son of Hillel...a Pirathonite...begins to judge Israel for 8yJ || Implantation
+-10.7071,15539.29,2012-05-24,Thu,1,1,123454,0.2535,67.75,,1,0,the children of Israel begin to serve the Philistines for 40yJ || Implantation
+-10.6283,15547.17,2012-06-01,Fri,1,1,58784,-2.2598,2.33,min,2,0,Samson begins to judge Israel for 20yJ || Implantation
+-10.51,15559.0,2012-06-13,Wed,1,1,125636,0.243,67.25,max,2,0,(begin) The Ark in Kirjath-jearim for 20yJ (1 Samuel 7:2)...(begin) || Implantation
+-10.4311,15566.89,2012-06-21,Thu,1,1,128005,0.4206,74.53,max,1,0,Death of Samson (Judges 16:30) || Implantation
+-10.39,15571.0,2012-06-25,Mon,1,1,44766,-3.2529,0.82,min,2,0,Implantation
+-10.2241,15587.59,2012-07-12,Thu,1,1,48597,-3.1857,0.88,min,2,0,and there they made Saul king before THE LORD .(1 Samuel 11:15)..No king in Israel (end) || Implantation
+-9.8496,15625.04,2012-08-18,Sat,1,1,68791,0.3299,71.04,,1,0,ca. death of Samuel (1 Samuel 25:1) || Implantation
+-9.8299,15627.01,2012-08-20,Mon,1,1,84679,-0.7343,16.82,min,1,0,Death of Saul...David begins 40yJ reign as king over all Israel || Implantation
+-9.4602,15663.98,2012-09-26,Wed,1,1,108518,-0.054,43.73,,1,0,Solomon begins 40yJ co-reign (with David) over all Israel || Implantation
+-9.4356,15666.44,2012-09-28,Fri,1,1,103961,0.0964,59.15,,2,0,Solomon begins 36.5yJ sole-reign over all Israel...480th year...he begins to build the temple of THE LORD || Implantation
+-9.3271,15677.29,2012-10-09,Tue,1,1,100563,-0.1531,37.73,,3,0,Solomon completes the temple of THE LORD...5th OR SECOND 490yJ begins || Implantation
+-9.18,15692.0,2012-10-24,Wed,1,1,106289,-0.0362,44.84,,2,0,Implantation
+-9.0659,15703.41,2012-11-04,Sun,1,1,66550,0.0709,57.62,,1,0,Rehoboam begins 17yJ reign over Judah...Jeroboam begins 22yJ reign over rest of Israel
+-8.8984,15720.16,2012-11-21,Wed,1,1,115910,0.086,58.51,,1,0,Abijam begins 3yJ reign over Judah
+-8.89,15721.0,2012-11-22,Thu,1,1,81691,-0.7729,16.06,min,1,0,prince of the covenant also
+-8.8688,15723.12,2012-11-24,Sat,1,1,57226,0.0,52.61,,1,0,good king Asa begins 41yJ reign over Judah
+-8.8491,15725.09,2012-11-26,Mon,1,1,94324,0.0726,57.75,,1,0,Nadab begins to reign 2yJ over the rest of Israel
+-8.8294,15727.06,2012-11-28,Wed,1,1,110217,0.1608,62.9,max,1,0,evil king Baasha begins to reign 24yJ over the rest of Israel after assassinating Nadab
+-8.5928,15750.72,2012-12-22,Sat,1,1,54295,0.0118,53.54,,1,0,"evil king Elah begins to reign 2yJ over the rest of Israel || Extraembryonic Mesoderm, Primitive Streak, Gastrulation"
+-8.5731,15752.69,2012-12-24,Mon,1,1,66073,0.0,52.61,,2,0,"evil kings...Zimri 7days...Omri 12yJ...and Tibni 4yJ begin to reign over the rest of Israel || Extraembryonic Mesoderm, Primitive Streak, Gastrulation"
+-8.5336,15756.64,2012-12-28,Fri,1,1,75946,0.1834,64.27,,1,0,"evil king Omri begins 8yJ rule over the rest of Israel || Extraembryonic Mesoderm, Primitive Streak, Gastrulation"
+-8.5189,15758.11,2012-12-29,Sat,1,1,52444,0.4754,76.56,max,1,0,"at this point Ahab the son of Omri begins 22yJ co-reign over the rest of Israel with his father Omri || Extraembryonic Mesoderm, Primitive Streak, Gastrulation"
+-8.4646,15763.54,2013-01-04,Fri,1,1,82529,-0.0184,46.06,,1,0,"good king Jehoshaphat begins reign 25yJ over Judah || Extraembryonic Mesoderm, Primitive Streak, Gastrulation"
+-8.4548,15764.52,2013-01-04,Fri,1,1,82529,-0.0184,46.06,,1,0,"evil king Ahab begins sole reign over the rest of Israel || Extraembryonic Mesoderm, Primitive Streak, Gastrulation"
+-8.302,15779.8,2013-01-20,Sun,1,1,21893,-3.3161,0.78,,1,0,"evil king Ahaziah begins 2yJ sole reign over the rest of Israel upon THE STUMBLING DEATH 1Kings 22:29-40 of Ahab || Extraembryonic Mesoderm, Primitive Streak, Gastrulation"
+-8.2823,15781.77,2013-01-22,Tue,1,1,111336,0.2454,67.34,,1,0,"evil king Ahaziah FALLS 2Kings 1:2 down through a lattice in his upper chamber (and begins co-reign with Jehoram) || Extraembryonic Mesoderm, Primitive Streak, Gastrulation"
+-8.2379,15786.21,2013-01-26,Sat,1,1,59051,-0.1497,37.9,,1,0,"evil king Jehoram begins to 11yJ sole-reign over the rest of Israel || Extraembryonic Mesoderm, Primitive Streak, Gastrulation"
+-8.2182,15788.18,2013-01-28,Mon,1,1,102272,0.0,52.61,,1,0,"another evil king Jehoram begins 8yJ reign over Judah || Extraembryonic Mesoderm, Primitive Streak, Gastrulation"
+-8.1394,15796.06,2013-02-05,Tue,1,1,108869,-0.1624,37.17,,1,0,"evil king Ahaziah begins 1yJ reign over Judah || Extraembryonic Mesoderm, Primitive Streak, Gastrulation"
+-8.1295,15797.05,2013-02-06,Wed,1,1,111077,-0.0746,42.26,,1,0,"good king Jehu begins 28yJ reign over the rest of Israel upon the deaths of Ahaziah, Jehoram (and Jezebel whose complete carcass WAS NOT FOUND 2Kings 9:6-37) || evil Queen Athaliah begins 6yJ reign over Judah || Extraembryonic Mesoderm, Primitive Streak, Gastrulation"
+-8.1,15800.0,2013-02-09,Sat,1,1,28915,-2.5717,1.69,min,2,0,"Extraembryonic Mesoderm, Primitive Streak, Gastrulation || Gastrulation, Notochordal Process"
+-8.0704,15802.96,2013-02-12,Tue,1,1,109411,-0.0321,45.16,,1,0,"good king Jehoash begins 40yJ reign over Judah || Gastrulation, Notochordal Process"
+-8.0,15810.0,2013-02-19,Tue,1,1,112973,0.0043,52.98,max,1,0,"of a flood (end) || Gastrulation, Notochordal Process"
+-7.92,15818.0,2013-02-27,Wed,1,1,115553,0.1021,59.55,,2,0,"Gestation at 28 days || Gastrulation, Notochordal Process"
+-7.8535,15824.65,2013-03-06,Wed,1,1,112220,0.1399,61.68,,1,0,"evil king Jehoahaz begins 17yJ reign over the rest of Israel || Gastrulation, Notochordal Process"
+-7.6859,15841.41,2013-03-22,Fri,1,1,110998,1.976,97.67,,1,0,"evil king Jehoash begins 16yJ reign over the rest of Israel || Gastrulation, Notochordal Process"
+-7.6761,15842.39,2013-03-23,Sat,1,1,132700,4.2371,99.91,max,1,0,"good king Amaziah of Judah begins 29yJ reign over Judah || Gastrulation, Notochordal Process"
+-7.6613,15843.87,2013-03-25,Mon,1,1,104822,1.8508,97.08,,1,0,"birth of evil king Jeroboam II of the rest of Israel || Gastrulation, Notochordal Process"
+-7.5282,15857.18,2013-04-07,Sun,1,1,26598,0.1512,62.32,max,1,0,"evil king Jeroboam II begins 41yJ reign over the rest of Israel || Gastrulation, Notochordal Process"
+-7.3902,15870.98,2013-04-21,Sun,1,1,21520,-0.4597,24.35,,1,0,"good king Uzziah begins 52yJ reign over Judah || Gastrulation, Notochordal Process"
+-7.38,15872.0,2013-04-22,Mon,1,1,35132,-0.3108,29.86,,2,0,"Gastrulation, Notochordal Process || Primitive Pit, Onset of Primary Neurulation, Notochordal Canal"
+-7.1241,15897.59,2013-05-18,Sat,1,1,21039,-0.5501,21.64,min,1,0,"an 11yJ coregency begins between the end of Jeroboam II and beginning proper of Zachariah || Primitive Pit, Onset of Primary Neurulation, Notochordal Canal"
+-7.0156,15908.44,2013-05-28,Tue,1,1,37986,-0.3129,29.79,,1,0,"evil king Zachariah begins 0.5yJ reign over the rest of Israel in the 38th year of Uzziah of Judah's reign || Primitive Pit, Onset of Primary Neurulation, Notochordal Canal"
+-7.0107,15908.93,2013-05-29,Wed,1,1,40634,-0.1896,35.75,,1,0,"evil king Shallum begins 1 month reign over the rest of Israel || Primitive Pit, Onset of Primary Neurulation, Notochordal Canal"
+-7.0098,15909.02,2013-05-29,Wed,1,1,40634,-0.1896,35.75,,1,0,"evil king Menahem begins 10yJ reign over the rest of Israel || Primitive Pit, Onset of Primary Neurulation, Notochordal Canal"
+-6.9113,15918.87,2013-06-08,Sat,1,1,23119,-0.5546,21.54,,1,0,"evil king Pekahiah begins 2yJ reign over the rest of Israel || Primitive Pit, Onset of Primary Neurulation, Notochordal Canal"
+-6.8915,15920.85,2013-06-10,Mon,1,1,35636,-0.6161,19.88,min,1,0,"evil king Pekah begins 20yJ reign over the rest of Israel || Primitive Pit, Onset of Primary Neurulation, Notochordal Canal"
+-6.8776,15922.24,2013-06-11,Tue,1,1,42119,-0.4525,24.59,,1,0,"good king Jotham begins 16yJ reign over Judah || Primitive Pit, Onset of Primary Neurulation, Notochordal Canal"
+-6.7199,15938.01,2013-06-27,Thu,1,1,131426,1.0065,89.04,,1,0,"evil king Ahaz begins 16yJ reign over Judah || Primitive Pit, Onset of Primary Neurulation, Notochordal Canal"
+-6.6944,15940.56,2013-06-30,Sun,1,1,87604,1.2354,92.23,max,2,0,"evil king Hoshea begins 9yJ reign over the rest of Israel || Primitive Pit, Onset of Primary Neurulation, Notochordal Canal"
+-6.668,15943.2,2013-07-02,Tue,1,1,140894,1.0035,88.98,,2,0,"Primitive Pit, Onset of Primary Neurulation, Notochordal Canal"
+-6.6057,15949.43,2013-07-08,Mon,1,1,124064,0.3749,72.84,,1,0,Hoshea and Israel begin 9yJ servitude to Shalmaneser king of Assyria
+-6.5622,15953.78,2013-07-13,Sat,1,1,75375,0.0481,56.15,,3,0,good king Hezekiah begins 29yJ reign over Judah
+-6.56,15954.0,2013-07-13,Sat,1,1,75375,0.0481,56.15,,2,0,"Somite Number 1 (Neural Folds, Cardiac Primordium, Head Fold 1)"
+-6.517,15958.3,2013-07-17,Wed,1,1,146249,0.3952,73.53,max,1,0,Hoshea and Israel are carried away captive by Shalmaneser kingof Assyria
+-6.452,15964.8,2013-07-24,Wed,1,1,131795,-0.2044,35.02,,2,0,"Somite Number 2 (Neural Folds, Cardiac Primordium, Head Fold 2)"
+-6.4341,15966.59,2013-07-26,Fri,1,1,131908,0.1792,64.04,max,1,0,"185,000 soldiers of the armies of king Sennacherib of Assyria are completely destroyed in one night"
+-6.344,15975.6,2013-08-04,Sun,1,1,92032,0.2303,66.63,max,2,0,"Somite Number 3 (Neural Folds, Cardiac Primordium, Head Fold 3)"
+-6.3,15980.0,2013-08-08,Thu,1,1,146540,0.1233,60.78,,5,0,league (onset)
+-6.2764,15982.36,2013-08-10,Sat,1,1,94373,0.3741,72.8,max,4,0,evil (and then repented) king Manasseh begins 55yJ reign over Judah
+-6.236,15986.4,2013-08-14,Wed,1,1,146812,0.15,62.23,,1,0,Somite Number 4 (Neural Fold Closes 1)
+-6.128,15997.2,2013-08-25,Sun,1,1,103709,0.3784,72.96,max,1,0,Somite Number 5 (Neural Fold Closes 2)
+-6.02,16008.0,2013-09-05,Thu,1,1,175247,0.3424,71.58,,2,0,Somite Number 6 (Neural Fold Closes 3)
+-6.0,16010.0,2013-09-07,Sat,1,1,103712,0.4182,74.44,,2,0,league (midst)
+-5.912,16018.8,2013-09-16,Mon,1,1,161410,0.0528,56.48,,1,0,Somite Number 7 (Neural Fold Closes 4)
+-5.804,16029.6,2013-09-27,Fri,1,1,117062,-0.6546,18.86,,2,0,Somite Number 8 (Neural Fold Closes 5)
+-5.7342,16036.58,2013-10-04,Fri,1,1,62753,-2.8685,1.21,,2,0,evil king Amon begins 2yJ reign over Judah
+-5.728,16037.2,2013-10-04,Fri,1,1,62753,-2.8685,1.21,,3,0,league (end)
+-5.7145,16038.55,2013-10-06,Sun,1,1,105017,0.3202,70.6,max,3,0,good king Josiah begins 31yJ reign over Judah
+-5.696,16040.4,2013-10-07,Mon,1,1,160250,0.1791,64.03,,1,0,Somite Number 9 (Neural Fold Closes 6)
+-5.588,16051.2,2013-10-18,Fri,1,1,149639,0.1228,60.75,max,2,0,Somite Number 10 (Neural Fold Closes 7)
+-5.5469,16055.31,2013-10-22,Tue,1,1,170220,0.0769,58.03,,2,0,JOSIAH'S PASSOVER PREPARATION
+-5.48,16062.0,2013-10-29,Tue,1,1,165256,0.1285,61.07,,2,0,Somite Number 11 (Neural Fold Closes 8)
+-5.4089,16069.11,2013-11-05,Tue,1,1,157190,-0.0629,43.09,,1,0,JOSIAH'S ARMAGEDDON...evil king Jehoahaz begins 3month reign over Judah
+-5.4065,16069.35,2013-11-05,Tue,1,1,157190,-0.0629,43.09,,1,0,evil king Jehoiakim begins 11yJ reign over Judah
+-5.372,16072.8,2013-11-09,Sat,1,1,102510,0.1615,62.96,,2,0,Somite Number 12 (Neural Fold Closes 9)
+-5.298,16080.2,2013-11-16,Sat,1,1,72960,-0.8201,15.12,min,1,0,evil king Jehoiachin begins 3month reign over Judah
+-5.2956,16080.44,2013-11-16,Sat,1,1,72960,-0.8201,15.12,min,2,0,evil king Zedekiah begins 11yJ reign over Judah
+-5.264,16083.6,2013-11-20,Wed,1,1,172982,0.2176,65.97,,2,0,Somite Number 13 (Cranial or Rostral Neuropore Closes 1)
+-5.1871,16091.29,2013-11-27,Wed,1,1,158374,0.2158,65.87,,2,0,Nebuchadnezzar king of Babylon carries Zedekiah and all Judah into captivity
+-5.156,16094.4,2013-11-30,Sat,1,1,67143,-1.04,10.85,,1,0,Somite Number 14 (Cranial or Rostral Neuropore Closes 2)
+-5.048,16105.2,2013-12-11,Wed,1,1,124003,-0.324,29.27,,1,0,Somite Number 15 (Cranial or Rostral Neuropore Closes 3)
+-4.94,16116.0,2013-12-22,Sun,1,1,80482,0.3725,72.73,,1,0,Somite Number 16 (Cranial or Rostral Neuropore Closes 4)
+-4.832,16126.8,2014-01-02,Thu,1,1,115773,0.5324,78.34,,1,0,Somite Number 17 (Cranial or Rostral Neuropore Closes 5)
+-4.724,16137.6,2014-01-13,Mon,1,1,130828,0.1078,59.87,min,1,0,Somite Number 18 (Cranial or Rostral Neuropore Closes 6)
+-4.616,16148.4,2014-01-23,Thu,1,0,,,,,1,0,Somite Number 19 (Cranial or Rostral Neuropore Closes 7)
+-4.508,16159.2,2014-02-03,Mon,1,1,128314,-0.0975,40.76,,2,0,Somite Number 20 (Cranial or Rostral Neuropore Closes 8)
+-4.5,16160.0,2014-02-04,Tue,1,1,138412,-0.1985,35.32,min,2,0,PROCLAMATION OF CYRUS...6th OR THIRD 490yJ begins
+-4.4,16170.0,2014-02-14,Fri,1,1,132477,-0.0161,46.24,,1,0,Somite Number 21 (Caudal Neuropore Closes 1)
+-4.292,16180.8,2014-02-25,Tue,1,1,158191,0.0579,56.79,,1,0,Somite Number 22 (Caudal Neuropore Closes 2)
+-4.184,16191.6,2014-03-08,Sat,1,1,91088,0.0278,54.6,,1,0,Somite Number 23 (Caudal Neuropore Closes 3)
+-4.076,16202.4,2014-03-18,Tue,1,1,153788,-0.0114,46.59,,1,0,Somite Number 24 (Caudal Neuropore Closes 4)
+-3.968,16213.2,2014-03-29,Sat,1,1,86515,-0.1384,38.5,,1,0,Somite Number 25 (Caudal Neuropore Closes 5)
+-3.86,16224.0,2014-04-09,Wed,1,1,159169,0.2227,66.24,,1,0,Somite Number 26 (Caudal Neuropore Closes 6)
+-3.752,16234.8,2014-04-20,Sun,1,1,82269,-0.2301,33.68,,1,0,Somite Number 27 (Caudal Neuropore Closes 7)
+-3.644,16245.6,2014-05-01,Thu,1,1,135116,-0.2231,34.08,min,1,0,Somite Number 28 (Caudal Neuropore Closes 8)
+-3.536,16256.4,2014-05-11,Sun,1,1,82042,-0.2409,33.15,min,1,0,Somite Number 29 (Caudal Neuropore Closes 9)
+-3.428,16267.2,2014-05-22,Thu,1,1,149945,0.0,52.61,,1,0,"Somite Number 30 (Leg Buds, Lens Placode, Pharyngeal Arches 1)"
+-3.32,16278.0,2014-06-02,Mon,1,1,137510,0.0,52.61,,1,0,"Somite Number 31 (Leg Buds, Lens Placode, Pharyngeal Arches 2)"
+-3.31,16279.0,2014-06-03,Tue,1,1,148359,0.0365,55.18,,3,0,come up
+-3.212,16288.8,2014-06-13,Fri,1,1,132414,-0.2508,32.63,,1,0,"Somite Number 32 (Leg Buds, Lens Placode, Pharyngeal Arches 3)"
+-3.104,16299.6,2014-06-24,Tue,1,1,147311,-0.1258,39.29,,1,0,"Somite Number 33 (Leg Buds, Lens Placode, Pharyngeal Arches 4)"
+-2.996,16310.4,2014-07-04,Fri,1,1,109948,-0.3894,26.85,,1,0,"Somite Number 34 (Leg Buds, Lens Placode, Pharyngeal Arches 5)"
+-2.888,16321.2,2014-07-15,Tue,1,1,161108,0.1547,62.57,,1,0,"Somite Number 35 (Leg Buds, Lens Placode, Pharyngeal Arches 6)"
+-2.78,16332.0,2014-07-26,Sat,1,1,104054,0.7719,84.53,,1,0,"Somite Number 36 (Leg Buds, Lens Placode, Pharyngeal Arches 7)"
+-2.672,16342.8,2014-08-06,Wed,1,1,161261,-0.0353,44.89,min,1,0,"Somite Number 37 (Leg Buds, Lens Placode, Pharyngeal Arches 8)"
+-2.564,16353.6,2014-08-17,Sun,1,1,92149,0.0223,54.27,,1,0,"Somite Number 38 (Leg Buds, Lens Placode, Pharyngeal Arches 9)"
+-2.456,16364.4,2014-08-27,Wed,1,1,164345,-0.1217,39.54,,1,0,"Somite Number 39 (Leg Buds, Lens Placode, Pharyngeal Arches 10)"
+-2.348,16375.2,2014-09-07,Sun,1,1,95913,-0.082,41.78,,1,0,"Somite Number 40 (Leg Buds, Lens Placode, Pharyngeal Arches 11)"
+-2.24,16386.0,2014-09-18,Thu,1,1,167106,-0.6891,17.94,,1,0,"Somite Number 41 (Leg Buds, Lens Placode, Pharyngeal Arches 12)"
+-2.132,16396.8,2014-09-29,Mon,1,1,162195,0.0,52.61,max,1,0,"Somite Number 42 (Leg Buds, Lens Placode, Pharyngeal Arches 13)"
+-2.024,16407.6,2014-10-10,Fri,1,1,168440,0.1886,64.52,,1,0,"Somite Number 43 (Leg Buds, Lens Placode, Pharyngeal Arches 14)"
+-1.916,16418.4,2014-10-20,Mon,1,1,172167,0.3431,71.62,,1,0,"Somite Number 44 (Leg Buds, Lens Placode, Pharyngeal Arches 15)"
+-0.18,16592.0,2015-04-12,Sun,1,1,120095,0.089,58.71,,1,0,"Lens Vesicle, Nasal Pit, Hand Plate"
+0.0,16610.0,2015-04-30,Thu,1,1,209624,0.1292,61.12,max,18,0,"7Shidden || Lens Vesicle, Nasal Pit, Hand Plate || become strong with a small people || Nasal Pits move ventrally, Auricular Hillocks, Foot Plate"
+0.18,16628.0,2015-05-18,Mon,1,1,186377,-0.065,42.96,,1,0,"Nasal Pits move ventrally, Auricular Hillocks, Foot Plate"
+0.33,16643.0,2015-06-02,Tue,1,1,187350,-0.4136,25.97,,2,0,"CRUCIFIXION AND RESURRECTION OF JESUS CHRIST...7th OR FOURTH 490yJ begins || Nasal Pits move ventrally, Auricular Hillocks, Foot Plate"
+0.8,16690.0,2015-07-19,Sun,1,1,119581,-0.1762,36.46,min,2,0,"forecast devices (time 0) || Nasal Pits move ventrally, Auricular Hillocks, Foot Plate"
+1.62,16772.0,2015-10-09,Fri,1,1,224941,0.14,61.7,,2,0,"Nasal Pits move ventrally, Auricular Hillocks, Foot Plate || Finger Rays"
+1.81,16791.0,2015-10-28,Wed,1,1,238290,-0.0241,45.69,,2,0,1Thidden || Finger Rays
+2.34,16844.0,2015-12-20,Sun,1,1,119498,-0.1,40.66,,2,0,Finger Rays || Ossification commences
+3.6,16970.0,2016-04-24,Sun,1,1,133464,0.0,52.61,min,3,0,AShidden || Ossification commences
+3.78,16988.0,2016-05-12,Thu,1,1,242701,0.178,63.98,,2,0,Ossification commences || Straightening of the Trunk
+4.4,17050.0,2016-07-13,Wed,1,1,240667,0.0,52.61,min,1,0,forecast devices (time 360) || Straightening of the Trunk
+4.86,17096.0,2016-08-28,Sun,1,1,126240,0.0327,54.91,,2,0,Straightening of the Trunk || Upper limbs longer and bent at elbow
+5.16,17126.0,2016-09-27,Tue,1,1,238879,-0.0741,42.28,,2,0,8th OR FIFTH 490yJ begins || Upper limbs longer and bent at elbow
+5.41,17151.0,2016-10-22,Sat,1,1,148113,0.2722,68.58,,3,0,2Thidden || stir up || Upper limbs longer and bent at elbow
+5.58,17168.0,2016-11-08,Tue,1,1,232926,-0.1323,38.88,,1,0,Upper limbs longer and bent at elbow || Hands and feet turn inward
+5.94,17204.0,2016-12-14,Wed,1,1,225310,-0.3895,26.84,,2,0,"Hands and feet turn inward || Eyelids, External Ears"
+6.12,17222.0,2017-01-01,Sun,1,1,97865,6.7571,99.99,max,1,0,"overflow || Eyelids, External Ears"
+6.41,17251.0,2017-01-30,Mon,1,1,263106,3.5272,99.78,,3,0,"many || Eyelids, External Ears"
+6.65,17275.0,2017-02-23,Thu,1,1,251850,0.0,52.61,,2,0,"they that eat of the portion of his meat || Eyelids, External Ears"
+6.66,17276.0,2017-02-24,Fri,1,1,237636,-0.6421,19.2,min,1,0,"Eyelids, External Ears || Embryo is now called Fetus, Rounded Head, Body and Limbs"
+7.2,17330.0,2017-04-19,Wed,1,1,208287,-1.3424,7.05,,3,0,"2Shidden || Embryo is now called Fetus, Rounded Head, Body and Limbs"
+8.1,17420.0,2017-07-18,Tue,1,1,180265,-1.181,8.82,,1,0,"Embryo is now called Fetus, Rounded Head, Body and Limbs"
+9.01,17511.0,2017-10-17,Tue,1,1,207726,-0.0483,44.03,,4,0,3Thidden shall not be as the former
+9.5687,17566.87,2017-12-12,Tue,1,1,189150,-0.406,26.22,,3,0,(again) Eh NOT
+9.72,17582.0,2017-12-27,Wed,1,1,134988,-0.8833,13.7,,2,0,Baby's genitals commence development
+9.99,17609.0,2018-01-23,Tue,1,1,199894,0.2498,67.57,,1,0,9th OR SIXTH 490yJ begins || have intelligence
+10.8,17690.0,2018-04-14,Sat,1,1,150670,3.7985,99.86,max,4,0,3Shidden || fourth year (onset) || have intelligence
+10.95,17705.0,2018-04-29,Sun,1,1,110830,-0.1016,40.58,,1,0,fourth year (onset) || have intelligence
+11.1921,17729.21,2018-05-23,Wed,1,1,209356,-0.1852,36.0,,1,0,"arms shall stand || have intelligence || sanctuary of strength, daily sacrifice"
+11.547,17764.7,2018-06-28,Thu,1,1,207904,1.0497,89.82,max,4,0,"confirm the covenant for one week || sanctuary of strength, daily sacrifice || Placenta, Baby's fingernails begin to develop"
+11.6919,17779.19,2018-07-12,Thu,1,1,201920,0.3416,71.54,max,1,0,"beginning of kingdom || Placenta, Baby's fingernails begin to develop"
+11.8457,17794.57,2018-07-28,Sat,1,1,115083,0.2933,69.41,,2,0,"earth was divided || Placenta, Baby's fingernails begin to develop"
+12.24,17834.0,2018-09-05,Wed,1,1,204188,0.4971,77.27,,4,0,"Placenta, Baby's fingernails begin to develop"
+12.41,17851.0,2018-09-22,Sat,1,1,119300,-0.5175,22.6,,3,1,"Placenta, Baby's fingernails begin to develop"
+12.6,17870.0,2018-10-11,Thu,1,1,195407,-0.8534,14.36,,3,0,midst of the week ca
+12.61,17871.0,2018-10-12,Fri,1,1,188556,-0.1804,36.33,,2,0,4Thidden
+12.78,17888.0,2018-10-29,Mon,1,1,182318,0.8373,85.78,,2,0,midst of the week
+12.9,17900.0,2018-11-10,Sat,1,1,133328,2.1858,98.4,,1,0,is set up
+13.318,17941.8,2018-12-22,Sat,1,1,103245,0.7264,83.51,,5,0,7S
+13.35,17945.0,2018-12-25,Tue,1,1,79953,-2.5446,1.76,min,3,0,blessed is he that waiteth
+13.5993,17969.93,2019-01-19,Sat,1,1,122239,1.4668,94.65,max,1,1,blessed is he that waiteth
+14.4,18050.0,2019-04-09,Tue,1,1,191591,0.2084,65.46,min,3,0,4Shidden || fourth year (end)
+14.608,18070.8,2019-04-30,Tue,1,1,184403,-0.0714,42.5,,1,0,fourth year (end)
+14.76,18086.0,2019-05-15,Wed,1,1,194376,-0.0024,47.22,,2,0,Urine forms
+14.82,18092.0,2019-05-21,Tue,1,1,180705,-1.2816,7.76,,2,0,10th OR SEVENTH 490yJ begins
+14.95,18105.0,2019-06-03,Mon,1,1,163708,0.2874,69.18,,1,0,sacrifice of Jephthah's Daughter
+15.128,18122.8,2019-06-21,Fri,1,1,178079,0.5302,78.25,,2,0,1T
+16.21,18231.0,2019-10-07,Mon,1,1,158841,-0.2433,33.02,,4,0,5Thidden
+16.918,18301.8,2019-12-17,Tue,1,1,164039,0.0,52.61,,3,0,ONE OF THE SEALS
+17.22,18332.0,2020-01-16,Thu,1,1,185276,0.3488,71.8,,1,0,Alexander (start)
+17.32,18342.0,2020-01-26,Sun,1,1,94443,-0.2235,34.05,,1,0,Alexander (finish) || Baby's sex becomes apparent
+17.71,18381.0,2020-03-05,Thu,1,1,188626,1.7288,96.51,,1,0,end of 5Thidden || Baby's sex becomes apparent
+18.0,18410.0,2020-04-03,Fri,1,1,144262,0.4638,76.2,,4,0,5Shidden || Baby's sex becomes apparent
+18.29,18439.0,2020-05-02,Sat,1,1,86708,-0.2518,32.59,,1,0,Baby's sex becomes apparent
+18.39,18449.0,2020-05-12,Tue,1,1,139690,-0.4039,26.28,min,4,0,Baby's sex becomes apparent
+18.41,18451.0,2020-05-14,Thu,1,1,146058,-0.259,32.24,,2,1,Baby's sex becomes apparent
+18.728,18482.8,2020-06-15,Mon,1,1,136420,0.1031,59.62,,3,0,2T
+19.65,18575.0,2020-09-15,Tue,1,1,154834,0.7581,84.25,,2,0,10th OR SEVENTH 490yJ ends...70yJ begins
+19.81,18591.0,2020-10-01,Thu,1,1,148635,1.6209,95.82,max,3,0,6Thidden || Baby's skeleton develops visible bones
+20.0,18610.0,2020-10-20,Tue,1,1,105653,0.1089,59.94,,1,0,Mohammed and the Tares (onset) || Baby's skeleton develops visible bones
+20.186,18628.6,2020-11-08,Sun,1,1,34748,-2.2107,2.45,,1,0,Mohammed and the Tares (loosed) || Baby's skeleton develops visible bones
+20.34,18644.0,2020-11-23,Mon,1,1,120493,1.4895,94.85,,1,0,70yJ ends...1 week begins || Baby's skeleton develops visible bones
+20.41,18651.0,2020-11-30,Mon,1,1,116386,1.4069,94.02,max,1,0,1 week ends || Baby's skeleton develops visible bones
+20.42,18652.0,2020-12-01,Tue,1,1,130311,1.0941,90.58,,2,0,ca. 1000yG begins || Baby's skeleton develops visible bones
+20.518,18661.8,2020-12-11,Fri,1,1,129714,1.1225,90.95,max,3,0,2S || Baby's skeleton develops visible bones
+21.6,18770.0,2021-03-29,Mon,1,1,111064,-0.3681,27.52,min,4,0,6Shidden || Baby's skeleton develops visible bones
+21.913,18801.3,2021-04-29,Thu,1,1,129941,-0.2408,33.16,min,1,1,6Shidden || Baby's skeleton develops visible bones
+22.32,18842.0,2021-06-09,Wed,1,1,131251,0.4612,76.11,,2,0,Baby can make sucking motions
+22.328,18842.8,2021-06-10,Thu,1,1,134824,0.7282,83.57,,3,0,3T
+23.41,18951.0,2021-09-26,Sun,1,1,104784,5.3496,99.98,max,4,0,"7Thidden, 1Vhidden"
+23.61,18971.0,2021-10-16,Sat,1,1,75537,-0.4423,24.91,,2,0,2Vhidden
+23.71,18981.0,2021-10-26,Tue,1,1,122581,-0.3782,27.22,,2,0,ascend like a cloud to cover the land
+23.81,18991.0,2021-11-05,Fri,1,1,116532,-0.6249,19.61,,1,0,3Vhidden
+24.01,19011.0,2021-11-25,Thu,1,1,99418,-2.8278,1.27,min,2,0,4Vhidden
+24.118,19021.8,2021-12-06,Mon,1,1,111185,0.0,52.61,,3,0,3S
+24.21,19031.0,2021-12-15,Wed,1,1,120897,-0.3472,28.35,min,3,0,5Vhidden
+24.27,19037.0,2021-12-21,Tue,1,1,106683,-0.5975,20.36,,2,1,5Vhidden
+24.29,19039.0,2021-12-23,Thu,1,1,99005,-0.5555,21.51,,4,0,Tower(s) of Babylon the great is fallen is fallen
+24.2969,19039.69,2021-12-24,Fri,1,1,73341,-1.2611,7.96,min,3,1,Tower(s) of Babylon the great is fallen is fallen
+24.329,19042.9,2021-12-27,Mon,1,1,73815,0.0433,55.69,,3,0,midst of one week covenant
+24.41,19051.0,2022-01-04,Tue,1,1,97275,-0.8248,14.99,,4,0,6Vhidden || the court without
+24.412,19051.2,2022-01-04,Tue,1,1,97275,-0.8248,14.99,,1,0,deadly wound || the court without
+24.447,19054.7,2022-01-08,Sat,1,1,66008,-0.4098,26.09,max,2,0,deadly wound healed || the court without
+24.61,19071.0,2022-01-24,Mon,1,1,110134,0.1513,62.34,,1,0,7Vhidden || the court without
+24.81,19091.0,2022-02-13,Sun,1,1,68763,-0.0599,43.34,,1,0,end of Vhidden || the court without
+24.84,19094.0,2022-02-16,Wed,1,1,128319,-0.3017,30.33,min,3,0,Fat accumulates (Time of Baby's Heart Quickening for Experienced Mothers) || the court without
+24.897,19099.7,2022-02-22,Tue,1,1,135643,0.0,52.61,,1,0,1335 DAYS (a rapture occurs here) || the court without
+25.2,19130.0,2022-03-24,Thu,1,1,147046,1.0841,90.42,max,1,0,end of Shidden 7YJ || the court without
+25.565,19166.5,2022-04-29,Fri,1,1,123847,0.1198,60.55,,1,0,7YG || the court without
+25.928,19202.8,2022-06-05,Sun,1,1,60474,-0.7101,17.37,,4,0,4T || the court without
+26.81,19291.0,2022-09-01,Thu,1,1,108529,-0.7257,17.0,,1,0,the court without
+27.01,19311.0,2022-09-21,Wed,1,1,120721,0.1808,64.13,,1,0,end of Thidden || the court without
+27.36,19346.0,2022-10-26,Wed,1,1,112881,0.0049,53.02,,2,0,Baby begins to hear || the court without
+27.41,19351.0,2022-10-31,Mon,1,1,95119,0.072,57.74,,1,0,the court without
+27.718,19381.8,2022-12-01,Thu,1,1,106419,-0.371,27.45,,3,0,4S
+28.28,19438.0,2023-01-26,Thu,1,1,117787,0.1938,64.81,,4,0,TWO WITNESSES (begin)
+29.217,19531.7,2023-04-30,Sun,1,1,94591,0.5489,78.75,max,4,0,Star fall
+29.528,19562.8,2023-05-31,Wed,1,1,166011,0.088,58.62,,4,0,5T
+29.88,19598.0,2023-07-05,Wed,1,1,140945,-0.1018,40.57,,2,0,Baby girl's uterus forms
+30.42,19652.0,2023-08-28,Mon,1,1,132048,-0.2823,31.16,max,1,0,ca. 1000yG ends
+30.538,19663.8,2023-09-09,Sat,1,1,98527,-0.2273,33.78,min,1,0,Abaddon Apollyon
+30.638,19673.8,2023-09-19,Tue,1,1,167824,0.0318,54.86,,1,0,Abaddon Apollyon
+31.028,19712.8,2023-10-28,Sat,1,1,104221,1.0101,89.13,max,2,0,end of 5T
+31.318,19741.8,2023-11-26,Sun,1,1,83444,1.1798,91.62,max,5,0,5S
+31.5,19760.0,2023-12-14,Thu,1,1,157574,0.3963,73.6,,1,0,Tidings
+31.63,19773.0,2023-12-27,Wed,1,1,108687,0.0,52.61,,1,0,Tidings
+32.13,19823.0,2024-02-15,Thu,1,1,156488,0.0,52.61,,2,0,tabernacles 1
+32.4,19850.0,2024-03-13,Wed,1,1,154952,-0.8902,13.55,,2,0,tabernacles 2 (Time of Baby's Heart Quickening for First-time Mothers)
+32.68,19878.0,2024-04-10,Wed,1,1,148167,-1.1974,8.68,,2,0,tabernacles 3
+33.128,19922.8,2024-05-25,Sat,1,1,87437,-0.0202,45.92,,9,0,6T
+33.39,19949.0,2024-06-20,Thu,1,1,137191,-1.1605,9.09,min,1,1,6T
+33.485,19958.5,2024-06-29,Sat,1,1,76871,-1.8685,3.6,min,1,1,6T
+33.504,19960.4,2024-07-01,Mon,1,1,117734,-0.4282,25.48,,3,0,"day, month, year 1"
+33.565,19966.5,2024-07-07,Sun,1,1,69123,-0.8713,13.94,,1,1,"day, month, year 1"
+33.61,19971.0,2024-07-12,Fri,1,1,132641,-0.3813,27.09,,1,1,"day, month, year 1"
+34.0,20010.0,2024-08-20,Tue,1,1,147425,1.0964,90.65,max,2,0,"day, month, year 2"
+34.1,20020.0,2024-08-30,Fri,1,1,132571,-0.4255,25.59,,1,1,"day, month, year 2"
+34.24,20034.0,2024-09-13,Fri,1,1,146141,0.8296,85.59,max,1,1,"day, month, year 2"
+34.3,20040.0,2024-09-19,Thu,1,1,144671,-0.8177,15.18,,2,0,"day, month, year 3"
+34.8,20090.0,2024-11-08,Fri,1,1,129191,-1.7987,3.91,,1,1,"day, month, year 3"
+34.918,20101.8,2024-11-20,Wed,1,1,146393,0.0063,53.14,,4,0,6S
+34.92,20102.0,2024-11-20,Wed,1,1,146393,0.0063,53.14,,2,0,"Baby poised to gain more weight, can swallow"
+35.418,20151.8,2025-01-09,Thu,1,1,140097,0.1281,61.05,max,1,0,SEVEN THUNDERS ANGEL
+36.52,20262.0,2025-04-29,Tue,1,1,145941,0.1118,60.14,,2,0,10H vs LAMB war
+36.68,20278.0,2025-05-15,Thu,1,1,154382,0.4256,74.75,,1,0,TWO WITNESSES VS BEAST WAR || TWO WITNESSES BODIES LAY IN JERUSALEM
+36.7033,20280.33,2025-05-17,Sat,1,1,90503,0.0909,58.81,,1,0,TWO WITNESSES BODIES LAY IN JERUSALEM
+36.715,20281.5,2025-05-18,Sun,1,1,81239,1.4446,94.46,max,1,0,come up hither
+36.728,20282.8,2025-05-20,Tue,1,1,147582,-0.0665,42.87,,4,0,"7T, 1V"
+36.928,20302.8,2025-06-09,Mon,1,1,118686,-1.1131,9.81,,2,0,2V
+37.112,20321.2,2025-06-27,Fri,1,0,,,,,1,0,end of one week covenant
+37.128,20322.8,2025-06-29,Sun,1,0,,,,,1,0,3V
+37.328,20342.8,2025-07-19,Sat,1,1,82720,-0.2876,30.87,,2,0,4V
+37.44,20354.0,2025-07-30,Wed,1,1,131027,-1.0332,10.96,,2,0,Baby's Lanugo-Hair becomes visible
+37.528,20362.8,2025-08-08,Fri,1,1,134074,0.6757,82.21,,1,0,5V
+37.728,20382.8,2025-08-28,Thu,1,1,138975,0.0071,53.21,,1,0,6V
+37.928,20402.8,2025-09-17,Wed,1,1,136649,-0.8894,13.55,,1,0,7V
+38.128,20422.8,2025-10-07,Tue,1,1,138115,-0.1633,37.1,,1,0,end of vials
+38.3478,20444.78,2025-10-29,Wed,1,1,141855,1.0612,90.06,,1,0,Babylon comes into remembrance
+38.518,20461.8,2025-11-15,Sat,1,1,75959,-0.2635,32.06,,1,0,end of seals
+39.74,20584.0,2026-03-17,Tue,1,1,133392,0.2019,65.18,,1,0,MARRIAGE SUPPER
+39.8,20590.0,2026-03-23,Mon,1,1,100882,-1.7662,4.09,,1,0,MARRIAGE SUPPER
+39.88,20598.0,2026-03-31,Tue,1,1,120412,-0.0903,41.24,,2,0,LIGHT OF SEVEN DAYS
+40.1739,20627.39,2026-04-29,Wed,1,1,122914,0.0,52.61,,2,1,LIGHT OF SEVEN DAYS
+42.28,20838.0,2026-11-26,Thu,0,,,,,,2,0,sanctuary cleansed (end) || land cleansed (end)
+42.86,20896.0,2027-01-23,Sat,0,,,,,,1,0,Baby is now completely covered in Lanugo-Hair || land cleansed (end)
+45.0,21110.0,2027-08-25,Wed,0,,,,,,1,0,Baby responds to voice || land cleansed (end)
+47.52,21362.0,2028-05-03,Wed,0,,,,,,1,0,Baby has fingernails || land cleansed (end)
+50.04,21614.0,2029-01-10,Wed,0,,,,,,1,0,"Baby has grown, lungs and CNS ie Central Nervous System continue to mature || land cleansed (end)"
+52.56,21866.0,2029-09-19,Wed,0,,,,,,1,0,Baby's eyelids partially open and eyelashes have formed || land cleansed (end)
+55.08,22118.0,2030-05-29,Wed,0,,,,,,1,0,Baby's bones are fully developed || land cleansed (end)
+57.6,22370.0,2031-02-05,Wed,0,,,,,,1,0,Baby's eyes are open a good part of the time || land cleansed (end)
+60.12,22622.0,2031-10-15,Wed,0,,,,,,1,0,"Baby's CNS has matured to control body temperature, sexual development continues || land cleansed (end)"
+62.64,22874.0,2032-06-23,Wed,0,,,,,,1,0,Baby practises breathing || land cleansed (end)
+65.16,23126.0,2033-03-02,Wed,0,,,,,,2,0,Baby detects light || land cleansed (end)
+67.48,23358.0,2033-10-20,Thu,0,,,,,,1,0,land cleansed (end)
+67.68,23378.0,2033-11-09,Wed,0,,,,,,1,0,Baby's fingernails have reached fingertips and Mother is anxious to deliver
+70.2,23630.0,2034-07-19,Wed,0,,,,,,2,0,Baby gaining weight rapidly and protective coating thickens
+72.0,23810.0,2035-01-15,Mon,0,,,,,,2,0,Twenty YJ
+72.72,23882.0,2035-03-28,Wed,0,,,,,,2,0,Mother's uterus crowded due to rapid weight gain
+73.043,23914.3,2035-04-29,Sun,0,,,,,,2,0,Twenty YG
+75.24,24134.0,2035-12-05,Wed,0,,,,,,2,0,Baby's organs are ready to function on their own
+75.6,24170.0,2036-01-10,Thu,0,,,,,,1,0,One and Twenty YJ
+76.695,24279.5,2036-04-28,Mon,0,,,,,,1,0,One and Twenty YG
+77.76,24386.0,2036-08-13,Wed,0,,,,,,1,0,Baby develops firm grasp and sheds most of the Lanugo
+80.28,24638.0,2037-04-22,Wed,0,,,,,,1,0,Baby's Chest is becoming more prominent
+82.8,24890.0,2037-12-30,Wed,0,,,,,,3,0,Due date for delivery arrives
+85.68,25178.0,2038-10-14,Thu,0,,,,,,1,0,Circumcision and Mother's separation fulfilled for male-child
+87.84,25394.0,2039-05-18,Wed,0,,,,,,1,0,Mother's separation fulfilled for female-child
+97.2,26330.0,2041-12-09,Mon,0,,,,,,1,0,Dedication for male-child
+111.6,27770.0,2045-11-18,Sat,0,,,,,,1,0,Dedication for female-child
+183.6,34970.0,2065-08-05,Wed,0,,,,,,1,0,The Infant can now stand on two feet
+212.4,37850.0,2073-06-24,Sat,0,,,,,,0,0,The Infant is now called a Toddler
