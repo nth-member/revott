@@ -1,0 +1,32 @@
+{
+  "name": "again-born",
+  "title": "AGAIN_BORN",
+  "epoch": "2031-04-16T11:28:41.739Z",
+  "days_per_unit": 100,
+  "scale": "100D",
+  "reading": null,
+  "gauge": {
+    "expression": "(((((100)×((82.80)+(0)))+(100×((0.00)+(0÷35)))+(((14160))+(0÷7)))×(48.3÷17640))+5849+(391÷420)−3880)",
+    "value": "853177/420",
+    "decimal": 2031.3738095238095,
+    "fixes": "Ztp",
+    "source": "REVOTT",
+    "note": "An independent slice of REVOTT, anchored by its own Ztp. It is not derived from any other instance and stands on its own gauge."
+  },
+  "sampled": {
+    "positions": 400,
+    "of_keys": 400,
+    "why": "Instantiated across the whole key domain. No real-world targets are attached and none are claimed."
+  },
+  "relations": {
+    "note": "Observed relations to sibling slices, recorded because they are exact, not because either slice defines the other.",
+    "whizz-kids": {
+      "separation_days": 5830,
+      "derivation": "23(82.80 − 24.50)/84 years × 8400/23 days = 5830, the 23s cancelling",
+      "year_unit_days": "8400/23 = 365.2174"
+    }
+  },
+  "unresolved": {
+    "year_to_instant": "The gauge fixes Ztp as a decimal year, 2031.3738…, not as an instant. Converting a decimal year to a calendar moment needs REVOTT's own convention, which is not in the files read here. The epoch above was therefore calibrated against the sibling slice, whose Ztp/instant pair is known, giving a separation of exactly 5830 days and carrying its time of day, 11:28:41.739Z. Supply the native convention and this epoch is set directly from 853177/420 with no reference to any other slice."
+  }
+}

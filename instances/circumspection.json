@@ -1,0 +1,29 @@
+{
+  "name": "circumspection",
+  "title": "CIRCUMSPECTION",
+  "epoch": "2031-12-24T11:28:41.739Z",
+  "days_per_unit": 100,
+  "scale": "100D",
+  "reading": null,
+  "gauge": {
+    "expression": "(((((100)×((85.32)+(0)))+(100×((0.00)+(0÷35)))+(((14160))+(0÷7)))×(48.3÷17640))+5849+(391÷420)−3880)",
+    "value": "2133667/1050",
+    "decimal": 2032.0638095238096,
+    "fixes": "Ztp",
+    "source": "REVOTT",
+    "note": "An independent slice of REVOTT, anchored by its own Ztp. It is not derived from any other instance and stands on its own gauge. The corpus carries a named reading END_IE_PURPOSE_CIRCUMSPECTION.100D over the same positions; whether this slice and that reading are the same object is not established here."
+  },
+  "sampled": {
+    "positions": 400,
+    "of_keys": 400,
+    "why": "Instantiated across the whole key domain. No real-world targets are attached and none are claimed."
+  },
+  "relations": {
+    "note": "Observed separations between sibling slices, recorded because they are exact, not because any slice defines another.",
+    "whizz-kids": {"separation_days": 6082, "derivation": "23(85.32 − 24.50)/84 years × 8400/23 days"},
+    "again-born": {"separation_days": 252, "derivation": "23(85.32 − 82.80)/84 years × 8400/23 days"}
+  },
+  "unresolved": {
+    "year_to_instant": "The gauge fixes Ztp as a decimal year, 2032.0638…, not as an instant. REVOTT's year-to-instant convention is not in the files read here, so this epoch and its time of day were calibrated against the slice whose Ztp/instant pair is known. Supply the native convention and the epoch is set directly from 2133667/1050."
+  }
+}

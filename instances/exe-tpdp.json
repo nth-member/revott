@@ -1,0 +1,31 @@
+{
+  "name": "exe-tpdp",
+  "title": "EXE_TPDP",
+  "epoch": "2018-03-07T06:40:41.739Z",
+  "days_per_unit": 100,
+  "scale": "100D",
+  "reading": null,
+  "gauge": {
+    "expression": "(((((100)×((34.918)+(0)))+(100×((0.00)+(0÷35)))+(((14160))+(0÷7)))×(48.3÷17640))+5849+(391÷420)−3880)",
+    "value": "84767057/42000",
+    "decimal": 2018.263261904762,
+    "fixes": "Ztp",
+    "source": "REVOTT",
+    "note": "An independent slice of REVOTT, anchored by its own Ztp. It is not derived from any other instance and stands on its own gauge. Unlike 24.50 and 85.32, Y = 34.918 is itself a key in the 400-key domain. The corpus carries a named reading EXE_TPDP.100D over the same positions; whether that reading and this slice are the same object is not established here."
+  },
+  "sampled": {
+    "positions": 400,
+    "of_keys": 400,
+    "why": "Instantiated across the whole key domain. No real-world targets are attached and none are claimed."
+  },
+  "relations": {
+    "note": "Observed separations between sibling slices, recorded because they are exact, not because any slice defines another.",
+    "whizz-kids": {"separation_days": "5209/5 = 1041.8", "derivation": "23(34.918 − 24.50)/84 years × 8400/23 days"},
+    "again-born": {"separation_days": "-23941/5 = -4788.2"},
+    "circumspection": {"separation_days": "-25201/5 = -5040.2"}
+  },
+  "unresolved": {
+    "year_to_instant": "The gauge fixes Ztp as a decimal year, 2018.2633…, not as an instant. REVOTT's year-to-instant convention is not in the files read here, so this epoch was calibrated against the slice whose Ztp/instant pair is known.",
+    "fractional_day": "This is the first slice whose separation is not a whole number of days: 1041.8, because Y carries three decimals. Under the calibration the fractional 0.8 of a day shifts the time of day to 06:40:41.739Z rather than the 11:28:41.739Z the other slices carry. That is an artefact of borrowing another slice's instant, not a claim about this one. The native convention would settle whether the time of day travels between slices at all."
+  }
+}
