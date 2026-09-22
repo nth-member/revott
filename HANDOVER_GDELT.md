@@ -5,7 +5,65 @@ where it sits in relation to the repositories.
 
 ---
 
-## 1. Why GDELT
+## 1. The formula
+
+The REVOTT expression, as written:
+
+    (((((100)×((Y)+(0)))+(100×((X)+(0÷35)))+(((14160))+(0÷7)))×(48.3÷17640))+5849+(391÷420)−3880)
+
+Term by term:
+
+| term | is |
+|---|---|
+| `100×(Y+0)` | the per-instance shift. **Y names the instance.** |
+| `100×(X+0÷35)` | the position. **X is free to range up and down the SFO.** |
+| `14160+0÷7` | **REVOTT's own Ztp**, in TNLDY |
+| `×(48.3÷17640)` | TNLDY → years |
+| `+5849+(391÷420)−3880` | the year offset |
+
+`0÷35` and `0÷7` both vanish; they are placeholders in the written form, and the parameters are
+Y and X alone.
+
+**Reductions, all exact:**
+
+    48.3 ÷ 17640        = 23/8400          (so one year = 8400/23 = 365.2173913 days)
+    5849 + 391/420 − 3880 = 1969 + 391/420 = 1969.9309523809525
+
+**So the expression is two statements:**
+
+    TNLDY(Y, X) = 14160 + 100·Y + 100·X
+    year(TNLDY) = TNLDY × 23/8400 + 1969 + 391/420
+
+and, since the corpus carries TNLDY on every node, a third follows from it:
+
+    date(TNLDY)  = 1969-11-07T11:28:41.739Z + TNLDY days
+
+**Verified against the corpus:** at Y = 24.50, `TNLDY = 16610 + 100X` holds for every position with
+**zero deviation**, and the dates it yields reproduce the corpus exactly.
+
+| Y | X | TNLDY | year | date |
+|---|---|---|---|---|
+| 0 | 0 | 14160 | 2008.702381 | 2008-08-14 |
+| 24.50 | 0 | 16610 | 2015.410714 | 2015-04-30 |
+| 24.50 | −147.6 | 1850 | 1974.996429 | 1974-12-01 |
+| 34.918 | 0 | 88259/5 | 2018.263262 | 2018-03-07 |
+| 82.80 | 0 | 22440 | 2031.373810 | 2031-04-16 |
+| 85.32 | 0 | 22692 | 2032.063810 | 2031-12-24 |
+
+Inverses, in `revott/core.py`: `tnldy_at_date`, `x_at_date(when, y)`, `y_for_ztp(year)`.
+
+**The corpus states the inverse itself.** `~/sfo_mdqnm_agent_build/CANONICAL READOUT — EQUATION OF
+THE SHIFTING ZEROES.xlsx` carries, in its header:
+
+    −(17640/48.3)·Y + 48261.3 = Z    (TNLDY)
+     (14.49/17640)·Z + 2419.979286 = Z′  (YGADi)
+     Z′ + (3/10)·U = V    (YGADi),  −630 ≤ U ≤ 0
+
+with a domain line reading `…8568/8532…8480/8360/8280 ≥ Y ≥ 0` — the shifting zeroes in day units,
+i.e. 85.68, 85.32, 84.80, 83.60, 82.80 × 100. **That workbook has not been read properly yet**, and
+it is the most direct source for the family of instances and the YGADi reading.
+
+## 2. Why GDELT
 
 Not to find more events. To supply a **denominator**.
 
@@ -28,7 +86,7 @@ gradients rather than pairs of hits.
 
 ---
 
-## 2. What is on disk
+## 3. What is on disk
 
     ~/gdelt_raw_1979_2026/
     ├── files/            5,012 zips · 53.7 GB · 1979-01-01 .. 2026-09-20
@@ -46,7 +104,7 @@ continued, nothing is deleted. `verify.py` is read-only.
 
 ---
 
-## 3. Three facts about this corpus that are correctness issues, not trivia
+## 4. Three facts about this corpus that are correctness issues, not trivia
 
 **(a) Two days are missing, and they must read as NULL, never zero.**
 
@@ -78,16 +136,9 @@ better, being less exposed to level drift.
 
 ---
 
-## 4. How this meets REVOTT
+## 5. How this meets REVOTT
 
-REVOTT is one coordinate and two additive shifts on it:
-
-    TNLDY = 14160 + 100·Y + 100·X
-
-    year  = TNLDY × 23/8400 + 1969 + 391/420
-    date  = 1969-11-07T11:28:41.739Z + TNLDY days
-
-Because a date is `origin + TNLDY days`, **scanning Y is sliding an integer offset over a daily
+REVOTT is one coordinate and two additive shifts on it — section 1 above. Because a date is `origin + TNLDY days`, **scanning Y is sliding an integer offset over a daily
 series.** No calendar arithmetic per anchoring. One unit of Y is exactly 100 days.
 
 The two operations, as REVOTT is actually worked:
@@ -102,7 +153,7 @@ conditioned on whether evidence was once found near a position.
 
 ---
 
-## 5. The statistical trap, stated before any measurement
+## 6. The statistical trap, stated before any measurement
 
 Y at day resolution over [−147.60, 212.40] gives **36,000 distinct anchorings**. Sweep them, take
 the best, and you will find something extraordinary from noise alone, with certainty.
@@ -128,7 +179,7 @@ The honest headline is never "Y = 24.50 scores 3.7σ". It is "Y = 24.50 ranks 41
 
 ---
 
-## 6. Next step: the aggregate
+## 7. Next step: the aggregate
 
 Collapse 53.7 GB to **one row per day** since 1979 — a few hundred KB — after which every scan runs
 in memory in seconds and the corpus is never touched again.
@@ -150,7 +201,7 @@ exists in `~/pdp-causal-agent/`: `build_repo_hour_index.py`,
 
 ---
 
-## 7. The GitHub strategy
+## 8. The GitHub strategy
 
 **Two repositories, both private, both under the `nth-member` org, neither containing the corpora.**
 
@@ -182,7 +233,7 @@ aggregate.
 
 ---
 
-## 8. Open
+## 9. Open
 
 - The aggregate is not built. Nothing has been measured.
 - `revott` is not pushed; `whizzkids-witness` has 7 commits unpushed.
@@ -191,3 +242,6 @@ aggregate.
   origin and two additive shifts. It should call into `revott.core`.
 - The witness is still organised around the 265. That set is a result, not a structure.
 - No live Anthropic API call has ever been made from any of this.
+- `CANONICAL READOUT — EQUATION OF THE SHIFTING ZEROES.xlsx` is unread. It states the inverse
+  transforms and enumerates the zeroes; reading it would settle the YGADi reading and the full
+  instance family, both of which are currently inferred rather than taken from source.
