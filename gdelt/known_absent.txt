@@ -1,0 +1,6 @@
+# Archives GDELT lists in its index but does not serve. Confirmed 404 repeatedly,
+# on separate days, over both HTTP/1.1 and HTTP/2. They are not new days and not a
+# transient failure: fetching them will always fail, so they are not attempted.
+# Their dates must read as NULL in every statistic — never as zero.
+20221110.export.CSV.zip
+20230323.export.CSV.zip

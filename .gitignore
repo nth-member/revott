@@ -2,3 +2,9 @@ __pycache__/
 *.pyc
 gdelt/sweep.npz
 docs/__pycache__/
+
+# Working notes at the repo root. These have twice held a live token, and this
+# repo is public. Ignored so a stray `git add -A` cannot publish them.
+/revott-gdelt-update-seq.*
+/SSH-PUSH-autonomous-command-*
+/gdelt_bash_search_engine.*

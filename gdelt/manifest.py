@@ -80,26 +80,39 @@ def main() -> int:
     check = "--check" in sys.argv
     files, fs, ms = root / "files", root / "filesizes.txt", root / "md5sums.txt"
 
+    # Archives GDELT indexes but does not serve. Without this they are counted
+    # as "new" every run, HEADed for a size that never comes, and handed to
+    # fetch.py to 404 again -- failure lines on a run where nothing is wrong,
+    # which teaches you to ignore failures that matter.
+    absent_file = root / "known_absent.txt"
+    known_absent = set()
+    if absent_file.exists():
+        known_absent = {l.strip() for l in absent_file.read_text().splitlines()
+                        if l.strip() and not l.startswith("#")}
+
     published = fetch_index()
     have_md5 = len([l for l in ms.read_text().splitlines() if l.strip()]) if ms.exists() else 0
-    print(f"   index lists {len(published)} archives (local md5sums.txt has {have_md5})")
-    if len(published) < have_md5:
-        sys.exit(f"   REFUSED: parsed {len(published)} rows, fewer than the {have_md5} already "
+    # md5sums.txt is written with the known-absent pruned out, so the index will
+    # legitimately carry that many more. Add them back before comparing, or the
+    # guard silently loosens by one per known-absent entry.
+    floor = have_md5 + len(known_absent)
+    print(f"   index lists {len(published)} archives (local md5sums.txt has {have_md5}"
+          + (f" + {len(known_absent)} pruned" if known_absent else "") + ")")
+    if len(published) < floor:
+        sys.exit(f"   REFUSED: parsed {len(published)} rows, fewer than the {floor} already "
                  f"held. That is a bad download, not a shrinking corpus. Nothing written.")
 
     on_disk = {p.name for p in files.glob("*.zip")}
-    missing = [n for n, _ in published if n not in on_disk]
-    print(f"   on disk {len(on_disk)}; listed but absent {len(missing)}")
+    missing = [n for n, _ in published if n not in on_disk and n not in known_absent]
+    skipped = [n for n, _ in published if n not in on_disk and n in known_absent]
+    print(f"   on disk {len(on_disk)}; genuinely absent {len(missing)}"
+          + (f"; known-absent, not attempted {len(skipped)}" if skipped else ""))
     for n in missing[:5]:
         print(f"     {n}")
     if len(missing) > 5:
         print(f"     … and {len(missing) - 5} more")
 
     if check:
-        return 0
-    if not missing:
-        ms.write_text("".join(f"{m}  {n}\n" for n, m in published))
-        print("   md5sums.txt refreshed; filesizes.txt unchanged")
         return 0
 
     sizes: dict[str, int] = {}
@@ -108,21 +121,34 @@ def main() -> int:
         if len(p) == 2 and p[0].isdigit():
             sizes[p[1]] = int(p[0])
 
-    print(f"   asking the server for the size of {len(missing)} new archives")
-    added = 0
-    for n in missing:
-        s = content_length(n)
-        if s:
-            sizes[n] = s
-            added += 1
-        else:
-            print(f"     no Content-Length for {n} — left out; fetch.py will skip it")
+    # Prune the known-absent from filesizes.txt too, every run. manifest.py can
+    # skip them, but fetch.py reads filesizes.txt and will keep attempting -- and
+    # failing -- anything listed there.
+    pruned = [n for n in sizes if n in known_absent]
+    for n in pruned:
+        del sizes[n]
 
+    added = 0
+    if missing:
+        print(f"   asking the server for the size of {len(missing)} new archives")
+        for n in missing:
+            s = content_length(n)
+            if s:
+                sizes[n] = s
+                added += 1
+            else:
+                print(f"     no Content-Length for {n} — left out; fetch.py will skip it")
+
+    # A recorded size the server has confirmed is kept over the index's claim.
+    # GDELT's index can advertise a pre-republication size and MD5 long after the
+    # server has moved on; §5b's rule is that the server decides, not the manifest.
     order = {n: i for i, (n, _) in enumerate(published)}
     fs.write_text("".join(
         f"{sizes[n]} {n}\n" for n in sorted(sizes, key=lambda x: order.get(x, 1 << 30))))
-    ms.write_text("".join(f"{m}  {n}\n" for n, m in published))
-    print(f"   filesizes.txt: {len(sizes)} entries (+{added});  md5sums.txt: {len(published)}")
+    ms.write_text("".join(f"{m}  {n}\n" for n, m in published if n not in known_absent))
+    note = f", {len(pruned)} known-absent pruned" if pruned else ""
+    print(f"   filesizes.txt: {len(sizes)} entries (+{added}{note});  "
+          f"md5sums.txt: {len(published) - len(known_absent)}")
     return 0
 
 
