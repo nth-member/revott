@@ -202,7 +202,10 @@ carried. Hold Y, run X over the 400 SFO-BB node values, read the field at each.<
 <p class="foot">
   The field runs 1979-01-01 to 2026-09-20 — 17,430 days, 24 of them NULL. The path spans 36,000
   days, so no Y places all 400 nodes inside it. A ratio is a reading, not a result: ranks come
-  from the sweep, and there are no p-values in this work.
+  from the sweep, and there are no p-values in this work.<br>
+  Dates from 2013-04-01 are links — they open that day's top sources in
+  <a href="https://nth-member.github.io/gdelt/" target="_blank" rel="noopener noreferrer">nth-member/gdelt</a>.
+  Earlier dates carry counts but no URLs: GDELT's pre-2013 archives have no link column at all.
 </p>
 
 </div>
@@ -211,6 +214,10 @@ const ORIGIN_D = Date.UTC(1969,10,7,11,28,41,739)/86400000;
 const WD = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 let F=null, N=null, START=0, Y=24.50, showEdges=false, onlyIn=true,
     sortK="x", sortAsc=true, rows=[];
+/* GDELT carries source URLs only in its daily files, 2013-04-01 onward. Before
+   that the corpus has counts and no links, so only these dates are followable. */
+const URL_ERA="2013-04-01";
+const srcLink=d=>"https://nth-member.github.io/gdelt/?date="+d;
 
 const $=s=>document.querySelector(s);
 const fmt=(n,d=0)=>n==null?"—":n.toLocaleString(undefined,{minimumFractionDigits:d,maximumFractionDigits:d});
@@ -415,6 +422,8 @@ function pickNode(mx){
   else html+='<div class="r2" style="margin-top:4px">'
     +(best.nullday?'no file published — NULL':'outside the field')+'</div>';
   if(best.text) html+='<div class="r3">'+esc(best.text.slice(0,160))+'</div>';
+  if(best.date>=URL_ERA) html+='<div class="r3" style="color:var(--muted)">'
+    +'click the date in the table for that day’s sources</div>';
   return {html};
 }
 function esc(s){return s.replace(/[&<>]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[m]));}
@@ -433,7 +442,10 @@ function table(){
     return '<tr class="'+(r.ratio==null?"out":"")+'">'
       +'<td class="num">'+r.x+'</td>'
       +'<td class="num">'+fmt(r.tnldy,2)+'</td>'
-      +'<td class="num">'+r.date+'</td>'
+      +'<td class="num">'+(r.date>=URL_ERA
+          ? '<a href="'+srcLink(r.date)+'" target="_blank" rel="noopener noreferrer" '
+            +'title="what GDELT was reading that day">'+r.date+'</a>'
+          : r.date)+'</td>'
       +'<td>'+r.wd+'</td>'
       +'<td class="num">'+(r.num==null?(r.nullday?"NULL":"—"):fmt(r.num))+'</td>'
       +'<td class="num">'+(r.den==null?"—":fmt(r.den))+'</td>'
