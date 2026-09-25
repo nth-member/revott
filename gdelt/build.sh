@@ -18,10 +18,17 @@ HERE="$(cd "$(dirname "$0")" && pwd)"
 CORPUS="${1:-$HOME/gdelt_raw_1979_2026}"
 JOBS="${JOBS:-14}"
 OUT="$HERE/gdelt_daily_1979_2026.csv"
-PARTIALS="$(mktemp)"; trap 'rm -f "$PARTIALS"' EXIT
+PARTS="$(mktemp -d)"; trap 'rm -rf "$PARTS"' EXIT
+PARTIALS="$PARTS/all.tsv"
 
+# One file per archive, joined only once every job has finished. Parallel jobs
+# writing one shared output interleave their buffered writes mid-line; nothing
+# has been corrupted by it (a race-free rebuild matched this file cell for
+# cell on 2026-09-25), but nothing guaranteed it either.
 echo "reading $CORPUS/files ($(ls -1 "$CORPUS/files"/*.zip | wc -l) archives, $JOBS jobs)"
-( cd "$CORPUS/files" && ls *.zip | xargs -P "$JOBS" -n 1 "$HERE/agg_one.sh" ) > "$PARTIALS"
+( cd "$CORPUS/files" && ls *.zip |
+    PARTS="$PARTS" HERE="$HERE" xargs -P "$JOBS" -n 1 sh -c '"$HERE/agg_one.sh" "$0" > "$PARTS/$0.tsv"' )
+cat "$PARTS"/*.zip.tsv > "$PARTIALS"
 echo "partial day-rows: $(wc -l < "$PARTIALS")"
 
 python3 "$HERE/merge_aggregate.py" "$PARTIALS" "$OUT"
