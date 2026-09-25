@@ -79,7 +79,7 @@ say "5. commit  (through $last)"
 # days, then push it. Anything else is left alone and reported.
 paths_for(){
   case "$1" in
-    "$URLS")   echo "docs/days" ;;
+    "$URLS")   echo "docs/days docs/range.json" ;;
     "$REVOTT") echo "gdelt/gdelt_daily_1979_2026.csv docs/data" ;;
   esac
 }
