@@ -9,7 +9,3 @@ docs/__pycache__/
 /SSH-PUSH-autonomous-command-*
 /gdelt_bash_search_engine.*
 
-# The member's journal and its relevance cache stay local: the journal reads the
-# field against a relevance definition that is still a proposal.
-/journal/
-gdelt/member_relevance_daily.csv

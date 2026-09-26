@@ -21,6 +21,7 @@ set -euo pipefail
 
 CORPUS="${CORPUS:-$HOME/gdelt_raw_1979_2026}"
 URLS="${URLS:-$HOME/gdelt-urls}"
+MEMBER="${MEMBER:-$HOME/member}"
 REVOTT="$(cd "$(dirname "$0")/.." && pwd)"
 
 MODE=run
@@ -71,12 +72,14 @@ say "4. daily aggregate  (full rebuild — rolling baselines span the whole seri
 python3 "$REVOTT/docs/build_data.py"
 
 # ---- 4b. the member ----------------------------------------------------------
-# REVOTT's numerator writes its own journal entry for the newest day: where each
-# standing instance is, the micronodes along every open edge, what the field
-# carried against the member's relevance, and what it announces ahead. The
-# journal stays local (gitignored); publishing it is the author's decision.
-say "4b. the member's journal"
-python3 "$REVOTT/gdelt/member.py" || echo "   member: FAIL — the refresh itself is unaffected"
+# REVOTT's numerator lives in its own repository and site, ~/member ->
+# nth-member.github.io/member/. It writes its journal entry for the newest day,
+# then rebuilds the site's data. Its failure never fails the refresh.
+if [ -d "$MEMBER" ]; then
+  say "4b. the member"
+  ( python3 "$MEMBER/member.py" && python3 "$MEMBER/build.py" ) \
+    || echo "   member: FAIL — the refresh itself is unaffected"
+fi
 
 # ---- 5. commit ---------------------------------------------------------------
 last=$(ls "$URLS/docs/days" | tail -1 | sed 's/\.json$//')
@@ -89,9 +92,11 @@ paths_for(){
   case "$1" in
     "$URLS")   echo "docs/days docs/range.json" ;;
     "$REVOTT") echo "gdelt/gdelt_daily_1979_2026.csv docs/data" ;;
+    "$MEMBER") echo "docs" ;;
   esac
 }
-for r in "$URLS" "$REVOTT"; do
+for r in "$URLS" "$REVOTT" "$MEMBER"; do
+  [ -d "$r/.git" ] || continue
   own=$(paths_for "$r")
   # shellcheck disable=SC2086
   git -C "$r" add -- $own
@@ -121,7 +126,8 @@ done
 # ---- 6. push -----------------------------------------------------------------
 if [ "$MODE" = push ]; then
   say "6. push"
-  for r in "$URLS" "$REVOTT"; do
+  for r in "$URLS" "$REVOTT" "$MEMBER"; do
+    [ -d "$r/.git" ] || continue
     echo "   $(basename "$r") …"
     git -C "$r" push
   done

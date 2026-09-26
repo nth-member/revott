@@ -33,17 +33,9 @@ field = {"start": rows[0]["date"], "end": rows[-1]["date"], "n": len(rows),
          "events": ev, "denom": den, "z": z}
 (HERE / "data" / "field.json").write_text(json.dumps(field, separators=(",", ":")))
 
-# The text shown for each key is its layered reading: the marking, then the
-# apocalypse sequence (seal, trumpet, vial, horns), then any derived
-# sub-context -- with the primary layers carried, and marked so, where a key has
-# none of its own.
-import sys
-sys.path.insert(0, str(HERE.parent))
-from revott.sfo import SFO
-sfo = SFO()
 keys = json.loads(KEYS.read_text())["keys"]
 nodes = [{"x": k["x"],
-          "t": sfo.keys[k["x"]].reading,
+          "t": " || ".join(k["strands"]),
           "s": [[t, g] for t, g in k["successors"]]} for k in keys]
 (HERE / "data" / "nodes.json").write_text(json.dumps(nodes, separators=(",", ":")))
 
