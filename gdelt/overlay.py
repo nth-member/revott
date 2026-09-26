@@ -70,7 +70,7 @@ for x in sfo.order:
     rec = dict(x=x, tnldy=round(t, 4), date=d.isoformat(), weekday=WD[d.weekday()],
                in_field=int(LO <= o <= HI), present="", n_events="", z="", pct="",
                extremum="", out_degree=len(key.successors), carried=int(key.bare),
-               text=key.standing_text)
+               text=key.reading)
     if LO <= o <= HI:
         i = o - LO
         rec["present"] = int(present[i])
@@ -91,7 +91,7 @@ with open(dest, "w", newline="") as fh:
 
 zs = np.array([r["z"] for r in out if r["z"] != ""], float)
 ps = np.array([r["pct"] for r in out if r["pct"] != ""], float)
-print(f"REVOTT at Y = {Y}  over GDELT 1979-01-01 .. 2026-09-20")
+print(f"REVOTT at Y = {Y}  over GDELT {rows[0]['date']} .. {rows[-1]['date']}")
 print(f"  {covered} of 400 nodes scored; "
       f"{sum(1 for r in out if not r['in_field'])} outside the field, "
       f"{sum(1 for r in out if r['in_field'] and r['present'] == 0)} on NULL days")

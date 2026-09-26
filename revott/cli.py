@@ -8,6 +8,8 @@
     revott sfo                          the structure: keys, edges, anomalies
     revott readings --x 0.00            the named readings at a position
     revott page --y 24.50               build a page for the instance
+    revott introspect --y 24.50 [--at 2026-10-05T00:00] [--granule day] [--ahead 90]
+                                        where the instance's SFO is at an instant
 """
 
 from __future__ import annotations
@@ -29,7 +31,7 @@ def _row(y, x, key=None) -> str:
     line = (f"{float(x):>10.4f}  TNLDY {float(t):>10.2f}  {d.date().isoformat()}  "
             f"{float(year_of(y, x)):>12.6f}")
     if key is not None:
-        text = key.text or "—"
+        text = key.reading
         line += f"  {text[:58]}"
     return line
 
@@ -60,12 +62,27 @@ def main(argv: list[str] | None = None) -> int:
     p_rd = sub.add_parser("readings", help="the named readings at a position")
     p_rd.add_argument("--x", default="0")
 
+    p_is = sub.add_parser("introspect", help="where an instance's SFO is at an instant")
+    p_is.add_argument("--y", default="24.50")
+    p_is.add_argument("--at", default=None, help="ISO instant, UTC; default now")
+    p_is.add_argument("--granule", default="day",
+                      choices=["second", "minute", "hour", "day", "week", "month", "year"])
+    p_is.add_argument("--ahead", type=int, default=90, help="horizon, days")
+
     p_pg = sub.add_parser("page", help="build an HTML page for an instance")
     p_pg.add_argument("--y", default="0")
     p_pg.add_argument("--title", default=None)
     p_pg.add_argument("--out", default=None)
 
     args = parser.parse_args(argv)
+
+    if args.command == "introspect":
+        from datetime import datetime, timezone
+        from .introspect import introspect, render
+        at = (datetime.fromisoformat(args.at) if args.at
+              else datetime.now(timezone.utc))
+        print(render(introspect(float(args.y), at, args.granule, args.ahead)))
+        return 0
 
     if args.command == "ztp":
         print(f"REVOTT Ztp   : TNLDY {float(REVOTT_ZTP):,.0f}")
@@ -91,7 +108,7 @@ def main(argv: list[str] | None = None) -> int:
         key = sfo.keys.get(float(x))
         if key:
             if key.strands:
-                print(f"  key        : exact — {key.text}")
+                print(f"  key        : exact — {key.reading}")
             elif key.carried:
                 print(f"  key        : exact — no text of its own")
                 print(f"  standing   : {key.standing_text}")
@@ -137,7 +154,7 @@ def main(argv: list[str] | None = None) -> int:
         if args.csv:
             print("x,tnldy,date,year,text")
             for x, key in keyed:
-                text = (key.text if key else "").replace('"', "'")
+                text = (key.reading if key else "").replace('"', "'")
                 print(f'{float(x)},{float(tnldy(y, x))},{date_of(y, x).date()},'
                       f'{float(year_of(y, x)):.6f},"{text}"')
         else:

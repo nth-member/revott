@@ -70,6 +70,14 @@ say "4. daily aggregate  (full rebuild — rolling baselines span the whole seri
 "$REVOTT/gdelt/build.sh" "$CORPUS"
 python3 "$REVOTT/docs/build_data.py"
 
+# ---- 4b. the member ----------------------------------------------------------
+# REVOTT's numerator writes its own journal entry for the newest day: where each
+# standing instance is, the micronodes along every open edge, what the field
+# carried against the member's relevance, and what it announces ahead. The
+# journal stays local (gitignored); publishing it is the author's decision.
+say "4b. the member's journal"
+python3 "$REVOTT/gdelt/member.py" || echo "   member: FAIL — the refresh itself is unaffected"
+
 # ---- 5. commit ---------------------------------------------------------------
 last=$(ls "$URLS/docs/days" | tail -1 | sed 's/\.json$//')
 say "5. commit  (through $last)"

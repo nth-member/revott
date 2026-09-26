@@ -8,11 +8,57 @@ Nothing here selects positions by whether evidence was once found for them.
 from __future__ import annotations
 
 import json
+import re
 from dataclasses import dataclass, field
 from functools import lru_cache
 from pathlib import Path
 
 DATA = Path(__file__).resolve().parent.parent / "data" / "keys.json"
+
+# The layers of a key's text.
+#
+#   marking      the clearly marked context: "Primordial Follicles"
+#   apocalypse   parallel primary contexts, of equal standing with the marking:
+#                nS seal, nT trumpet, nV vial, nH horns, with suffix "hidden"
+#                for the hidden series -- "6T" is the sixth trumpet
+#   derived      embedded sub-contexts derived on another scale: "-25.99dysi".
+#                Never led with.
+#
+# A key with no primary layer of its own -- no text, or a derived sub-context
+# only -- stands under the primary layers of the last preceding key that has
+# any, marked as carried and never presented as owned.
+APOCALYPSE = re.compile(r"(?<![\w.])(\d+)([STVH])(hidden)?(?![\w])")
+DERIVED = re.compile(r"^\s*(-?\d+(?:\.\d+)?dysi)\s*(?:\.\.\.)?\s*(.*)$")
+_SERIES = {"S": "seal", "T": "trumpet", "V": "vial", "H": "horns"}
+_ORD = {1: "first", 2: "second", 3: "third", 4: "fourth", 5: "fifth",
+        6: "sixth", 7: "seventh", 8: "eighth", 9: "ninth", 10: "tenth"}
+
+
+def apocalypse_name(marker: str) -> str:
+    """'6T' -> 'sixth trumpet'; '7Shidden' -> 'seventh seal (hidden)'; '10H' -> 'ten horns'."""
+    m = APOCALYPSE.fullmatch(marker)
+    if not m:
+        return marker
+    n, s, hidden = int(m.group(1)), m.group(2), m.group(3)
+    if s == "H":
+        name = f"{n} horns" if n not in (10,) else "ten horns"
+    else:
+        name = f"{_ORD.get(n, str(n) + 'th')} {_SERIES[s]}"
+    return name + (" (hidden)" if hidden else "")
+
+
+def layers(strands: list[str]) -> tuple[list[str], list[str], list[str]]:
+    """Split a key's strands into (marking, apocalypse, derived)."""
+    marks, apoc, derived = [], [], []
+    for st in strands:
+        g = DERIVED.match(st)
+        if g:
+            derived.append(g.group(1))
+            st = g.group(2)
+        apoc += ["".join(t) for t in APOCALYPSE.findall(st)]
+        if APOCALYPSE.sub("", st).strip(" .|"):
+            marks.append(st.strip())
+    return marks, apoc, derived
 
 
 @dataclass
@@ -24,6 +70,37 @@ class Key:
     # does. Its framework is what stands at this position.
     carried_from: float | None = None
     carried: list[str] = field(default_factory=list)
+    # The layered reading, set by SFO.__init__.
+    marks: list[str] = field(default_factory=list)
+    apoc: list[str] = field(default_factory=list)
+    derived: list[str] = field(default_factory=list)
+    primary_from: float | None = None      # set where the primary layers are carried
+    carried_marks: list[str] = field(default_factory=list)
+    carried_apoc: list[str] = field(default_factory=list)
+
+    @property
+    def has_primary(self) -> bool:
+        return bool(self.marks or self.apoc)
+
+    @property
+    def primary_marks(self) -> list[str]:
+        return self.marks if self.has_primary else self.carried_marks
+
+    @property
+    def primary_apoc(self) -> list[str]:
+        return self.apoc if self.has_primary else self.carried_apoc
+
+    @property
+    def reading(self) -> str:
+        """The key read in layers: marking, then the apocalypse sequence, then derived."""
+        parts = list(self.primary_marks)
+        parts += [f"{a} = {apocalypse_name(a)}" for a in self.primary_apoc]
+        text = " || ".join(parts) if parts else "—"
+        if not self.has_primary and self.primary_from is not None:
+            text += f"  [carried from {self.primary_from:g}]"
+        if self.derived:
+            text += "  (derived: " + ", ".join(self.derived) + ")"
+        return text
 
     @property
     def text(self) -> str:
@@ -103,6 +180,18 @@ class SFO:
             elif last_x is not None:
                 key.carried_from = last_x
                 key.carried = list(last_strands)
+
+        # The layered reading, with carry-over of the primary layers.
+        last = None
+        for x in self.order:
+            key = self.keys[x]
+            key.marks, key.apoc, key.derived = layers(key.strands)
+            if key.has_primary:
+                last = key
+            elif last is not None:
+                key.primary_from = last.x
+                key.carried_marks = list(last.marks)
+                key.carried_apoc = list(last.apoc)
 
         self.edges: list[Edge] = []
         for key in self.keys.values():
