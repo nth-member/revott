@@ -3,10 +3,11 @@
 #
 #   ./refresh.sh              fetch new days, rebuild what they touch, commit
 #   ./refresh.sh --check      say what is new and stop; changes nothing
-#   ./refresh.sh --push       as above, then push both repos
+#   ./refresh.sh --push       as above, then push every repo
 #
 # Idempotent. Run it as often as you like: with no new days it stops after the
-# manifest and rebuilds nothing. Nothing is ever deleted, and the corpus is
+# manifest and the gematria site (stage 2b, which does not depend on GDELT), and
+# rebuilds nothing else. Nothing is ever deleted, and the corpus is
 # never extracted -- every archive is read by streaming through `unzip -p`.
 #
 # The short-circuit matters. Stage 4 rebuilds the whole daily aggregate, because
@@ -22,6 +23,7 @@ set -euo pipefail
 CORPUS="${CORPUS:-$HOME/gdelt_raw_1979_2026}"
 URLS="${URLS:-$HOME/gdelt-urls}"
 MEMBER="${MEMBER:-$HOME/member}"
+GEMSITE="${GEMSITE:-$HOME/gematria}"
 REVOTT="$(cd "$(dirname "$0")/.." && pwd)"
 
 MODE=run
@@ -54,8 +56,50 @@ python3 "$CORPUS/fetch.py" || true      # a 404 on a known-absent day is not fat
 now=$(have)
 echo "   archives: $was -> $now  (+$((now - was)))"
 
+# ---- 2b. gematria -------------------------------------------------------------
+# Independent of GDELT: nth-member.github.io/gematria/ is rebuilt from the two
+# name-value programs, their names list and the latest digest, whether or not any
+# archive arrived. Unchanged inputs rebuild to identical files, so there is then
+# nothing to commit. Its failure never fails the refresh.
+GEM_OK=0
+if [ -d "$GEMSITE" ]; then
+  say "2b. gematria"
+  python3 "$GEMSITE/build.py" && GEM_OK=1 \
+    || echo "   gematria: FAIL — the refresh itself is unaffected"
+fi
+
+# Commit the gematria site's docs/ alone, and push it under --push.
+gem_publish(){
+  [ "$GEM_OK" = 1 ] && [ -d "$GEMSITE/.git" ] || return 0
+  git -C "$GEMSITE" add -- docs
+  local other
+  other=$(git -C "$GEMSITE" status --porcelain | grep -v '^[MARD]' || true)
+  if ! git -C "$GEMSITE" diff --cached --quiet; then
+    git -C "$GEMSITE" commit -q -F - <<MSG
+Rebuilt from the programs and the latest digest
+
+The names list or a digest changed; build.py revalued the list with the
+programs' own functions and reconverted the latest digest.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+MSG
+    echo "   gematria: $(git -C "$GEMSITE" log --oneline -1)"
+  else
+    echo "   gematria: nothing to commit"
+  fi
+  if [ -n "$other" ]; then
+    echo "   gematria: left alone, not mine to commit —"
+    printf '%s\n' "$other" | sed 's/^/     /'
+  fi
+  if [ "$MODE" = push ]; then
+    echo "   gematria … push"
+    git -C "$GEMSITE" push
+  fi
+}
+
 if [ "$now" -eq "$was" ]; then
   say "already current — nothing arrived, nothing rebuilt"
+  gem_publish
   exit 0
 fi
 
@@ -132,5 +176,9 @@ if [ "$MODE" = push ]; then
     git -C "$r" push
   done
 fi
+
+# ---- 7. gematria ---------------------------------------------------------------
+say "7. gematria"
+gem_publish
 
 say "done — through $last"
