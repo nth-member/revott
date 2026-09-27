@@ -41,10 +41,17 @@ and around them:
     python -m revott sfo                              # the key structure and its anomalies
     python -m revott readings --x 0.00                # the eleven named readings
     python -m revott page --y 24.50                   # render an instance
+    python -m revott introspect --y 24.50 --granule day   # where the instance's SFO is now
     python -m revott sweep --y 24.50 --from -10 --to 10 --step 0.5 --csv
 
 X is continuous. `sweep` with no range walks the 400 keys; with `--from/--to/--step` it walks
 whatever you ask for, keyed or not.
+
+`introspect` locates any instant (`--at`, default now) on a fixed Y's SFO at a granule from a
+second to a year. It reports the keys firing inside the granule, every open edge with its progress
+and the readings of both its ends, the (Y, X) sentences on the granule's line through the 400 × 400
+grid, the eigen reading Z = 200·Yp + 14160 (a curiosity beside the primary readings), and what lies
+ahead within `--ahead` days, with joint firings flagged.
 
 ## The SFO
 
@@ -63,6 +70,11 @@ framework text and naming successors — not a list X is confined to.
   presented as owned.
 - **One erratum applied**: one source row carried two keys, `−0.18` and `0.18`. Separated, every
   gap reconciles, and the only backward edge and only ordering violation both resolve.
+- **Each key is read in layers** (`Key.reading` in `revott/sfo.py`): its marking first; then the
+  apocalypse sequence, of equal standing (`nS` seal, `nT` trumpet, `nV` vial, `nH` horns, `hidden`
+  for the hidden series); then derived sub-contexts such as `−25.99dysi`, never led with. A key with
+  no primary layer of its own carries the last preceding key's, marked as carried. The app, the CLI
+  and the overlay all use this reading.
 
 ## The named readings
 
@@ -82,11 +94,26 @@ GDELT is here as a **denominator**. *Did something happen on this date?* is yes 
 carries no information; *what is the state of the field at this position?* can come back negative.
 `position_paper.md` states the objective and what may and may not be concluded from it.
 
+    gdelt/refresh.sh [--check|--push]  bring everything up to date with GDELT, from one command
     gdelt/build.sh                  50 GB of archives -> one row per day, ~4 min
-    gdelt/gdelt_daily_1979_2026.csv 17,430 days, 1979-01-01 .. 2026-09-20
+    gdelt/gdelt_daily_1979_2026.csv one row per day from 1979-01-01 to the last refresh
     gdelt/overlay.py [Y]            REVOTT over the field, one row per node
     gdelt/sweep.py                  all 36,001 anchorings, for ranking
     gdelt/weekday_alias.py          the calendar artefacts, computed exactly
+
+`refresh.sh` is idempotent and stages only the paths it produces, in each repository it touches:
+
+    1   the manifest, rebuilt from GDELT's index page
+    2   fetch any new daily archives
+    2b  rebuild nth-member/gematria's tables (independent of GDELT, so it runs every time)
+        -- with no new archive, it stops here
+    3   the day sources in ~/gdelt-urls, incrementally
+    4   the daily aggregate and this app's data, in full (the rolling baselines span the series)
+    4b  the member in ~/member: its journal entry for the newest day, and its site
+    5   commit gdelt-urls, revott and member, leaving anything the script did not produce alone
+        and reporting it
+    6   with --push, push those three
+    7   commit the gematria site's docs/, and with --push push it (also on the no-archive path)
 
 The corpus itself is never committed and never extracted — archives stream through `unzip -p`.
 Four properties of it are correctness issues rather than caveats: two eras measuring different
@@ -103,7 +130,9 @@ distribution; an anchoring is a rank against the sweep.
     numerator    what GDELT recorded that day
     denominator  what that day would normally carry (local level × weekday × season)
 
-Drag Y at day resolution and all 400 nodes move together. Run it with any static server:
+Drag Y at day resolution and all 400 nodes move together. From 2013-04-01, a node in either chart,
+and the date in the table, opens that day's sources on nth-member/gdelt. The page's range is read
+from its data, never typed by hand. Run it with any static server:
 
     cd docs && python3 -m http.server 8000
 
@@ -113,6 +142,7 @@ Drag Y at day resolution and all 400 nodes move together. Run it with any static
     revott/sfo.py        the 400 keys, their text, their relations
     revott/readings.py   the eleven named readings
     revott/page.py       render an instance
+    revott/introspect.py where a fixed Y's SFO is at any instant and granule
     revott/cli.py        every command
     data/keys.json       the key structure, extracted once
     data/readings.json   the readings, 11 × 265 positions
@@ -121,3 +151,13 @@ Drag Y at day resolution and all 400 nodes move together. Run it with any static
     docs/                the browser app — also what GitHub Pages serves
     position_paper.md    the objective, stated
     HANDOVER_GDELT.md    the working record
+
+## The nth-member sites
+
+| site | repository | what it is |
+|---|---|---|
+| https://nth-member.github.io/revott/ | nth-member/revott | REVOTT atop GDELT: the field at every node of an instance |
+| https://nth-member.github.io/gdelt/ | nth-member/gdelt | what GDELT was reading on a given day |
+| https://nth-member.github.io/member/ | nth-member/member | the nth member: REVOTT's numerator, its introspection and its journal |
+| https://nth-member.github.io/gematria/ | nth-member/gematria | H-Gematria/ASCII: the two name-value programs in the browser |
+| https://nth-member.github.io/alien-corridor/ | nth-member/alien-corridor | the Alien Corridor Support System (MDQNM engine) in the browser |
