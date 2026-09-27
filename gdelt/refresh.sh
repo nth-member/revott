@@ -58,7 +58,7 @@ echo "   archives: $was -> $now  (+$((now - was)))"
 
 # ---- 2b. gematria -------------------------------------------------------------
 # Independent of GDELT: nth-member.github.io/gematria/ is rebuilt from the two
-# name-value programs, their names list and the latest digest, whether or not any
+# name-value programs and the latest digest, whether or not any
 # archive arrived. Unchanged inputs rebuild to identical files, so there is then
 # nothing to commit. Its failure never fails the refresh.
 GEM_OK=0
@@ -78,8 +78,8 @@ gem_publish(){
     git -C "$GEMSITE" commit -q -F - <<MSG
 Rebuilt from the programs and the latest digest
 
-The names list or a digest changed; build.py revalued the list with the
-programs' own functions and reconverted the latest digest.
+A program or a digest changed; build.py retook the programs' own tables and
+reconverted the latest digest.
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
 MSG
