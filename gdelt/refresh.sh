@@ -6,8 +6,8 @@
 #   ./refresh.sh --push       as above, then push every repo
 #
 # Idempotent. Run it as often as you like: with no new days it stops after the
-# manifest and the gematria site (stage 2b, which does not depend on GDELT), and
-# rebuilds nothing else. Nothing is ever deleted, and the corpus is
+# manifest, the gematria site (stage 2b) and IPPROTO (stage 2c), neither of which
+# depends on GDELT, and rebuilds nothing else. Nothing is ever deleted, and the corpus is
 # never extracted -- every archive is read by streaming through `unzip -p`.
 #
 # The short-circuit matters. Stage 4 rebuilds the whole daily aggregate, because
@@ -24,6 +24,7 @@ CORPUS="${CORPUS:-$HOME/gdelt_raw_1979_2026}"
 URLS="${URLS:-$HOME/gdelt-urls}"
 MEMBER="${MEMBER:-$HOME/member}"
 GEMSITE="${GEMSITE:-$HOME/gematria}"
+IPPSITE="${IPPSITE:-$HOME/ipproto}"
 REVOTT="$(cd "$(dirname "$0")/.." && pwd)"
 
 MODE=run
@@ -96,9 +97,51 @@ MSG
   fi
 }
 
+# ---- 2c. IPPROTO --------------------------------------------------------------
+# Independent of GDELT: nth-member.github.io/ipproto/ carries IANA's registry of
+# IP protocol numbers. tools/build.mjs fetches it and rewrites the data file only
+# when IANA has changed it, so most runs have nothing to commit. Its failure
+# (for instance, no network) never fails the refresh.
+IPP_OK=0
+if [ -d "$IPPSITE" ]; then
+  say "2c. IPPROTO"
+  (cd "$IPPSITE" && node tools/build.mjs) && IPP_OK=1 \
+    || echo "   IPPROTO: FAIL — the refresh itself is unaffected"
+fi
+
+# Commit IPPROTO's registry data alone, and push it under --push.
+ipp_publish(){
+  [ "$IPP_OK" = 1 ] && [ -d "$IPPSITE/.git" ] || return 0
+  local data=docs/data/protocols.json updated other
+  git -C "$IPPSITE" add -- "$data"
+  other=$(git -C "$IPPSITE" status --porcelain | grep -v '^[MARD]' || true)
+  if ! git -C "$IPPSITE" diff --cached --quiet; then
+    updated=$(sed -n 's/^ *"updated": "\([^"]*\)".*/\1/p' "$IPPSITE/$data" | head -1)
+    git -C "$IPPSITE" commit -q -F - <<MSG
+IANA registry updated ${updated:-(date not given)}
+
+tools/build.mjs retook IANA's Assigned Internet Protocol Numbers.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+MSG
+    echo "   IPPROTO: $(git -C "$IPPSITE" log --oneline -1)"
+  else
+    echo "   IPPROTO: nothing to commit"
+  fi
+  if [ -n "$other" ]; then
+    echo "   IPPROTO: left alone, not mine to commit —"
+    printf '%s\n' "$other" | sed 's/^/     /'
+  fi
+  if [ "$MODE" = push ]; then
+    echo "   IPPROTO … push"
+    git -C "$IPPSITE" push
+  fi
+}
+
 if [ "$now" -eq "$was" ]; then
   say "already current — nothing arrived, nothing rebuilt"
   gem_publish
+  ipp_publish
   exit 0
 fi
 
@@ -176,8 +219,10 @@ if [ "$MODE" = push ]; then
   done
 fi
 
-# ---- 7. gematria ---------------------------------------------------------------
+# ---- 7. gematria and IPPROTO -------------------------------------------------
 say "7. gematria"
 gem_publish
+say "7b. IPPROTO"
+ipp_publish
 
 say "done — through $last"

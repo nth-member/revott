@@ -106,6 +106,8 @@ carries no information; *what is the state of the field at this position?* can c
     1   the manifest, rebuilt from GDELT's index page
     2   fetch any new daily archives
     2b  rebuild nth-member/gematria's tables (independent of GDELT, so it runs every time)
+    2c  retake IANA's protocol-number registry for nth-member/ipproto (independent of GDELT;
+        the data file changes only when IANA changes the registry)
         -- with no new archive, it stops here
     3   the day sources in ~/gdelt-urls, incrementally
     4   the daily aggregate and this app's data, in full (the rolling baselines span the series)
@@ -114,6 +116,7 @@ carries no information; *what is the state of the field at this position?* can c
         and reporting it
     6   with --push, push those three
     7   commit the gematria site's docs/, and with --push push it (also on the no-archive path)
+    7b  commit IPPROTO's registry data, and with --push push it (also on the no-archive path)
 
 The corpus itself is never committed and never extracted — archives stream through `unzip -p`.
 Four properties of it are correctness issues rather than caveats: two eras measuring different
