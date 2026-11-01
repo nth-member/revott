@@ -1,7 +1,7 @@
 {
   "name": "exe-tpdp",
   "title": "EXE_TPDP",
-  "epoch": "2018-03-07T06:40:41.739Z",
+  "epoch": "2018-03-07T03:32:52.173+01:00",
   "days_per_unit": 100,
   "scale": "100D",
   "reading": null,
@@ -14,8 +14,8 @@
     "note": "An independent slice of REVOTT, anchored by its own Ztp. It is not derived from any other instance and stands on its own gauge. Unlike 24.50 and 85.32, Y = 34.918 is itself a key in the 400-key domain. The corpus carries a named reading EXE_TPDP.100D over the same positions; whether that reading and this slice are the same object is not established here."
   },
   "sampled": {
-    "positions": 400,
-    "of_keys": 400,
+    "positions": 401,
+    "of_keys": 401,
     "why": "Instantiated across the whole key domain. No real-world targets are attached and none are claimed."
   },
   "relations": {

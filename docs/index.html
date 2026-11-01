@@ -108,7 +108,7 @@ tr.out td{color:var(--muted)}
 
 <h1>REVOTT atop GDELT</h1>
 <p class="sub">Two maps composed. REVOTT sends a position to a date; GDELT says what that day
-carried. Hold Y, run X over the 400 SFO-BB node values, read the field at each.</p>
+carried. Hold Y, run X over the 401 SFO-BB node values, read the field at each.</p>
 
 <div class="eq mono">
   TNLDY = 14160 + 100·(Y + X) &nbsp;&nbsp;·&nbsp;&nbsp; date = the Nsukka day on which the Nsukka/Yg clock reads that TNLDY<br>
@@ -142,7 +142,7 @@ carried. Hold Y, run X over the 400 SFO-BB node values, read the field at each.<
   <div class="tile"><div class="k">Ztp</div><div class="v" id="tZ">—</div>
     <div class="n" id="tZd">TNLDY at X = 0</div></div>
   <div class="tile"><div class="k">nodes read</div><div class="v" id="tN">—</div>
-    <div class="n">of 400 inside the field</div></div>
+    <div class="n" id="tNof">of the nodes inside the field</div></div>
   <div class="tile"><div class="k">median ratio</div><div class="v" id="tR">—</div>
     <div class="n">1.00 = an ordinary day</div></div>
   <div class="tile"><div class="k">above / below</div><div class="v" id="tAB">—</div>
@@ -152,7 +152,7 @@ carried. Hold Y, run X over the 400 SFO-BB node values, read the field at each.<
 </div>
 
 <div class="card">
-  <p class="chart-t">GDELT daily event volume, with the 400 node positions marked</p>
+  <p class="chart-t">GDELT daily event volume, with the 401 node positions marked</p>
   <p class="chart-s">Log scale. Orange ticks are where REVOTT places its nodes at this Y.
     Red bands are days GDELT never published — never read as zero.</p>
   <div class="cv"><canvas id="c1" height="300"></canvas><div class="tip" id="t1"></div></div>
@@ -178,7 +178,7 @@ carried. Hold Y, run X over the 400 SFO-BB node values, read the field at each.<
 <div class="card">
   <div class="tbl-top">
     <div>
-      <p class="chart-t" style="margin:0">All 400 nodes</p>
+      <p class="chart-t" style="margin:0">All 401 nodes</p>
       <p class="chart-s" style="margin:0">Click a column to sort. The same numbers the charts draw.</p>
     </div>
     <div>
@@ -201,7 +201,7 @@ carried. Hold Y, run X over the 400 SFO-BB node values, read the field at each.<
 
 <p class="foot">
   The field runs <span id="fRange">—</span>. The path spans 36,000
-  days, so no Y places all 400 nodes inside it. A ratio is a reading, not a result: ranks come
+  days, so no Y places all 401 nodes inside it. A ratio is a reading, not a result: ranks come
   from the sweep, and there are no p-values in this work.<br>
   From 2013-04-01, a node in either chart opens that day's top sources when clicked, and so
   does its date in the table below — both lead to
@@ -283,7 +283,7 @@ function tiles(){
   $("#tZ").textContent=fmt(ztp,0);
   const zms=instantOf(ztp);
   $("#tZd").textContent="X = 0 → "+(zms==null?"passed over":Yg.dateNsukka(zms));
-  $("#tN").textContent=ok.length;
+  $("#tN").textContent=ok.length; $("#tNof").textContent="of "+N.length+" inside the field";
   $("#tR").textContent= rs.length? rs[rs.length>>1].toFixed(3) : "—";
   const a=ok.filter(r=>r.ratio>1).length;
   $("#tAB").textContent= ok.length? a+" / "+(ok.length-a) : "—";

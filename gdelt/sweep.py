@@ -9,7 +9,7 @@ Y + X = Y' + X' -- means sliding Y is a shift of the whole path, so the sweep is
 its own shift test and the null falls out of it.
 
 COVERAGE. The path spans 36,000 days, 98.6 years. The field spans 47.7. No
-anchoring can ever place all 400 nodes in the field, and the number it does
+anchoring can ever place all 401 nodes in the field, and the number it does
 place runs from 1 to 384. Counts are therefore not comparable across
 anchorings; rates are, and only among anchorings with enough nodes for a rate
 to mean anything. This reports rank among anchorings covering at least 300

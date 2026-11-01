@@ -122,7 +122,7 @@ footer{{margin-top:24px;color:var(--i3);font-size:12px;line-height:1.65;max-widt
 The text on each key is the framework the SFO carries, written in several strands at once. Where a
 key carries none of its own, the framework of the last preceding key that does is shown greyed and
 marked <em>carried from</em>: that is what stands at the position, and it is never presented as
-owned. X is free and continuous; these 400 keys are the structure standing on it, not a list X is confined to.
+owned. X is free and continuous; these {len(sfo)} keys are the structure standing on it, not a list X is confined to.
 Y shifts the whole instance by 100 TNLDY per unit off REVOTT's own zero at 14160.<br><br>
 No evidence, correspondence or selection is applied here. Every key appears, whether or not
 anything was ever found near it in any instance, and nothing on this page claims that anything

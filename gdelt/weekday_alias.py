@@ -3,7 +3,7 @@
 
 Run:  python3 weekday_alias.py
 
-THE UNITS OF X are the 400 SFO-BB node values. They are irregular -- 263
+THE UNITS OF X are the 401 SFO-BB node values. They are irregular -- 262
 distinct gaps, the tightest 0.09 days, the most common 10.8 days, with 252-day
 jumps through the set -- so there is no fixed step in X and no argument about
 the sweep can be built on one.
@@ -21,10 +21,10 @@ rotations against that statistic's own noise floor. It needs no field data: only
 the calendar, the DAG, and the weekday offsets measured by field.py.
 
 WHAT IT SHOWS. The mean gradient over the backbone appears immune. It is not
-robust, it is empty: the backbone visits all 400 nodes in order, so a mean
-gradient over it telescopes to (f(sink) - f(root))/399 for ANY f. Every
+robust, it is empty: the backbone visits all 401 nodes in order, so a mean
+gradient over it telescopes to (f(sink) - f(root))/400 for ANY f. Every
 statistic that carries information -- |gradient|, sign changes, monotone runs,
-anything over the 305 long-range edges -- is exposed, between 2.3x and 4.3x.
+anything over the 307 long-range edges -- is exposed, between 2.3x and 4.3x.
 """
 import json
 import sys

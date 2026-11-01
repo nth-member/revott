@@ -1,7 +1,7 @@
 {
   "name": "circumspection",
   "title": "CIRCUMSPECTION",
-  "epoch": "2031-12-24T11:28:41.739Z",
+  "epoch": "2031-12-24T07:18:15.652+01:00",
   "days_per_unit": 100,
   "scale": "100D",
   "reading": null,
@@ -14,8 +14,8 @@
     "note": "An independent slice of REVOTT, anchored by its own Ztp. It is not derived from any other instance and stands on its own gauge. The corpus carries a named reading END_IE_PURPOSE_CIRCUMSPECTION.100D over the same positions; whether this slice and that reading are the same object is not established here."
   },
   "sampled": {
-    "positions": 400,
-    "of_keys": 400,
+    "positions": 401,
+    "of_keys": 401,
     "why": "Instantiated across the whole key domain. No real-world targets are attached and none are claimed."
   },
   "relations": {

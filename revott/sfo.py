@@ -1,6 +1,6 @@
 """The SFO: what X ranges over, and the structure carried on it.
 
-X is free and continuous. The 400 BB keys are a structure on it -- positions
+X is free and continuous. The 401 BB keys are a structure on it -- positions
 that carry framework text and name successors -- not a list X is confined to.
 Nothing here selects positions by whether evidence was once found for them.
 """
@@ -155,7 +155,7 @@ def _raw() -> dict:
 
 
 class SFO:
-    """The key structure: 400 positions, their text, and their relations."""
+    """The key structure: 401 positions, their text, and their relations."""
 
     def __init__(self) -> None:
         raw = _raw()

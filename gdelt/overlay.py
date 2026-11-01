@@ -3,7 +3,7 @@
 
     python3 overlay.py [Y]          default Y = 24.50
 
-For every one of the 400 SFO-BB nodes: the date it falls on in the instance
+For every one of the SFO-BB nodes: the date it falls on in the instance
 shifted by Y, what the field reads there, and where that reading sits in the
 field's own distribution.
 
@@ -95,7 +95,7 @@ with open(dest, "w", newline="") as fh:
 zs = np.array([r["z"] for r in out if r["z"] != ""], float)
 ps = np.array([r["pct"] for r in out if r["pct"] != ""], float)
 print(f"REVOTT at Y = {Y}  over GDELT {rows[0]['date']} .. {rows[-1]['date']}")
-print(f"  {covered} of 400 nodes scored; "
+print(f"  {covered} of {len(out)} nodes scored; "
       f"{sum(1 for r in out if not r['in_field'])} outside the field, "
       f"{sum(1 for r in out if r['in_field'] and r['present'] == 0)} on NULL days")
 print(f"  node z: mean {zs.mean():+.3f}  sd {zs.std():.3f}   "
