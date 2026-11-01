@@ -10,6 +10,10 @@ from fractions import Fraction as F
 from pathlib import Path
 
 from .core import date_of, expression, tnldy, year_of, ztp_of
+
+
+def _day(d) -> str:
+    return d.date().isoformat() if d else "passed over"
 from .sfo import SFO
 
 WEB = Path(__file__).resolve().parent.parent / "web"
@@ -31,7 +35,7 @@ def build(y="0", title: str | None = None, out: str | Path | None = None) -> Pat
         rows.append(
             '<article class="row">'
             f'<div class="rail"><span class="x">{x}</span>'
-            f'<span class="d">{when.date().isoformat()}</span>'
+            f'<span class="d">{_day(when)}</span>'
             f'<span class="t">TNLDY {float(t):,.0f}</span></div>'
             '<div class="body">'
             + ("".join(f'<span class="s">{esc(p)}</span>' for p in key.strands)
@@ -100,13 +104,13 @@ footer{{margin-top:24px;color:var(--i3);font-size:12px;line-height:1.65;max-widt
 <div class="box">
   <span class="e">{expression(y, 0)}</span>
   TNLDY = 14160 + 100·Y + 100·X &nbsp;·&nbsp; Y = <b>{esc(y)}</b> &nbsp;·&nbsp;
-  Ztp = <b>{float(ztp_of(y)):,.0f}</b> TNLDY = <b>{date_of(y, 0).date()}</b><br>
+  Ztp = <b>{float(ztp_of(y)):,.0f}</b> TNLDY = <b>{_day(date_of(y, 0))}</b><br>
   year = TNLDY × 23/8400 + 1969 + 391/420 &nbsp;·&nbsp; 1 year = 8400/23 = 365.2174 days
 </div>
 <div class="f">
   <div><b>{len(sfo)}</b><span>keys</span></div>
-  <div><b>{date_of(y, lo).date().year}</b><span>first, X {lo}</span></div>
-  <div><b>{date_of(y, hi).date().year}</b><span>last, X {hi}</span></div>
+  <div><b>{_day(date_of(y, lo))[:4]}</b><span>first, X {lo}</span></div>
+  <div><b>{_day(date_of(y, hi))[:4]}</b><span>last, X {hi}</span></div>
   <div><b>{float(ztp_of(y)):,.0f}</b><span>Ztp in TNLDY</span></div>
 </div>
 <input type="search" id="q" placeholder="filter by X, date, TNLDY or framework text…" autocomplete="off">

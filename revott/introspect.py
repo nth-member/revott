@@ -23,9 +23,9 @@ Nothing here reads GDELT. The field is read against this, not the other way roun
 from __future__ import annotations
 
 from dataclasses import dataclass
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta
 
-from .core import REVOTT_ZTP, UNIT_DAYS, date_of, tnldy_at_date
+from .core import NSUKKA, REVOTT_ZTP, UNIT_DAYS, date_of, tnldy_at_date
 from .sfo import SFO
 
 GRANULES = {
@@ -48,26 +48,29 @@ class OpenEdge:
     target_reading: str
 
 
-def _utc(when: datetime) -> datetime:
-    return when if when.tzinfo else when.replace(tzinfo=timezone.utc)
+def _nsukka(when: datetime) -> datetime:
+    """A moment in Nsukka time; one given without a zone already is."""
+    return (when if when.tzinfo else when.replace(tzinfo=NSUKKA)).astimezone(NSUKKA)
 
 
 def introspect(y: float, at: datetime, granule: str = "day",
                horizon_days: int = 90, sfo: SFO | None = None) -> dict:
     sfo = sfo or SFO()
-    at = _utc(at)
+    at = _nsukka(at)
     width = GRANULES[granule]
     lo, hi = at, at + width
     z = float(tnldy_at_date(at))
     x_now = (z - float(REVOTT_ZTP)) / float(UNIT_DAYS) - y
+    # A key whose TNLDY a Yg recalibration passes over has no instant (None): it fires
+    # nowhere and opens or closes no edge.
     when = {x: date_of(y, x) for x in sfo.order}
 
-    firing = [x for x in sfo.order if lo <= when[x] < hi]
+    firing = [x for x in sfo.order if when[x] is not None and lo <= when[x] < hi]
 
     edges = []
     for e in sfo.edges:
         a, b = when[e.source], when[e.target]
-        if a <= at < b:
+        if a is not None and b is not None and a <= at < b:
             edges.append(OpenEdge(e.source, e.target, e.default, a, b,
                                   (at - a) / (b - a),
                                   sfo.keys[e.source].reading,
@@ -82,8 +85,8 @@ def introspect(y: float, at: datetime, granule: str = "day",
     sentences = []
     for yi in xs:
         for xj in xs:
-            if s_lo <= yi + xj < s_hi:
-                sentences.append((yi, xj, date_of(yi, xj)))
+            if s_lo <= yi + xj < s_hi and (d := date_of(yi, xj)) is not None:
+                sentences.append((yi, xj, d))
     sentences.sort(key=lambda t: t[2])
 
     yp = (z - float(REVOTT_ZTP)) / 200.0
@@ -93,8 +96,9 @@ def introspect(y: float, at: datetime, granule: str = "day",
              "next_at": date_of(nxt, nxt) if nxt is not None else None}
 
     until = at + timedelta(days=horizon_days)
-    ahead = [(x, when[x]) for x in xs if hi <= when[x] < until]
-    eig_ahead = [(x, date_of(x, x)) for x in xs if hi <= date_of(x, x) < until]
+    ahead = [(x, when[x]) for x in xs if when[x] is not None and hi <= when[x] < until]
+    diag = {x: date_of(x, x) for x in xs}
+    eig_ahead = [(x, diag[x]) for x in xs if diag[x] is not None and hi <= diag[x] < until]
 
     return dict(y=y, at=at, granule=granule, lo=lo, hi=hi, tnldy=z, x=x_now,
                 firing=firing, edges=edges, sentences=sentences, eigen=eigen,
@@ -110,7 +114,7 @@ def render(r: dict, markdown: bool = False) -> str:
     sfo, y = r["sfo"], r["y"]
     out = []
     h = (lambda t: f"### {t}") if markdown else (lambda t: f"\n{t}\n" + "-" * len(t))
-    out.append(f"REVOTT at Y = {y:g} · {r['at']:%Y-%m-%d %H:%M} UTC · granule: {r['granule']}")
+    out.append(f"REVOTT at Y = {y:g} · {r['at']:%Y-%m-%d %H:%M} Nsukka · granule: {r['granule']}")
     out.append(f"TNLDY {r['tnldy']:,.3f} · the instant falls on X = {r['x']:.4f} of this SFO")
 
     out.append(h("Firing inside the granule"))
@@ -138,7 +142,8 @@ def render(r: dict, markdown: bool = False) -> str:
     e = r["eigen"]
     out.append(h("Eigen (a curiosity, beside the primary readings)"))
     out.append(f"- Yp = {e['yp']:.4f}; last key {e['last']:g}, next {e['next']:g} "
-               f"({sfo.keys[e['next']].reading}) on {e['next_at']:%Y-%m-%d %H:%M}")
+               f"({sfo.keys[e['next']].reading}) on "
+               + (f"{e['next_at']:%Y-%m-%d %H:%M}" if e["next_at"] else "no instant (passed over at a Yg recalibration)"))
 
     out.append(h("Ahead in this SFO"))
     if r["ahead"]:

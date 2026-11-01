@@ -111,7 +111,7 @@ tr.out td{color:var(--muted)}
 carried. Hold Y, run X over the 400 SFO-BB node values, read the field at each.</p>
 
 <div class="eq mono">
-  TNLDY = 14160 + 100·(Y + X) &nbsp;&nbsp;·&nbsp;&nbsp; date = 1969-11-07T11:28:41.739Z + TNLDY days<br>
+  TNLDY = 14160 + 100·(Y + X) &nbsp;&nbsp;·&nbsp;&nbsp; date = the Nsukka day on which the Nsukka/Yg clock reads that TNLDY<br>
   <b>numerator</b> = events GDELT recorded that day &nbsp;·&nbsp;
   <b>denominator</b> = what that day would normally carry (local level × weekday × season)
 </div>
@@ -210,8 +210,15 @@ carried. Hold Y, run X over the 400 SFO-BB node values, read the field at each.<
 </p>
 
 </div>
+<script src="nsukka-yg-clock.js"></script>
 <script>
-const ORIGIN_D = Date.UTC(1969,10,7,11,28,41,739)/86400000;
+/* Dates are read from Nsukka on the Nsukka/Yg clock (nsukka-yg-clock.js): the engine's year, Yg = 17640/48.3
+   days, laid on Nsukka's calendar from 1 December 00:00 and recalibrated every Yg year. A node's day is
+   Nsukka's calendar day of its instant; a TNLDY that a recalibration passes over has none ("passed over"),
+   and of two instants the first is taken. Day numbers count from 1970-01-01 as calendar days. */
+const Yg = window.NsukkaYg;
+const instantOf = t => { const a = Yg.instantsOf(t.toFixed(4)); return a.length ? a[0] : null; };
+const dayNo = ms => Math.floor((ms + Yg.WAT_MS) / 86400000);
 const WD = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 let F=null, N=null, START=0, Y=24.50, showEdges=false, onlyIn=true,
     sortK="x", sortAsc=true, rows=[];
@@ -221,7 +228,7 @@ const URL_ERA="2013-04-01";
 const srcLink=d=>"https://nth-member.github.io/gdelt/?date="+d;
 /* Followable: in the URL era and inside the field. A node past the field's last
    day has no day page yet, and must not be offered one. */
-const followable=d=>d>=URL_ERA&&F&&d<=F.end;
+const followable=d=>/^\d{4}-\d\d-\d\d$/.test(d)&&d>=URL_ERA&&F&&d<=F.end;
 
 const $=s=>document.querySelector(s);
 const fmt=(n,d=0)=>n==null?"—":n.toLocaleString(undefined,{minimumFractionDigits:d,maximumFractionDigits:d});
@@ -250,20 +257,20 @@ function bind(){
 }
 function step(d){Y=Math.round((Y+d)*100)/100; $("#ys").value=Y; $("#yn").value=Y.toFixed(2); update();}
 
-function dayIndex(x){ return Math.floor(ORIGIN_D + 14160 + 100*(Y+x)) - START; }
+function dayIndex(x){ const ms = instantOf(14160 + 100*(Y+x)); return ms == null ? -1 : dayNo(ms) - START; }
 function isoOf(i){ return new Date((START+i)*86400000).toISOString().slice(0,10); }
 
 function update(){
   rows = N.map(nd=>{
     const t = 14160 + 100*(Y+nd.x);
-    const i = dayIndex(nd.x);
+    const ms = instantOf(t), day = ms == null ? null : Yg.dateNsukka(ms);
+    const i = ms == null ? -1 : dayNo(ms) - START;
     const inF = i>=0 && i<F.n;
     const num = inF ? F.events[i] : -1;
     const den = inF ? F.denom[i] : -1;
     const ok  = inF && num>=0 && den>0;
-    const dt  = new Date((ORIGIN_D+t)*86400000);
-    return { x:nd.x, tnldy:t, i, inF, date:dt.toISOString().slice(0,10),
-             wd:WD[dt.getUTCDay()], num: ok?num:null, den: ok?den:null,
+    return { x:nd.x, tnldy:t, i, inF, date: day || "passed over",
+             wd: day ? WD[new Date(day + "T00:00:00Z").getUTCDay()] : "", num: ok?num:null, den: ok?den:null,
              ratio: ok?num/den:null, z: ok?F.z[i]:null,
              deg:nd.s.length, succ:nd.s, text:nd.t, nullday: inF && num<0 };
   });
@@ -274,13 +281,15 @@ function tiles(){
   const ok=rows.filter(r=>r.ratio!=null), rs=ok.map(r=>r.ratio).sort((a,b)=>a-b);
   const ztp=14160+100*Y;
   $("#tZ").textContent=fmt(ztp,0);
-  $("#tZd").textContent="X = 0 → "+new Date((ORIGIN_D+ztp)*86400000).toISOString().slice(0,10);
+  const zms=instantOf(ztp);
+  $("#tZd").textContent="X = 0 → "+(zms==null?"passed over":Yg.dateNsukka(zms));
   $("#tN").textContent=ok.length;
   $("#tR").textContent= rs.length? rs[rs.length>>1].toFixed(3) : "—";
   const a=ok.filter(r=>r.ratio>1).length;
   $("#tAB").textContent= ok.length? a+" / "+(ok.length-a) : "—";
-  $("#tS").textContent= rows[0].date.slice(0,4)+"–"+rows[rows.length-1].date.slice(0,4);
-  $("#tSd").textContent= rows[0].date+" → "+rows[rows.length-1].date;
+  const dated=rows.filter(r=>r.date!=="passed over"), r0=dated[0], r1=dated[dated.length-1];
+  $("#tS").textContent= r0.date.slice(0,4)+"–"+r1.date.slice(0,4);
+  $("#tSd").textContent= r0.date+" → "+r1.date;
 }
 
 function css(v){return getComputedStyle(document.body).getPropertyValue(v).trim();}

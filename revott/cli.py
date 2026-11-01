@@ -19,16 +19,23 @@ import sys
 from fractions import Fraction as F
 
 from .core import (
-    REVOTT_ZTP, TNLDY_ORIGIN, UNIT_DAYS, YEAR_DAYS,
-    date_of, expression, tnldy, year_of, ztp_of,
+    REVOTT_ZTP, UNIT_DAYS, YEAR_DAYS,
+    expression, instants_of, tnldy, year_of, ztp_of,
 )
+
+
+def _when(y=0, x=0, t=None, date_only: bool = False) -> str:
+    """The instant(s) of a TNLDY in Nsukka time, or why there is none."""
+    found = instants_of(y, x, t)
+    if not found:
+        return "passed over at a Yg recalibration (no instant)"
+    return " and ".join(d.date().isoformat() if date_only else d.isoformat() for d in found)
 from .sfo import SFO
 
 
 def _row(y, x, key=None) -> str:
     t = tnldy(y, x)
-    d = date_of(y, x)
-    line = (f"{float(x):>10.4f}  TNLDY {float(t):>10.2f}  {d.date().isoformat()}  "
+    line = (f"{float(x):>10.4f}  TNLDY {float(t):>10.2f}  {_when(y, x, date_only=True)}  "
             f"{float(year_of(y, x)):>12.6f}")
     if key is not None:
         text = key.reading
@@ -64,7 +71,7 @@ def main(argv: list[str] | None = None) -> int:
 
     p_is = sub.add_parser("introspect", help="where an instance's SFO is at an instant")
     p_is.add_argument("--y", default="24.50")
-    p_is.add_argument("--at", default=None, help="ISO instant, UTC; default now")
+    p_is.add_argument("--at", default=None, help="ISO instant; without a zone it is Nsukka time; default now")
     p_is.add_argument("--granule", default="day",
                       choices=["second", "minute", "hour", "day", "week", "month", "year"])
     p_is.add_argument("--ahead", type=int, default=90, help="horizon, days")
@@ -86,11 +93,11 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.command == "ztp":
         print(f"REVOTT Ztp   : TNLDY {float(REVOTT_ZTP):,.0f}")
-        print(f"  date       : {date_of(0, 0).isoformat()}")
+        print(f"  date       : {_when(0, 0)}")
         print(f"  year       : {float(year_of(0, 0)):.6f}")
         print(f"  expression : {expression(0, 0)}")
         print()
-        print(f"TNLDY origin : {TNLDY_ORIGIN.isoformat()}  (TNLDY 0)")
+        print(f"TNLDY 0      : {_when(t=0)}  (Nsukka, on the Yg clock)")
         print(f"unit         : {float(UNIT_DAYS):.0f} TNLDY per unit of Y or X")
         print(f"year unit    : {YEAR_DAYS} = {float(YEAR_DAYS):.6f} days")
         return 0
@@ -102,9 +109,9 @@ def main(argv: list[str] | None = None) -> int:
         print(f"Y = {y}   X = {x}")
         print(f"  TNLDY      : {float(t):,.4f}   = 14160 + {float(F(str(y))*100):,.1f}"
               f" + {float(F(str(x))*100):,.1f}")
-        print(f"  date       : {date_of(y, x).isoformat()}")
+        print(f"  date       : {_when(y, x)}")
         print(f"  year       : {float(year_of(y, x)):.6f}")
-        print(f"  instance   : Ztp TNLDY {float(ztp_of(y)):,.0f} = {date_of(y, 0).date()}")
+        print(f"  instance   : Ztp TNLDY {float(ztp_of(y)):,.0f} = {_when(y, 0, date_only=True)}")
         key = sfo.keys.get(float(x))
         if key:
             if key.strands:
@@ -130,11 +137,11 @@ def main(argv: list[str] | None = None) -> int:
         sfo = SFO()
         lo, hi = sfo.span
         print(f"instance Y = {y}")
-        print(f"  Ztp        : TNLDY {float(ztp_of(y)):,.0f}  =  {date_of(y, 0).isoformat()}")
+        print(f"  Ztp        : TNLDY {float(ztp_of(y)):,.0f}  =  {_when(y, 0)}")
         print(f"  shift      : {float(F(str(y)) * 100):,.0f} TNLDY off REVOTT's own zero")
         print(f"  year       : {float(year_of(y, 0)):.6f}")
         print(f"  SFO span   : X {lo} .. {hi}")
-        print(f"               {date_of(y, lo).date()} .. {date_of(y, hi).date()}")
+        print(f"               {_when(y, lo, date_only=True)} .. {_when(y, hi, date_only=True)}")
         print(f"  expression : {expression(y, 0)}")
         return 0
 
@@ -155,10 +162,10 @@ def main(argv: list[str] | None = None) -> int:
             print("x,tnldy,date,year,text")
             for x, key in keyed:
                 text = (key.reading if key else "").replace('"', "'")
-                print(f'{float(x)},{float(tnldy(y, x))},{date_of(y, x).date()},'
+                print(f'{float(x)},{float(tnldy(y, x))},{_when(y, x, date_only=True)},'
                       f'{float(year_of(y, x)):.6f},"{text}"')
         else:
-            print(f"Y = {y}   Ztp TNLDY {float(ztp_of(y)):,.0f} = {date_of(y, 0).date()}"
+            print(f"Y = {y}   Ztp TNLDY {float(ztp_of(y)):,.0f} = {_when(y, 0, date_only=True)}"
                   f"   ({len(keyed)} positions)")
             print(f"{'X':>10}  {'TNLDY':>16}  {'date':>10}  {'year':>12}  framework")
             for x, key in keyed:

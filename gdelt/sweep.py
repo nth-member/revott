@@ -28,7 +28,7 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
-from revott.core import TNLDY_ORIGIN as ORIGIN
+from revott.core import day_ordinals
 
 HERE = Path(__file__).resolve().parent
 MIN_COVER = 300
@@ -52,8 +52,6 @@ for i in np.where(ok)[0]:
     if len(w) >= 5 and (z[i] >= w.max() or z[i] <= w.min()):
         ext[i] = True
 
-O = ORIGIN.toordinal() + (ORIGIN.hour * 3600 + ORIGIN.minute * 60
-                          + ORIGIN.second + ORIGIN.microsecond / 1e6) / 86400.0
 Ys = np.arange(-14760, 21241) / 100.0
 
 STATS = ["mean_z", "rate_hi995", "rate_hi99", "rate_lo1", "rate_lo05", "rate_ext"]
@@ -62,7 +60,8 @@ cover = np.zeros(len(Ys), int)
 
 for a in range(0, len(Ys), 2000):
     Yb = Ys[a:a + 2000]
-    o = np.floor(O + 14160.0 + 100.0 * Yb[:, None] + 100.0 * xs[None, :]).astype(np.int64)
+    # Nsukka's day on the Nsukka/Yg clock; -1 (outside the field) where a recalibration passes a node over.
+    o = day_ordinals(np.round(14160.0 + 100.0 * Yb[:, None] + 100.0 * xs[None, :], 4))
     inf = (o >= LO) & (o <= HI)
     idx = np.clip(o - LO, 0, len(z) - 1)
     zz = np.where(inf, z[idx], np.nan)

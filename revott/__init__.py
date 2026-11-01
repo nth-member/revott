@@ -13,11 +13,14 @@ view of TNLDY.
 """
 
 from .core import (
+    NSUKKA,
     REVOTT_ZTP,
-    TNLDY_ORIGIN,
     UNIT_DAYS,
     YEAR_DAYS,
     date_of,
+    day_ordinal,
+    day_ordinals,
+    instants_of,
     tnldy,
     x_at_date,
     year_of,
@@ -26,6 +29,6 @@ from .core import (
 
 __version__ = "0.1.0"
 __all__ = [
-    "REVOTT_ZTP", "TNLDY_ORIGIN", "UNIT_DAYS", "YEAR_DAYS",
-    "tnldy", "date_of", "year_of", "ztp_of", "x_at_date",
+    "NSUKKA", "REVOTT_ZTP", "UNIT_DAYS", "YEAR_DAYS",
+    "tnldy", "date_of", "instants_of", "day_ordinal", "day_ordinals", "year_of", "ztp_of", "x_at_date",
 ]

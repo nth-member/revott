@@ -35,7 +35,7 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
-from revott.core import TNLDY_ORIGIN as ORIGIN
+from revott.core import day_ordinals
 from revott.sfo import SFO
 
 NAMES = "Mon Tue Wed Thu Fri Sat Sun".split()
@@ -44,16 +44,15 @@ NAMES = "Mon Tue Wed Thu Fri Sat Sun".split()
 OFFSET = np.array([-0.0074, +0.0286, +0.0339, +0.0292, +0.0041, -0.1642, -0.1830])
 RESID_SD = 0.1254
 
-_O = ORIGIN.toordinal() + (ORIGIN.hour * 3600 + ORIGIN.minute * 60
-                           + ORIGIN.second + ORIGIN.microsecond / 1e6) / 86400.0
 
 
 def weekday(y, xs):
-    """The UTC weekday of each X in the instance shifted by Y."""
+    """Nsukka's weekday of each X in the instance shifted by Y, on the Nsukka/Yg clock;
+    -1 where a recalibration passes a node over."""
     # +6 because ordinal 1 (0001-01-01) is a Monday, so that Mon=0 as in
     # datetime.weekday(), which is how OFFSET is indexed.
-    return (np.floor(_O + 14160.0 + 100.0 * y + 100.0 * np.asarray(xs))
-            .astype(np.int64) + 6) % 7
+    o = day_ordinals(np.round(14160.0 + 100.0 * y + 100.0 * np.asarray(xs), 4))
+    return np.where(o < 0, -1, (o + 6) % 7)
 
 
 def ripple(values_by_rotation, noise_floor):
@@ -65,6 +64,7 @@ def ripple(values_by_rotation, noise_floor):
 def report(sfo, y):
     xs = np.array(sfo.order)
     wn = weekday(y, xs)
+    wn = wn[wn >= 0]                       # nodes passed over at a Yg recalibration have no day
     c = Counter(wn.tolist())
     print(f"\nY = {y}")
     print("  weekday histogram of the 400 nodes:  "
@@ -80,13 +80,14 @@ def report(sfo, y):
     print(f"  {'statistic':<30}{'n':>5}{'ripple':>10}{'floor':>9}{'ratio':>8}")
     for label, edges, nodes in groups:
         if nodes is not None:
-            n = len(nodes)
+            n = len(wn)
             vals = [OFFSET[(wn + k) % 7].mean() for k in range(7)]
             floor = 1 / np.sqrt(n)
         else:
-            n = len(edges)
             ws = weekday(y, [e.source for e in edges])
             wt = weekday(y, [e.target for e in edges])
+            keep = (ws >= 0) & (wt >= 0)
+            ws, wt, n = ws[keep], wt[keep], int(keep.sum())
             if label.startswith("mean gradient"):
                 vals = [(OFFSET[(wt + k) % 7] - OFFSET[(ws + k) % 7]).mean()
                         for k in range(7)]

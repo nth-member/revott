@@ -9,23 +9,38 @@
     X        the position, over the SFO
 
 **Y and X enter identically — the expression contains only their sum.** So they carry the same
-span, `−147.60 .. 212.40`, 36,000 days each; `Y + X` runs `−295.20 .. 424.80`, dates 1927-10-19 to
-2124-12-04; and position X in the instance shifted by Y falls on the same date as X′ in Y′ whenever
+span, `−147.60 .. 212.40`, 36,000 days each; `Y + X` runs `−295.20 .. 424.80`, dates 1927-10-16 to
+2124-12-07 (Nsukka); and position X in the instance shifted by Y falls on the same date as X′ in Y′ whenever
 `Y + X = Y′ + X′`. Sliding the anchor is a shift test.
 
     year  = TNLDY × 23/8400 + 1969 + 391/420
-    date  = 1969-11-07T11:28:41.739Z + TNLDY days
+    date  = the instant at which the Nsukka/Yg clock reads TNLDY
 
 Everything else — calendar dates, decimal years, the named readings — is a view of TNLDY.
 
 The year unit is **8400/23 = 365.2174 days**, which is what the `48.3/17640` factor in the REVOTT
 expression reduces to: `48.3/17640 = 23/8400`.
 
-| TNLDY | date | what it is |
+| TNLDY | date (Nsukka) | what it is |
 |---|---|---|
-| 0 | 1969-11-07 | the TNLDY origin |
-| **14160** | **2008-08-14** | **REVOTT's own Ztp**, Y = 0 |
-| 16610 | 2015-04-30 | Y = 24.50 — a shift of 2450 |
+| 0 | 1969-11-06 00:00 | yearday 340 of Yg 1969: the TNLDY zero |
+| **14160** | **2008-08-13 12:31** | **REVOTT's own Ztp**, Y = 0 |
+| 16610 | 2015-04-30 00:00 | Y = 24.50 — a shift of 2450 |
+
+### The clock
+
+Time is read from Nsukka (WAT, UTC+01:00) on the engine's own year, Yg = 17640/48.3 = 8400/23 days
+(the year above). A Yg year is laid on Nsukka's calendar from 1 December at 00:00; its yeardays are
+real days from there and land on whatever Gregorian day they fall on, 29 February included:
+
+    TNLDY(t) = (yG − 1969)·Yg − 340 + (t − 1 December of yG − 1, 00:00 Nsukka) / day
+
+with yG Nsukka's civil year, plus one from 1 December. Each Yg year is recalibrated at its start, so the
+clock never drifts from Nsukka's: after 365 civil days the last 5/23 day of the old year's TNLDY is
+passed over (no instant has it); after 366 the first 18/23 day of the new year's TNLDY occurs twice, and
+the first instant is the date. `revott/clock.py` is the clock (exact rationals); `docs/nsukka-yg-clock.js`
+is the page's copy of it. It is the MDQNM engine's own reckoning — its decimal year, yearday function and
+December-first year (sfo10) — and its live clock (`z-tnldy-clock3`) reads within half a second of it.
 
 ## Usage
 
@@ -47,7 +62,7 @@ and around them:
 X is continuous. `sweep` with no range walks the 400 keys; with `--from/--to/--step` it walks
 whatever you ask for, keyed or not.
 
-`introspect` locates any instant (`--at`, default now) on a fixed Y's SFO at a granule from a
+`introspect` locates any instant (`--at`, Nsukka time unless a zone is given; default now) on a fixed Y's SFO at a granule from a
 second to a year. It reports the keys firing inside the granule, every open edge with its progress
 and the readings of both its ends, the (Y, X) sentences on the granule's line through the 400 × 400
 grid, the eigen reading Z = 200·Yp + 14160 (a curiosity beside the primary readings), and what lies
@@ -133,7 +148,7 @@ distribution; an anchoring is a rank against the sweep.
     numerator    what GDELT recorded that day
     denominator  what that day would normally carry (local level × weekday × season)
 
-Drag Y at day resolution and all 400 nodes move together. From 2013-04-01, a node in either chart,
+Drag Y at day resolution and all 400 nodes move together; each sits on the Nsukka day of its instant. From 2013-04-01, a node in either chart,
 and the date in the table, opens that day's sources on nth-member/gdelt. The page's range is read
 from its data, never typed by hand. Run it with any static server:
 

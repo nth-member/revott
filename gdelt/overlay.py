@@ -30,7 +30,7 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
-from revott.core import TNLDY_ORIGIN as ORIGIN
+from revott.core import day_ordinal
 from revott.sfo import SFO
 
 Y = float(sys.argv[1]) if len(sys.argv) > 1 else 24.50
@@ -58,16 +58,19 @@ zsorted = np.sort(zval[ok])
 def pct(z):
     return 100.0 * np.searchsorted(zsorted, z, side="right") / len(zsorted)
 
-O = ORIGIN.toordinal() + (ORIGIN.hour * 3600 + ORIGIN.minute * 60
-                          + ORIGIN.second + ORIGIN.microsecond / 1e6) / 86400.0
+# A node's day is Nsukka's calendar day of its instant on the Nsukka/Yg clock (revott.core);
+# a node whose TNLDY a Yg recalibration passes over has no day, and is outside the field.
 sfo = SFO()
 out, covered = [], 0
 for x in sfo.order:
     key = sfo.keys[x]
     t = 14160.0 + 100.0 * Y + 100.0 * x
-    o = int(np.floor(O + t))
-    d = date.fromordinal(o)
-    rec = dict(x=x, tnldy=round(t, 4), date=d.isoformat(), weekday=WD[d.weekday()],
+    o = day_ordinal(round(t, 4))
+    d = date.fromordinal(o) if o is not None else None
+    if o is None:
+        o = LO - 1
+    rec = dict(x=x, tnldy=round(t, 4), date=d.isoformat() if d else "passed over",
+               weekday=WD[d.weekday()] if d else "",
                in_field=int(LO <= o <= HI), present="", n_events="", z="", pct="",
                extremum="", out_degree=len(key.successors), carried=int(key.bare),
                text=key.reading)
