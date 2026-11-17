@@ -88,8 +88,8 @@ x,tnldy,date,weekday,in_field,present,n_events,z,pct,extremum,out_degree,carried
 -17.272,14882.8,2010-08-06,Fri,1,1,97105,0.7418,83.83,,1,0,And Isaac sent away Jacob...and he went to Padan-aram unto Laban
 -17.2424,14885.76,2010-08-09,Mon,1,1,100696,0.7756,84.55,max,1,0,Death of Eber
 -17.134,14896.6,2010-08-20,Fri,1,1,67233,-0.47,24.06,min,6,0,Birth of Joseph
--17.1,14900.0,2010-08-24,Tue,1,1,106270,0.0315,54.84,,1,1,Birth of Joseph  [carried from -17.134]
--17.0,14910.0,2010-09-03,Fri,1,1,100210,0.0375,55.26,,1,1,Birth of Joseph  [carried from -17.134]
+-17.1,14900.0,2010-08-24,Tue,1,1,106270,0.0315,54.84,,1,0,Raiser of taxes midpoint 1
+-17.0,14910.0,2010-09-03,Fri,1,1,100210,0.0375,55.26,,1,0,Raiser of taxes midpoint 2
 -16.9664,14913.36,2010-09-06,Mon,1,1,87045,-0.2947,30.63,min,1,0,Joseph...being 17yJ old...was feeding the flock with his brethren
 -16.8383,14926.17,2010-09-19,Sun,1,1,68753,0.0532,56.51,,1,0,Death of Isaac...Joseph was 30yJ old when he stood before Pharaoh king of Egypt
 -16.7397,14936.03,2010-09-29,Wed,1,1,111648,0.0915,58.88,,1,0,And Jacob said unto Pharaoh...The days of the years of my pilgrimage are 130yJ
@@ -288,7 +288,7 @@ x,tnldy,date,weekday,in_field,present,n_events,z,pct,extremum,out_degree,carried
 10.95,17705.0,2018-04-29,Sun,1,1,110830,-0.1016,40.58,,1,0,fourth year (onset) || have intelligence
 11.1921,17729.21,2018-05-23,Wed,1,1,209356,-0.1853,35.98,,2,0,"arms shall stand || have intelligence || sanctuary of strength, daily sacrifice"
 11.2,17730.0,2018-05-24,Thu,1,1,213937,0.1923,64.7,,1,0,thou hast defiled thy sanctuaries by the multitude of thine iniquities; the gravitational pull of Virgo (with thousands of galaxies) on The Local Group deccelerates the pace of expansion on the latter; during the life and times of Noah
-11.52,17762.0,2018-06-25,Mon,1,1,172916,-0.2969,30.52,,1,1,thou hast defiled thy sanctuaries by the multitude of thine iniquities; the gravitational pull of Virgo (with thousands of galaxies) on The Local Group deccelerates the pace of expansion on the latter; during the life and times of Noah  [carried from 11.2]
+11.52,17762.0,2018-06-25,Mon,1,1,172916,-0.2969,30.52,,1,0,Placenta (end)
 11.547,17764.7,2018-06-28,Thu,1,1,207904,1.0431,89.68,max,5,0,"confirm the covenant for one week || sanctuary of strength, daily sacrifice || Placenta, Baby's fingernails begin to develop"
 11.69,17779.0,2018-07-12,Thu,1,1,201920,0.3285,71.05,max,1,0,Ardipithecus Kadabba (2); Nimrod...beginning of kingdom of his kingdom was Babel
 11.6919,17779.19,2018-07-12,Thu,1,1,201920,0.3285,71.05,max,2,0,"beginning of kingdom || Placenta, Baby's fingernails begin to develop"
@@ -311,7 +311,7 @@ x,tnldy,date,weekday,in_field,present,n_events,z,pct,extremum,out_degree,carried
 13.318,17941.8,2018-12-21,Fri,1,1,173225,0.7442,83.91,max,5,0,7S; Death of Jacob (Israel) at a hundred and forty seven years || 7S = seventh seal
 13.35,17945.0,2018-12-25,Tue,1,1,79953,-2.5445,1.77,min,4,0,blessed is he that waiteth
 13.47509,17957.509,2019-01-06,Sun,1,1,90044,-0.3064,30.11,,1,0,Death of Joseph at a hundred and ten years
-13.5993,17969.93,2019-01-19,Sat,1,1,122239,1.4671,94.66,max,2,1,Death of Joseph at a hundred and ten years  [carried from 13.4751]
+13.5993,17969.93,2019-01-19,Sat,1,1,122239,1.4671,94.66,max,2,0,Death of Moses
 13.834,17993.4,2019-02-11,Mon,1,1,168828,-0.1807,36.29,min,1,0,Star-seeded Nebula forming; Australopith Anamensis (0)
 13.8358571428,17993.5857,2019-02-11,Mon,1,1,168828,-0.1807,36.29,min,1,0,Moses at 80yJ...the children of Israel...WITH AN OUTSTRETCHED ARM...are delivered from Pharaoh and Egypt
 13.9541428571,18005.4143,2019-02-23,Sat,1,1,126028,0.8089,85.23,max,1,0,"Matter (3 families of 4 elementary particles each vis quarks, leptons, neutrinos) combining uniquely to form earth; Australopith Anamensis (1); Death of Moses at 120yJ...the children of Israel arrive in the Promised Land"
@@ -333,7 +333,7 @@ x,tnldy,date,weekday,in_field,present,n_events,z,pct,extremum,out_degree,carried
 16.94,18304.0,2019-12-18,Wed,1,1,167588,0.0892,58.75,,1,0,Proclamation of Cyrus the Great of Persia (Jews return to Jerusalem)
 16.94085714,18304.0857,2019-12-18,Wed,1,1,167588,0.0892,58.75,,1,1,Proclamation of Cyrus the Great of Persia (Jews return to Jerusalem)  [carried from 16.94]
 17.22,18332.0,2020-01-15,Wed,1,1,170421,-1.3672,6.75,min,2,0,Alexander (start)
-17.28,18338.0,2020-01-21,Tue,1,1,166258,-1.43,6.24,min,1,1,Alexander (start)  [carried from 17.22]
+17.28,18338.0,2020-01-21,Tue,1,1,166258,-1.43,6.24,min,1,0,Alexander (peak)
 17.32,18342.0,2020-01-25,Sat,1,1,109408,-0.0209,45.85,,1,0,Alexander (finish) || Baby's sex becomes apparent
 17.71,18381.0,2020-03-04,Wed,1,1,190380,2.119,98.21,,1,0,end of 5Thidden || Baby's sex becomes apparent || 5Thidden = fifth trumpet (hidden)
 18.0,18410.0,2020-04-02,Thu,1,1,150991,0.3166,70.46,,5,0,Baby's sex becomes apparent || 5Shidden = fifth seal (hidden)
@@ -381,7 +381,7 @@ x,tnldy,date,weekday,in_field,present,n_events,z,pct,extremum,out_degree,carried
 24.29,19039.0,2021-12-23,Thu,1,1,99005,-0.5543,21.52,,5,0,Tower(s) of Babylon the great is fallen is fallen
 24.295336964285,19039.5337,2021-12-24,Fri,1,1,73341,-1.2583,7.98,min,1,0,AL-QAEDA 9-11 TERRORIST ATTACK
 24.2969,19039.69,2021-12-24,Fri,1,1,73341,-1.2583,7.98,min,4,1,AL-QAEDA 9-11 TERRORIST ATTACK  [carried from 24.2953]
-24.31,19041.0,2021-12-25,Sat,1,1,44446,2.7517,99.39,,1,1,AL-QAEDA 9-11 TERRORIST ATTACK  [carried from 24.2953]
+24.31,19041.0,2021-12-25,Sat,1,1,44446,2.7517,99.39,,1,0,Midst
 24.329,19042.9,2021-12-27,Mon,1,1,73815,0.0432,55.68,,4,0,midst of one week covenant
 24.34,19044.0,2021-12-28,Tue,1,1,82416,-0.8178,15.14,,1,0,ca. Ancient Tethys Sea swallowed by plate tectonics of Eurasia
 24.35,19045.0,2021-12-29,Wed,1,1,87237,-0.9529,12.27,,1,1,ca. Ancient Tethys Sea swallowed by plate tectonics of Eurasia  [carried from 24.34]
@@ -496,13 +496,13 @@ x,tnldy,date,weekday,in_field,present,n_events,z,pct,extremum,out_degree,carried
 42.86,20896.0,2027-01-23,Sat,0,,,,,,2,0,Baby is now completely covered in Lanugo-Hair || land cleansed (end)
 43.2,20930.0,2027-02-26,Fri,0,,,,,,1,1,Baby is now completely covered in Lanugo-Hair || land cleansed (end)  [carried from 42.86]
 45.0,21110.0,2027-08-25,Wed,0,,,,,,2,0,Baby responds to voice || land cleansed (end)
-46.8,21290.0,2028-02-21,Mon,0,,,,,,1,1,Baby responds to voice || land cleansed (end)  [carried from 45]
-47.47,21357.0,2028-04-28,Fri,0,,,,,,1,1,Baby responds to voice || land cleansed (end)  [carried from 45]
+46.8,21290.0,2028-02-21,Mon,0,,,,,,1,0,Thirteen Years Jew (Building his own house)
+47.47,21357.0,2028-04-28,Fri,0,,,,,,1,0,Thirteen Years Gentile (Building his own house)
 47.52,21362.0,2028-05-03,Wed,0,,,,,,1,0,Baby has fingernails || land cleansed (end)
 50.04,21614.0,2029-01-10,Wed,0,,,,,,1,0,"Baby has grown, lungs and CNS ie Central Nervous System continue to mature || land cleansed (end)"
 52.56,21866.0,2029-09-19,Wed,0,,,,,,2,0,Baby's eyelids partially open and eyelashes have formed || land cleansed (end)
-52.918,21901.8,2029-10-25,Thu,0,,,,,,1,1,Baby's eyelids partially open and eyelashes have formed || land cleansed (end)  [carried from 52.56]
-53.84,21994.0,2030-01-25,Fri,0,,,,,,1,1,Baby's eyelids partially open and eyelashes have formed || land cleansed (end)  [carried from 52.56]
+52.918,21901.8,2029-10-25,Thu,0,,,,,,1,0,15th even; DAY 1st; SABBATH
+53.84,21994.0,2030-01-25,Fri,0,,,,,,1,1,15th even; DAY 1st; SABBATH  [carried from 52.918]
 55.08,22118.0,2030-05-29,Wed,0,,,,,,1,0,Baby's bones are fully developed || land cleansed (end)
 57.6,22370.0,2031-02-05,Wed,0,,,,,,1,0,Baby's eyes are open a good part of the time || land cleansed (end)
 60.12,22622.0,2031-10-15,Wed,0,,,,,,1,0,"Baby's CNS has matured to control body temperature, sexual development continues || land cleansed (end)"
@@ -526,7 +526,7 @@ x,tnldy,date,weekday,in_field,present,n_events,z,pct,extremum,out_degree,carried
 77.0,24310.0,2036-05-29,Thu,0,,,,,,1,1,One and Twenty YG  [carried from 76.695]
 77.14,24324.0,2036-06-12,Thu,0,,,,,,1,1,One and Twenty YG  [carried from 76.695]
 77.76,24386.0,2036-08-13,Wed,0,,,,,,2,0,Baby develops firm grasp and sheds most of the Lanugo
-79.2,24530.0,2037-01-05,Mon,0,,,,,,1,1,Baby develops firm grasp and sheds most of the Lanugo  [carried from 77.76]
+79.2,24530.0,2037-01-05,Mon,0,,,,,,1,0,23RD BEGIN
 80.28,24638.0,2037-04-23,Thu,0,,,,,,1,0,Baby's Chest is becoming more prominent
 82.8,24890.0,2037-12-31,Thu,0,,,,,,5,0,Due date for delivery arrives
 83.6,24970.0,2038-03-21,Sun,0,,,,,,1,1,Due date for delivery arrives  [carried from 82.8]

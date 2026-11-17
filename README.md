@@ -79,8 +79,8 @@ framework text and naming successors — not a list X is confined to.
   `0.0 → 0.18`, `0.18 → 0.33`. Marked wherever they appear.
 - **4 disputed gaps**, where the stated gap and the difference between the keys disagree. Both
   numbers are kept; neither is resolved.
-- **Framework stands at all 539 keys**: 440 carry text of their own, 563 strands in all, up to four
-  on a single key. The other 99 have no text in the source yet (listed in `textless_keys.md`), and stand under the framework of the
+- **Framework stands at all 539 keys**: 450 carry text of their own, 573 strands in all, up to four
+  on a single key. The other 89 have no text in the source yet (listed in `textless_keys.md`), and stand under the framework of the
   last preceding key that does — shown as *carried from*, with the distance in position, and never
   presented as owned.
 - **Three errata applied**: one source row carried two keys, `−0.18` and `0.18`. Separated, every
