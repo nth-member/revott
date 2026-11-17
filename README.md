@@ -59,31 +59,31 @@ and around them:
     python -m revott introspect --y 24.50 --granule day   # where the instance's SFO is now
     python -m revott sweep --y 24.50 --from -10 --to 10 --step 0.5 --csv
 
-X is continuous. `sweep` with no range walks the 539 keys; with `--from/--to/--step` it walks
+X is continuous. `sweep` with no range walks the 550 keys; with `--from/--to/--step` it walks
 whatever you ask for, keyed or not.
 
 `introspect` locates any instant (`--at`, Nsukka time unless a zone is given; default now) on a fixed Y's SFO at a granule from a
 second to a year. It reports the keys firing inside the granule, every open edge with its progress
-and the readings of both its ends, the (Y, X) sentences on the granule's line through the 539 × 539
+and the readings of both its ends, the (Y, X) sentences on the granule's line through the 550 × 550
 grid, the eigen reading Z = 200·Yp + 14160 (a curiosity beside the primary readings), and what lies
 ahead within `--ahead` days, with joint firings flagged.
 
 ## The SFO
 
-X ranges over the SFO. The **539 BB keys** are a structure standing on it — positions carrying
+X ranges over the SFO. The **550 BB keys** are a structure standing on it — positions carrying
 framework text and naming successors — not a list X is confined to.
 
-- **918 relations**: a **backbone** of 538, each key to the one immediately next, plus **380
+- **940 relations**: a **backbone** of 549, each key to the one immediately next, plus **391
   long-range** edges skipping over it. One root (−147.6), one sink (212.4), acyclic.
 - **3 backbone links are not written down** in the source and hold by default: `−1.916 → −0.18`,
   `0.0 → 0.18`, `0.18 → 0.33`. Marked wherever they appear.
 - **4 disputed gaps**, where the stated gap and the difference between the keys disagree. Both
   numbers are kept; neither is resolved.
-- **Framework stands at all 539 keys**: 450 carry text of their own, 573 strands in all, up to four
+- **Framework stands at all 550 keys**: 461 carry text of their own, 584 strands in all, up to four
   on a single key. The other 89 have no text in the source yet (listed in `textless_keys.md`), and stand under the framework of the
   last preceding key that does — shown as *carried from*, with the distance in position, and never
   presented as owned.
-- **Three errata applied**: one source row carried two keys, `−0.18` and `0.18`. Separated, every
+- **Four errata applied**: one source row carried two keys, `−0.18` and `0.18`. Separated, every
   gap reconciles, and the only backward edge and only ordering violation both resolve. And `85.32`,
   *onset of circumcision*, was missing from the source's key list from the start (its positions list and
   the MDQNM engine carry it); it is restored with the relations its author gave: `82.80 → 85.32` (2.52)
@@ -94,7 +94,10 @@ framework text and naming successors — not a list X is confined to.
   link it splits stays as a long-range relation. Twins (a value of three or more decimals that is another
   rounded or truncated to its precision) are one key, their distinct texts appended with semicolons;
   two-decimal values are exact, so `−19.60` stands beside `−19.5983`. `241.20`, a corruption of `212.40`,
-  is blotted out.
+  is blotted out. And eleven evens the author gave in handwritten pages under *THE FEAST OF TABERNACLES*
+  were missing: the 12th to the 14th and the 16th to the 23rd day, `3.60(n−1) + 2.518`, the series of
+  7S (`13.318`, the 4th) and `52.918` (the 15th). Each carries the name the pages give it (`56.518`,
+  *16th even; DAY 2nd*); `60.118` stands beside `60.12`.
 - **Each key is read in layers** (`Key.reading` in `revott/sfo.py`): its marking first; then the
   apocalypse sequence, of equal standing (`nS` seal, `nT` trumpet, `nV` vial, `nH` horns, `hidden`
   for the hidden series); then derived sub-contexts such as `−25.99dysi`, never led with. A key with
@@ -158,7 +161,7 @@ distribution; an anchoring is a rank against the sweep.
     numerator    what GDELT recorded that day
     denominator  what that day would normally carry (local level × weekday × season)
 
-Drag Y at day resolution and all 539 nodes move together; each sits on the Nsukka day of its instant. From 2013-04-01, a node in either chart,
+Drag Y at day resolution and all 550 nodes move together; each sits on the Nsukka day of its instant. From 2013-04-01, a node in either chart,
 and the date in the table, opens that day's sources on nth-member/gdelt. The page's range is read
 from its data, never typed by hand. Run it with any static server:
 
@@ -167,7 +170,7 @@ from its data, never typed by hand. Run it with any static server:
 ## Layout
 
     revott/core.py       the coordinate system; exact arithmetic throughout
-    revott/sfo.py        the 539 keys, their text, their relations
+    revott/sfo.py        the 550 keys, their text, their relations
     revott/readings.py   the eleven named readings
     revott/page.py       render an instance
     revott/introspect.py where a fixed Y's SFO is at any instant and granule

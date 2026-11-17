@@ -9,14 +9,14 @@ adjustable. At each one this module answers, from the SFO alone:
     open edges   every edge in flight at the instant -- the backbone one and the
                  long-range spans over it -- with how far along each is, and the
                  layered reading of both its ends
-    sentences    every (Y, X) pair of the 539 x 539 grid whose line falls inside
+    sentences    every (Y, X) pair of the 550 x 550 grid whose line falls inside
                  the granule, read as "X is being Y"
     eigen        Z = 200 Yp + 14160, the diagonal: one value at a time.
                  A curiosity -- the system's own stretched values -- reported
                  beside the primary readings, never in place of them
     ahead        the firings still to come in the instance, within a horizon
 
-Each fixed Y generates its own 539-node, 918-edge SFO over X; Y names which one.
+Each fixed Y generates its own 550-node, 940-edge SFO over X; Y names which one.
 Nothing here reads GDELT. The field is read against this, not the other way round.
 """
 
@@ -77,7 +77,7 @@ def introspect(y: float, at: datetime, granule: str = "day",
                                   sfo.keys[e.target].reading))
     edges.sort(key=lambda o: (not o.backbone, o.end))
 
-    # The granule's line through the 539 x 539 grid: every (Yi, Xj) whose date
+    # The granule's line through the 550 x 550 grid: every (Yi, Xj) whose date
     # falls inside it. Y + X fixes the date, so bound the sum and test only there.
     s_lo = (float(tnldy_at_date(lo)) - float(REVOTT_ZTP)) / float(UNIT_DAYS)
     s_hi = (float(tnldy_at_date(hi)) - float(REVOTT_ZTP)) / float(UNIT_DAYS)

@@ -14,8 +14,8 @@
     "note": "An independent slice of REVOTT, anchored by its own Ztp. It is not derived from any other instance and stands on its own gauge. The corpus carries a named reading END_IE_PURPOSE_CIRCUMSPECTION.100D over the same positions; whether this slice and that reading are the same object is not established here."
   },
   "sampled": {
-    "positions": 539,
-    "of_keys": 539,
+    "positions": 550,
+    "of_keys": 550,
     "why": "Instantiated across the whole key domain. No real-world targets are attached and none are claimed."
   },
   "relations": {

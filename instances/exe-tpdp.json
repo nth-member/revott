@@ -11,11 +11,11 @@
     "decimal": 2018.263261904762,
     "fixes": "Ztp",
     "source": "REVOTT",
-    "note": "An independent slice of REVOTT, anchored by its own Ztp. It is not derived from any other instance and stands on its own gauge. Unlike 24.50, Y = 34.918 is itself a key of the SFO (539 keys since E-003). The corpus carries a named reading EXE_TPDP.100D over the same positions; whether that reading and this slice are the same object is not established here."
+    "note": "An independent slice of REVOTT, anchored by its own Ztp. It is not derived from any other instance and stands on its own gauge. Unlike 24.50, Y = 34.918 is itself a key of the SFO (550 keys since E-004). The corpus carries a named reading EXE_TPDP.100D over the same positions; whether that reading and this slice are the same object is not established here."
   },
   "sampled": {
-    "positions": 539,
-    "of_keys": 539,
+    "positions": 550,
+    "of_keys": 550,
     "why": "Instantiated across the whole key domain. No real-world targets are attached and none are claimed."
   },
   "relations": {

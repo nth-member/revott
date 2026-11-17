@@ -491,43 +491,54 @@ x,tnldy,date,weekday,in_field,present,n_events,z,pct,extremum,out_degree,carried
 40.1739,20627.39,2026-04-29,Wed,1,1,122914,0.0,52.67,min,3,1,Baby's fingerprints and footprints form  [carried from 39.96]
 40.18,20628.0,2026-04-30,Thu,1,1,120744,0.0,52.67,min,1,1,Baby's fingerprints and footprints form  [carried from 39.96]
 40.328,20642.8,2026-05-15,Fri,1,1,118201,0.4968,77.22,,1,0,end of trumpets
-42.0,20810.0,2026-10-29,Thu,1,1,118962,-0.425,25.65,min,1,1,end of trumpets  [carried from 40.328]
+42.0,20810.0,2026-10-29,Thu,1,1,118962,-0.425,25.65,min,2,1,end of trumpets  [carried from 40.328]
+42.118,20821.8,2026-11-10,Tue,0,,,,,,1,0,12th even
 42.28,20838.0,2026-11-26,Thu,0,,,,,,2,0,sanctuary cleansed (end) || land cleansed (end)
 42.86,20896.0,2027-01-23,Sat,0,,,,,,2,0,Baby is now completely covered in Lanugo-Hair || land cleansed (end)
 43.2,20930.0,2027-02-26,Fri,0,,,,,,1,1,Baby is now completely covered in Lanugo-Hair || land cleansed (end)  [carried from 42.86]
-45.0,21110.0,2027-08-25,Wed,0,,,,,,2,0,Baby responds to voice || land cleansed (end)
+45.0,21110.0,2027-08-25,Wed,0,,,,,,3,0,Baby responds to voice || land cleansed (end)
+45.718,21181.8,2027-11-05,Fri,0,,,,,,1,0,13th even
 46.8,21290.0,2028-02-21,Mon,0,,,,,,1,0,Thirteen Years Jew (Building his own house)
 47.47,21357.0,2028-04-28,Fri,0,,,,,,1,0,Thirteen Years Gentile (Building his own house)
-47.52,21362.0,2028-05-03,Wed,0,,,,,,1,0,Baby has fingernails || land cleansed (end)
+47.52,21362.0,2028-05-03,Wed,0,,,,,,2,0,Baby has fingernails || land cleansed (end)
+49.318,21541.8,2028-10-29,Sun,0,,,,,,1,0,14th even
 50.04,21614.0,2029-01-10,Wed,0,,,,,,1,0,"Baby has grown, lungs and CNS ie Central Nervous System continue to mature || land cleansed (end)"
 52.56,21866.0,2029-09-19,Wed,0,,,,,,2,0,Baby's eyelids partially open and eyelashes have formed || land cleansed (end)
 52.918,21901.8,2029-10-25,Thu,0,,,,,,1,0,15th even; DAY 1st; SABBATH
 53.84,21994.0,2030-01-25,Fri,0,,,,,,1,1,15th even; DAY 1st; SABBATH  [carried from 52.918]
-55.08,22118.0,2030-05-29,Wed,0,,,,,,1,0,Baby's bones are fully developed || land cleansed (end)
-57.6,22370.0,2031-02-05,Wed,0,,,,,,1,0,Baby's eyes are open a good part of the time || land cleansed (end)
+55.08,22118.0,2030-05-29,Wed,0,,,,,,2,0,Baby's bones are fully developed || land cleansed (end)
+56.518,22261.8,2030-10-20,Sun,0,,,,,,1,0,16th even; DAY 2nd
+57.6,22370.0,2031-02-05,Wed,0,,,,,,2,0,Baby's eyes are open a good part of the time || land cleansed (end)
+60.118,22621.8,2031-10-15,Wed,0,,,,,,1,0,17th even; DAY 3rd
 60.12,22622.0,2031-10-15,Wed,0,,,,,,1,0,"Baby's CNS has matured to control body temperature, sexual development continues || land cleansed (end)"
 62.64,22874.0,2032-06-23,Wed,0,,,,,,2,0,Baby practises breathing || land cleansed (end)
-63.6,22970.0,2032-09-27,Mon,0,,,,,,1,1,Baby practises breathing || land cleansed (end)  [carried from 62.64]
+63.6,22970.0,2032-09-27,Mon,0,,,,,,2,1,Baby practises breathing || land cleansed (end)  [carried from 62.64]
+63.718,22981.8,2032-10-09,Sat,0,,,,,,1,0,18th even; DAY 4th
 65.16,23126.0,2033-03-03,Thu,0,,,,,,3,0,Baby detects light || land cleansed (end)
-66.67,23277.0,2033-08-01,Mon,0,,,,,,1,1,Baby detects light || land cleansed (end)  [carried from 65.16]
+66.67,23277.0,2033-08-01,Mon,0,,,,,,2,1,Baby detects light || land cleansed (end)  [carried from 65.16]
+67.318,23341.8,2033-10-04,Tue,0,,,,,,1,0,19th even; DAY 5th
 67.48,23358.0,2033-10-21,Fri,0,,,,,,1,0,land cleansed (end)
 67.68,23378.0,2033-11-10,Thu,0,,,,,,2,0,Baby's fingernails have reached fingertips and Mother is anxious to deliver
 69.39,23549.0,2034-04-29,Sat,0,,,,,,1,1,Baby's fingernails have reached fingertips and Mother is anxious to deliver  [carried from 67.68]
 70.0,23610.0,2034-06-29,Thu,0,,,,,,1,1,Baby's fingernails have reached fingertips and Mother is anxious to deliver  [carried from 67.68]
-70.2,23630.0,2034-07-19,Wed,0,,,,,,2,0,Baby gaining weight rapidly and protective coating thickens
+70.2,23630.0,2034-07-19,Wed,0,,,,,,3,0,Baby gaining weight rapidly and protective coating thickens
+70.918,23701.8,2034-09-29,Fri,0,,,,,,1,0,20th even; DAY 6th
 72.0,23810.0,2035-01-15,Mon,0,,,,,,2,0,Twenty YJ
 72.72,23882.0,2035-03-28,Wed,0,,,,,,3,0,Mother's uterus crowded due to rapid weight gain
 73.04,23914.0,2035-04-29,Sun,0,,,,,,1,1,Mother's uterus crowded due to rapid weight gain  [carried from 72.72]
-73.043,23914.3,2035-04-29,Sun,0,,,,,,2,0,Twenty YG
+73.043,23914.3,2035-04-29,Sun,0,,,,,,3,0,Twenty YG
+74.518,24061.8,2035-09-24,Mon,0,,,,,,1,0,21st even; DAY 7th
 75.24,24134.0,2035-12-05,Wed,0,,,,,,2,0,Baby's organs are ready to function on their own
 75.6,24170.0,2036-01-10,Thu,0,,,,,,2,0,One and Twenty YJ
 76.69,24279.0,2036-04-28,Mon,0,,,,,,1,1,One and Twenty YJ  [carried from 75.6]
 76.695,24279.5,2036-04-28,Mon,0,,,,,,2,0,One and Twenty YG
 77.0,24310.0,2036-05-29,Thu,0,,,,,,1,1,One and Twenty YG  [carried from 76.695]
 77.14,24324.0,2036-06-12,Thu,0,,,,,,1,1,One and Twenty YG  [carried from 76.695]
-77.76,24386.0,2036-08-13,Wed,0,,,,,,2,0,Baby develops firm grasp and sheds most of the Lanugo
+77.76,24386.0,2036-08-13,Wed,0,,,,,,3,0,Baby develops firm grasp and sheds most of the Lanugo
+78.118,24421.8,2036-09-18,Thu,0,,,,,,1,0,22nd even; DAY 8th; SABBATH
 79.2,24530.0,2037-01-05,Mon,0,,,,,,1,0,23RD BEGIN
-80.28,24638.0,2037-04-23,Thu,0,,,,,,1,0,Baby's Chest is becoming more prominent
+80.28,24638.0,2037-04-23,Thu,0,,,,,,2,0,Baby's Chest is becoming more prominent
+81.718,24781.8,2037-09-14,Mon,0,,,,,,1,0,23rd even
 82.8,24890.0,2037-12-31,Thu,0,,,,,,5,0,Due date for delivery arrives
 83.6,24970.0,2038-03-21,Sun,0,,,,,,1,1,Due date for delivery arrives  [carried from 82.8]
 84.0,25010.0,2038-04-30,Fri,0,,,,,,1,1,Due date for delivery arrives  [carried from 82.8]
