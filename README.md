@@ -173,7 +173,7 @@ from its data, never typed by hand. Run it with any static server:
     revott/introspect.py where a fixed Y's SFO is at any instant and granule
     revott/cli.py        every command
     data/keys.json       the key structure, extracted once
-    data/readings.json   the readings, 11 × 265 positions
+    data/readings.json   the readings, 11 × 264 positions
     web/                 rendered instances
     gdelt/               the field, and the instruments that read it
     docs/                the browser app — also what GitHub Pages serves
