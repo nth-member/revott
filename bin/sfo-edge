@@ -1,0 +1,15 @@
+#!/bin/sh
+# sfo-edge: the author's edges in REVOTT's SFO, from any directory.
+#
+#   sfo-edge add FROM TO [FROM TO ...] [--said "your words"] [--push]   record, carry everywhere, publish
+#   sfo-edge remove FROM TO [--push]                                     take a recorded edge back out
+#   sfo-edge list                                                        the record
+#   sfo-edge check                                                       every value and every carrier
+#   sfo-edge sync                                                        carry the whole record again
+#   sfo-edge publish                                                     commit what changed and push it
+#
+# Runs `python3 -m revott edge ...` inside ~/revott (set REVOTT to use another checkout); see revott/edges.py.
+# Without --push or publish, nothing is committed or pushed. Link it onto the PATH with
+#   ln -sf ~/revott/bin/sfo-edge ~/.local/bin/sfo-edge
+cd "${REVOTT:-$HOME/revott}" || exit 1
+exec python3 -m revott edge "$@"

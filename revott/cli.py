@@ -9,7 +9,7 @@
     revott readings --x 0.00            the named readings at a position
     revott page --y 24.50               build a page for the instance
     revott edge add 23.71 24.31 --said "..."   record an edge the author gives and carry it everywhere
-    revott edge remove|list|check|sync  the author's edges (see revott/edges.py)
+    revott edge remove|list|check|sync|publish   the author's edges (see revott/edges.py); --push publishes
     revott introspect --y 24.50 [--at 2026-10-05T00:00] [--granule day] [--ahead 90]
                                         where the instance's SFO is at an instant
 """
@@ -84,24 +84,29 @@ def main(argv: list[str] | None = None) -> int:
     p_pg.add_argument("--out", default=None)
 
     p_ed = sub.add_parser("edge", help="the author's edges the SFO-WAM omits: add, remove, list, check, sync")
-    p_ed.add_argument("action", choices=["add", "remove", "list", "check", "sync"])
+    p_ed.add_argument("action", choices=["add", "remove", "list", "check", "sync", "publish"])
     p_ed.add_argument("xs", nargs="*", help="FROM TO [FROM TO ...] for add and remove")
     p_ed.add_argument("--said", default=None, help="the author's words, kept with the edge")
     p_ed.add_argument("--defer", action="store_true", help="record only; carry later with `edge sync`")
     p_ed.add_argument("--no-build", action="store_true", help="leave JOMO's docs/ unbuilt")
+    p_ed.add_argument("--push", action="store_true", help="commit the changed files in REVOTT, member and JOMO and push")
 
     args = parser.parse_args(argv)
 
     if args.command == "edge":
         from . import edges
         if args.action == "add":
-            return edges.add(args.xs, args.said, defer=args.defer, build=not args.no_build)
+            return edges.add(args.xs, args.said, defer=args.defer, build=not args.no_build, push=args.push)
         if args.action == "remove":
-            return edges.remove(args.xs, build=not args.no_build)
+            return edges.remove(args.xs, build=not args.no_build, push=args.push)
         if args.action == "list":
             return edges.listing()
         if args.action == "check":
             return edges.check()
+        if args.action == "publish":
+            for line in edges.publish():
+                print(line)
+            return 0
         for line in edges.sync(build=not args.no_build):
             print(line)
         return 0

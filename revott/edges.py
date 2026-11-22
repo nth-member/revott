@@ -6,6 +6,8 @@ everywhere the SFO's edges are carried (E-005).
     revott edge list                                      the record
     revott edge check                                     every value and every carrier, without writing
     revott edge sync                                      carry the whole record again (idempotent)
+    revott edge publish                                   commit what the record changed and push it
+    (add and remove take --push to publish in the same step)
 
 The author's rule (2026-11-22): every place the SFO-WAM indicates an edge is an edge, and a wrong value found
 there is human error. So an edge's value is always the difference between its keys. It is computed here, never
@@ -20,7 +22,10 @@ Carried to:
   under ~/Projects/backup-before-author-edges/).
 
 In JOMO, a value that disagrees with the corrected REVOTT value on the same stated edge is aligned to it.
-Nothing is committed or pushed.
+Nothing is committed or pushed unless asked (--push, or `edge publish`): then only the files listed in PUBLISH
+are committed, in REVOTT, the member and JOMO, and pushed. JOMO's rolling "Feeds: snapshot" commit follows its
+README: a local snapshot not yet on GitHub gives way to GitHub's. Set SFO_EDGE_TRAILER to end the commit
+messages with a trailer line.
 """
 from __future__ import annotations
 
@@ -44,7 +49,7 @@ README = ROOT / "README.md"
 HOME = Path.home()
 MEMBER = Path(os.environ.get("MEMBER", HOME / "member"))
 JOMO = Path(os.environ.get("JOMO", HOME / "jomo-sfo-wam"))
-COPIES = HOME / "Projects"
+COPIES = Path(os.environ.get("SFO_EDGE_COPIES", HOME / "Projects"))
 BACKUP = COPIES / "backup-before-author-edges"
 TOL = Decimal("0.005")
 NSUKKA = timezone(timedelta(hours=1))
@@ -298,7 +303,72 @@ def sync(build: bool = True, drop=()) -> list[str]:
     return out
 
 
-def add(pairs: list[str], said: str | None, defer: bool = False, build: bool = True) -> int:
+PUBLISH = {
+    "REVOTT": (lambda: ROOT, ["data/keys.json", "data/author_edges.json", "docs/data/nodes.json",
+                              "gdelt/overlay_Y24p5.csv", "README.md"]),
+    "member": (lambda: MEMBER, ["docs/data/sfo.json", "README.md", "docs/index.html", "build.py"]),
+    "JOMO": (lambda: JOMO, ["README.md", "docs/index.html", "src/sfo_wam_engine.jsx", "docs/assets"]),
+}
+FEEDS = ("docs/feeds/", "public/feeds/", "feeds/history/")
+
+
+def _git(repo: Path, *a: str, check: bool = True) -> subprocess.CompletedProcess:
+    return subprocess.run(["git", "-C", str(repo), *a], capture_output=True, text=True, check=check)
+
+
+def _message() -> str:
+    """Name the edges the record gained or lost since REVOTT's last commit."""
+    old = _git(ROOT, "show", "HEAD:data/author_edges.json", check=False)
+    before = {(e["from"], e["to"]) for e in (json.loads(old.stdout)["edges"] if old.returncode == 0 else [])}
+    now = _record()["edges"]
+    after = {(e["from"], e["to"]) for e in now}
+    added = [e for e in now if (e["from"], e["to"]) not in before]
+    gone = sorted(before - after)
+    parts = [f"{e['from']} -> {e['to']} ({e['value']})" for e in added] + [f"removed {a} -> {b}" for a, b in gone]
+    head = "Author edges: " + ("; ".join(parts) if parts else "carried again")
+    body = [f"Given by the author, {e['given']}: \"{e['said']}\"" for e in added if e.get("said")]
+    body.append("Carried by `python3 -m revott edge` (revott/edges.py); each value is the difference between its keys.")
+    trailer = os.environ.get("SFO_EDGE_TRAILER")
+    return head[:200] + "\n\n" + "\n".join(body) + (f"\n\n{trailer}" if trailer else "") + "\n"
+
+
+def _publish_one(name: str, repo: Path, paths: list[str], message: str) -> str:
+    if not (repo / ".git").exists():
+        return f"{name}: no git repository at {repo}, skipped"
+    branch = _git(repo, "branch", "--show-current").stdout.strip()
+    _git(repo, "fetch", "-q", "origin")
+    up = f"origin/{branch}"
+    if name == "JOMO":                       # a local feed snapshot gives way to GitHub's (JOMO README)
+        local = _git(repo, "log", "--format=%H", f"{up}..HEAD").stdout.split()
+        for c in local:
+            files = _git(repo, "show", "--format=", "--name-only", c).stdout.split()
+            if any(not f.startswith(FEEDS) for f in files):
+                return f"{name}: local commit {c[:7]} is more than a feed snapshot; not published, look first"
+        if local:
+            _git(repo, "reset", "-q", "--keep", up)
+    pending = _git(repo, "log", "--format=%h %s", f"{up}..HEAD").stdout.strip().splitlines()
+    _git(repo, "add", "-A", "--", *paths)
+    if _git(repo, "diff", "--cached", "--name-only", "--", *paths).stdout.strip():
+        subprocess.run(["git", "-C", str(repo), "commit", "-q", "-F", "-", "--", *paths],
+                       input=message, text=True, capture_output=True, check=True)
+    if _git(repo, "rev-list", "--count", f"{up}..HEAD").stdout.strip() == "0":
+        return f"{name}: nothing to publish"
+    if _git(repo, "push", "-q", "origin", f"HEAD:{branch}", check=False).returncode:
+        _git(repo, "fetch", "-q", "origin")
+        _git(repo, "rebase", "-q", up)
+        _git(repo, "push", "-q", "origin", f"HEAD:{branch}")
+    out = f"{name}: published {_git(repo, 'log', '-1', '--format=%h %s').stdout.strip()}"
+    if pending:
+        out += "; with it, earlier unpublished: " + " | ".join(pending)
+    return out
+
+
+def publish() -> list[str]:
+    message = _message()
+    return [_publish_one(name, where(), paths, message) for name, (where, paths) in PUBLISH.items()]
+
+
+def add(pairs: list[str], said: str | None, defer: bool = False, build: bool = True, push: bool = False) -> int:
     if len(pairs) % 2:
         print("give the edges as pairs: FROM TO [FROM TO ...]"); return 2
     K, R = _read_keys(), _record()
@@ -328,10 +398,13 @@ def add(pairs: list[str], said: str | None, defer: bool = False, build: bool = T
         print("deferred: run `python3 -m revott edge sync` to carry them"); return 0
     for line in sync(build=build):
         print("  " + line)
+    if push:
+        for line in publish():
+            print("  " + line)
     return 0
 
 
-def remove(pairs: list[str], build: bool = True) -> int:
+def remove(pairs: list[str], build: bool = True, push: bool = False) -> int:
     """Only edges in the author's record can be removed here; the SFO-WAM's own edges stand."""
     if len(pairs) % 2 or not pairs:
         print("give the edges as pairs: FROM TO [FROM TO ...]"); return 2
@@ -349,6 +422,9 @@ def remove(pairs: list[str], build: bool = True) -> int:
     print("removed: " + "; ".join(f"{a} -> {b}" for a, b in gone))
     for line in sync(build=build, drop=gone):
         print("  " + line)
+    if push:
+        for line in publish():
+            print("  " + line)
     return 0
 
 

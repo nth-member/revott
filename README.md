@@ -88,7 +88,10 @@ framework text and naming successors — not a list X is confined to.
   counts, the member, JOMO SFO-WAM and its research copies, and JOMO's build:
   `python3 -m revott edge add FROM TO --said "..."`. Both must be keys and FROM must come first; the
   value is always the difference between them. `edge list`, `edge check`, `edge remove FROM TO` and
-  `edge sync` do the rest. Nothing is committed or pushed.
+  `edge sync` do the rest. Add `--push` to commit the changed files in REVOTT, the member and JOMO
+  and publish them in the same step, or run `edge publish` later; without either, nothing is
+  committed. `bin/sfo-edge` runs all of it from any folder once linked onto the PATH:
+  `ln -sf ~/revott/bin/sfo-edge ~/.local/bin/sfo-edge`, then `sfo-edge add FROM TO --push`.
 - **Framework stands at all 550 keys**: 461 carry text of their own, 584 strands in all, up to four
   on a single key. The other 89 have no text in the source yet (listed in `textless_keys.md`), and stand under the framework of the
   last preceding key that does — shown as *carried from*, with the distance in position, and never
