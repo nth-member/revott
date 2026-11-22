@@ -1,0 +1,40 @@
+{
+ "note": "Edges the author gives that the SFO-WAM omits (E-005). Every place the SFO-WAM indicates an edge is an edge, and a wrong value found there is human error, so each value is the difference between its keys. Add with: python3 -m revott edge add FROM TO --said \"the author's words\"",
+ "edges": [
+  {
+   "from": "11.547",
+   "to": "24.447",
+   "value": "12.9",
+   "given": "2026-11-22",
+   "said": "These both definitely are edges of length 12.90 and 13.35."
+  },
+  {
+   "from": "11.547",
+   "to": "24.897",
+   "value": "13.35",
+   "given": "2026-11-22",
+   "said": "These both definitely are edges of length 12.90 and 13.35."
+  },
+  {
+   "from": "23.71",
+   "to": "24.31",
+   "value": "0.6",
+   "given": "2026-11-22",
+   "said": "23.71 -> 24.31 should also be included"
+  },
+  {
+   "from": "24.31",
+   "to": "24.41",
+   "value": "0.1",
+   "given": "2026-11-22",
+   "said": "hence this region 24.31 -> 24.41 is called the midst ... both are edges"
+  },
+  {
+   "from": "24.21",
+   "to": "24.31",
+   "value": "0.1",
+   "given": "2026-11-22",
+   "said": "both are edges ... thats what I meant ... not to drop the latter"
+  }
+ ]
+}

@@ -73,17 +73,27 @@ ahead within `--ahead` days, with joint firings flagged.
 X ranges over the SFO. The **550 BB keys** are a structure standing on it — positions carrying
 framework text and naming successors — not a list X is confined to.
 
-- **940 relations**: a **backbone** of 549, each key to the one immediately next, plus **391
+- **945 relations**: a **backbone** of 549, each key to the one immediately next, plus **396
   long-range** edges skipping over it. One root (−147.6), one sink (212.4), acyclic.
+- **Default edges**: every BB forms a default edge with the BB adjacent to it (the author's rule and
+  term; `Edge.default` in `revott/sfo.py`). *Backbone* and *long-range* are labels Claude gave in
+  REVOTT's first commit, not the author's; the label follows the key list, not the relationship.
 - **3 backbone links are not written down** in the source and hold by default: `−1.916 → −0.18`,
   `0.0 → 0.18`, `0.18 → 0.33`. Marked wherever they appear.
-- **4 disputed gaps**, where the stated gap and the difference between the keys disagree. Both
-  numbers are kept; neither is resolved.
+- **No disputed gaps.** Four stated values disagreed with the difference between their keys; the
+  author ruled them human error (E-005), so each edge stays where the SFO-WAM puts it and carries
+  the difference. `python3 -m revott edge check` reports any value that disagrees.
+- **Edges the author gives** that the SFO-WAM omits are kept in `data/author_edges.json`, each with
+  its date and the author's words, and carried by one command to REVOTT's keys, nodes, overlay and
+  counts, the member, JOMO SFO-WAM and its research copies, and JOMO's build:
+  `python3 -m revott edge add FROM TO --said "..."`. Both must be keys and FROM must come first; the
+  value is always the difference between them. `edge list`, `edge check`, `edge remove FROM TO` and
+  `edge sync` do the rest. Nothing is committed or pushed.
 - **Framework stands at all 550 keys**: 461 carry text of their own, 584 strands in all, up to four
   on a single key. The other 89 have no text in the source yet (listed in `textless_keys.md`), and stand under the framework of the
   last preceding key that does — shown as *carried from*, with the distance in position, and never
   presented as owned.
-- **Four errata applied**: one source row carried two keys, `−0.18` and `0.18`. Separated, every
+- **Five errata applied**: one source row carried two keys, `−0.18` and `0.18`. Separated, every
   gap reconciles, and the only backward edge and only ordering violation both resolve. And `85.32`,
   *onset of circumcision*, was missing from the source's key list from the start (its positions list and
   the MDQNM engine carry it); it is restored with the relations its author gave: `82.80 → 85.32` (2.52)
@@ -97,7 +107,11 @@ framework text and naming successors — not a list X is confined to.
   is blotted out. And eleven evens the author gave in handwritten pages under *THE FEAST OF TABERNACLES*
   were missing: the 12th to the 14th and the 16th to the 23rd day, `3.60(n−1) + 2.518`, the series of
   7S (`13.318`, the 4th) and `52.918` (the 15th). Each carries the name the pages give it (`56.518`,
-  *16th even; DAY 2nd*); `60.118` stands beside `60.12`.
+  *16th even; DAY 2nd*); `60.118` stands beside `60.12`. And by the author's rule that every place the
+  SFO-WAM indicates an edge is an edge and a wrong value found there is human error, the four stated
+  values that disagreed now equal the difference between their keys: `−21.1853 → 11.6919`
+  (2.1232 → 32.8772), `−3.31 → 29.528` (1.81 → 32.838), `13.318 → 17.32` (3.6 → 4.002) and
+  `23.41 → 29.528` (3.6 → 6.118).
 - **Each key is read in layers** (`Key.reading` in `revott/sfo.py`): its marking first; then the
   apocalypse sequence, of equal standing (`nS` seal, `nT` trumpet, `nV` vial, `nH` horns, `hidden`
   for the hidden series); then derived sub-contexts such as `−25.99dysi`, never led with. A key with
